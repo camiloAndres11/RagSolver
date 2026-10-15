@@ -1,0 +1,180 @@
+[resume] 45 resultados previos en data/eval/runs/eval-v2/results.jsonl
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  16%|█▌        | 49/310 [00:00<00:00, 486.36it/s]Loading weights:  32%|███▏      | 98/310 [00:00<00:00, 429.67it/s]Loading weights:  46%|████▌     | 142/310 [00:00<00:00, 379.06it/s]Loading weights:  58%|█████▊    | 181/310 [00:00<00:00, 369.17it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 613.99it/s]
+[index-check] 20/20 decl_name de la tabla 'mathlib_full' existen en Lean
+[baseline_auto] mathd_algebra_342: fail attempts=1 llm_calls=0 used_in_proof=0/0 32.7s
+[baseline_auto] mathd_algebra_67: done attempts=1 llm_calls=0 used_in_proof=0/0 1.0s
+[baseline_auto] mathd_algebra_437: fail attempts=1 llm_calls=0 used_in_proof=0/0 8.7s
+[baseline_auto] amc12b_2003_p17: fail attempts=1 llm_calls=0 used_in_proof=0/0 9.6s
+[baseline_auto] aime_1997_p11: fail attempts=1 llm_calls=0 used_in_proof=0/0 17.0s
+[baseline_auto] imo_1978_p5: fail attempts=1 llm_calls=0 used_in_proof=0/0 11.6s
+[baseline_auto] numbertheory_notequiv2i2jasqbsqdiv8: fail attempts=1 llm_calls=0 used_in_proof=0/0 4.8s
+[baseline_auto] mathd_numbertheory_155: done attempts=1 llm_calls=0 used_in_proof=0/0 0.9s
+[baseline_auto] numbertheory_sqmod3in01d: fail attempts=1 llm_calls=0 used_in_proof=0/0 10.3s
+[baseline_auto] amc12a_2002_p21: fail attempts=1 llm_calls=0 used_in_proof=0/0 8.4s
+[baseline_auto] amc12b_2002_p3: fail attempts=1 llm_calls=0 used_in_proof=0/0 8.8s
+[baseline_auto] imo_1964_p1_1: fail attempts=1 llm_calls=0 used_in_proof=0/0 5.2s
+[baseline_auto] mathd_algebra_24: fail attempts=1 llm_calls=0 used_in_proof=0/0 0.6s
+[baseline_auto] mathd_algebra_185: fail attempts=1 llm_calls=0 used_in_proof=0/0 8.2s
+[baseline_auto] amc12_2001_p5: fail attempts=1 llm_calls=0 used_in_proof=0/0 0.3s
+[baseline_auto] induction_prod1p1onk3le3m1onn: fail attempts=1 llm_calls=0 used_in_proof=0/0 7.0s
+[baseline_auto] mathd_algebra_214: fail attempts=1 llm_calls=0 used_in_proof=0/0 9.7s
+[baseline_auto] aime_1983_p2: fail attempts=1 llm_calls=0 used_in_proof=0/0 8.4s
+[baseline_auto] aime_1990_p2: fail attempts=1 llm_calls=0 used_in_proof=0/0 10.4s
+[baseline_auto] imo_1981_p6: fail attempts=1 llm_calls=0 used_in_proof=0/0 0.2s
+[baseline_auto] imo_2006_p3: fail attempts=1 llm_calls=0 used_in_proof=0/0 4.8s
+[baseline_auto] mathd_numbertheory_229: done attempts=1 llm_calls=0 used_in_proof=0/0 0.2s
+[baseline_auto] mathd_numbertheory_101: done attempts=1 llm_calls=0 used_in_proof=0/0 0.0s
+[baseline_auto] amc12_2000_p6: fail attempts=1 llm_calls=0 used_in_proof=0/0 63.9s
+[baseline_auto] amc12a_2008_p15: fail attempts=1 llm_calls=0 used_in_proof=0/0 0.2s
+[baseline_auto] imo_1992_p1: fail attempts=1 llm_calls=0 used_in_proof=0/0 5.6s
+[baseline_auto] imo_1987_p6: fail attempts=1 llm_calls=0 used_in_proof=0/0 5.1s
+[baseline_auto] mathd_algebra_398: fail attempts=1 llm_calls=0 used_in_proof=0/0 8.0s
+[baseline_auto] mathd_algebra_224: fail attempts=1 llm_calls=0 used_in_proof=0/0 10.0s
+[baseline_auto] amc12a_2003_p1: fail attempts=1 llm_calls=0 used_in_proof=0/0 0.3s
+[baseline_auto] mathd_algebra_125: done attempts=1 llm_calls=0 used_in_proof=0/0 0.2s
+[baseline_auto] mathd_algebra_28: fail attempts=1 llm_calls=0 used_in_proof=0/0 4.0s
+[baseline_auto] amc12a_2019_p12: fail attempts=1 llm_calls=0 used_in_proof=0/0 12.3s
+[baseline_auto] amc12b_2003_p6: done attempts=1 llm_calls=0 used_in_proof=0/0 0.7s
+[baseline_auto] imo_1962_p2: fail attempts=1 llm_calls=0 used_in_proof=0/0 8.1s
+[baseline_auto] imo_1993_p5: fail attempts=1 llm_calls=0 used_in_proof=0/0 3.9s
+[baseline_auto] mathd_numbertheory_233: fail attempts=1 llm_calls=0 used_in_proof=0/0 158.0s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[baseline_auto] mathd_numbertheory_109: fail attempts=1 llm_calls=0 used_in_proof=0/0 31.4s
+[baseline_auto] amc12a_2003_p23: fail attempts=1 llm_calls=0 used_in_proof=0/0 13.0s
+[baseline_auto] amc12b_2002_p11: fail attempts=1 llm_calls=0 used_in_proof=0/0 8.1s
+[baseline_auto] imo_1974_p3: fail attempts=1 llm_calls=0 used_in_proof=0/0 3.5s
+[baseline_auto] imo_1990_p3: fail attempts=1 llm_calls=0 used_in_proof=0/0 8.0s
+[baseline_auto] mathd_algebra_455: fail attempts=1 llm_calls=0 used_in_proof=0/0 8.9s
+[baseline_auto] amc12a_2020_p9: fail attempts=1 llm_calls=0 used_in_proof=0/0 9.2s
+[baseline_auto] amc12a_2003_p25: fail attempts=1 llm_calls=0 used_in_proof=0/0 11.2s
+[cost] 0 llamadas, 0 tokens de entrada, 0 de salida, US$0.0000 (OpenRouter usage.cost)
+{
+  "run_id": "eval-v2",
+  "out": "data/eval/runs/eval-v2",
+  "status": "completed",
+  "n_done": 90,
+  "n_pending": 0,
+  "summary": {
+    "full": {
+      "n": 15,
+      "pass@1": 0.4,
+      "pass@1_wilson95": [
+        0.198,
+        0.643
+      ],
+      "llm_calls_mean": 8.0,
+      "tokens_mean": 32928,
+      "wall_s_median": 476.1,
+      "retrieval_calls_mean": 10.73,
+      "llm_calls_mean_ci95_bootstrap": [
+        5.6,
+        10.2
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        17608.2,
+        50513.4
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        296.76,
+        764.99
+      ],
+      "pass_by_attempt": {
+        "1": 0.333,
+        "2": 0.4,
+        "3": 0.4
+      },
+      "lemma_use_precision": 0.004,
+      "re_retrieval_success": 1.0,
+      "error_taxonomy": {
+        "planning": 14,
+        "exhausted": 7,
+        "llm_output_invalid:critic": 1,
+        "llm_output_invalid:formalizer": 1,
+        "misformalization": 2,
+        "missing_lemma": 1,
+        "lean_syntax": 2
+      },
+      "self_assessed_correct": null
+    },
+    "no_rag": {
+      "n": 15,
+      "pass@1": 0.467,
+      "pass@1_wilson95": [
+        0.248,
+        0.699
+      ],
+      "llm_calls_mean": 8.8,
+      "tokens_mean": 26494,
+      "wall_s_median": 334.6,
+      "retrieval_calls_mean": 0.0,
+      "llm_calls_mean_ci95_bootstrap": [
+        6.27,
+        11.2
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        15623.8,
+        38041.93
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        302.2,
+        685.85
+      ],
+      "pass_by_attempt": {
+        "1": 0.4,
+        "2": 0.4,
+        "3": 0.467
+      },
+      "lemma_use_precision": null,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "llm_output_invalid:critic": 1,
+        "misformalization": 3,
+        "planning": 10,
+        "missing_lemma": 6,
+        "exhausted": 7,
+        "lean_syntax": 3
+      },
+      "self_assessed_correct": null
+    },
+    "baseline_auto": {
+      "n": 60,
+      "pass@1": 0.183,
+      "pass@1_wilson95": [
+        0.106,
+        0.299
+      ],
+      "llm_calls_mean": 0.0,
+      "tokens_mean": 0,
+      "wall_s_median": 8.4,
+      "retrieval_calls_mean": 0.0,
+      "llm_calls_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        12.87,
+        33.18
+      ],
+      "pass_by_attempt": {
+        "1": 0.183
+      },
+      "lemma_use_precision": null,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "unknown": 49
+      },
+      "self_assessed_correct": null
+    }
+  },
+  "llm_calls_total": 0,
+  "cost_usd_total": 0.0,
+  "models_exhausted": []
+}

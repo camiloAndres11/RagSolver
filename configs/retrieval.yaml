@@ -1,0 +1,23 @@
+# Fase 3 — servicio de recuperación (docs/PLAN_RAG.md §6.3, §8, Fase 4 tarea 7).
+# Los valores por consulta (k, n_candidates, rerank) los fija RetrievalRequest;
+# aquí van las plantillas por modo y los flags de ablación que aplica el orquestador.
+
+rrf_k: 60
+# 0 = sin límite. Evita que un módulo de Mathlib con muchas variantes del mismo
+# lema desplace a lemas de otros módulos (docs/PLAN_RAG.md §6.3, "opcional").
+max_per_module: 0
+
+# Instrucción de consulta de Qwen3-Embedding ("Instruct: ...\nQuery: ..."). Los
+# documentos se embebieron SIN instrucción, así que cambiar esto no obliga a
+# re-indexar. `nl` es la misma instrucción con la que se midió la Fase 1.
+query_instructions:
+  nl: "Given a mathematical query, retrieve relevant Mathlib declarations or worked problems."
+  formal: "Given a Lean 4 goal state or theorem statement, retrieve Mathlib declarations whose statements match it."
+  error: "Given a Lean 4 error message and goal, retrieve the Mathlib declaration it refers to or the closest alternatives."
+  exemplar: "Given a competition math problem, retrieve solved problems that use the same idea or technique."
+
+# Flags de ablación (docs/PLAN_RAG.md Fase 4, tarea 7; métrica 8.3 "contribución del RAG").
+# enabled=false -> RETRIEVE devuelve vacío y la traza lo registra igual.
+ablation:
+  enabled: true
+  corpora: [mathlib, informal]

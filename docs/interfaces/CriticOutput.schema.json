@@ -1,0 +1,43 @@
+{
+  "properties": {
+    "error_type": {
+      "enum": [
+        "lean_syntax",
+        "missing_lemma",
+        "misformalization",
+        "timeout",
+        "planning",
+        "unknown"
+      ],
+      "title": "Error Type",
+      "type": "string"
+    },
+    "action": {
+      "enum": [
+        "retry",
+        "replan",
+        "abandon"
+      ],
+      "title": "Action",
+      "type": "string"
+    },
+    "missing_identifiers": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing Identifiers",
+      "type": "array"
+    },
+    "feedback": {
+      "title": "Feedback",
+      "type": "string"
+    }
+  },
+  "required": [
+    "error_type",
+    "action",
+    "feedback"
+  ],
+  "title": "CriticOutput",
+  "type": "object"
+}

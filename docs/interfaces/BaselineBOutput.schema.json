@@ -1,0 +1,19 @@
+{
+  "description": "Línea base B: prueba en lenguaje natural + autoevaluación (sin verificación).",
+  "properties": {
+    "natural_language_proof": {
+      "title": "Natural Language Proof",
+      "type": "string"
+    },
+    "self_assessed_correct": {
+      "title": "Self Assessed Correct",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "natural_language_proof",
+    "self_assessed_correct"
+  ],
+  "title": "BaselineBOutput",
+  "type": "object"
+}

@@ -1,0 +1,115 @@
+{
+  "description": "§7.3 — tabla `figures`; también existe como InformalChunk(unit_type='figure').",
+  "properties": {
+    "figure_id": {
+      "title": "Figure Id",
+      "type": "string"
+    },
+    "image_path": {
+      "title": "Image Path",
+      "type": "string"
+    },
+    "image_sha": {
+      "default": "",
+      "title": "Image Sha",
+      "type": "string"
+    },
+    "page": {
+      "title": "Page",
+      "type": "integer"
+    },
+    "bbox": {
+      "items": {
+        "type": "number"
+      },
+      "title": "Bbox",
+      "type": "array"
+    },
+    "detected_by": {
+      "enum": [
+        "layout",
+        "vector_cluster",
+        "raster",
+        "both"
+      ],
+      "title": "Detected By",
+      "type": "string"
+    },
+    "caption": {
+      "default": "",
+      "title": "Caption",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "title": "Description",
+      "type": "string"
+    },
+    "labels": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Labels",
+      "type": "array"
+    },
+    "objects": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Objects",
+      "type": "array"
+    },
+    "relations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Relations",
+      "type": "array"
+    },
+    "given_values": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Given Values",
+      "type": "array"
+    },
+    "figure_type": {
+      "default": "other",
+      "enum": [
+        "geometric_diagram",
+        "grid",
+        "plot",
+        "table_image",
+        "other"
+      ],
+      "title": "Figure Type",
+      "type": "string"
+    },
+    "linked_chunk_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Linked Chunk Ids",
+      "type": "array"
+    },
+    "description_model": {
+      "default": "",
+      "title": "Description Model",
+      "type": "string"
+    },
+    "description_version": {
+      "default": "",
+      "title": "Description Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "figure_id",
+    "image_path",
+    "page",
+    "bbox",
+    "detected_by"
+  ],
+  "title": "Figure",
+  "type": "object"
+}

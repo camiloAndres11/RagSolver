@@ -1,0 +1,22 @@
+{
+  "run": "Fase 1 - evaluate.py sobre muestra acotada (13736 filas: 116 gold de QR+MPR + 3000 distractores; ver docs/DECISIONS.md)",
+  "date": "2026-09-19",
+  "corpus_table": "mathlib (data/index/lancedb, 13736 filas)",
+  "benchmark": "MathlibQR.json (200 declaraciones, 946 consultas)",
+  "n_queries": 946,
+  "n_gold_covered_in_table": 282,
+  "coverage_ratio": 0.298,
+  "raw": {
+    "denso":          {"recall@10": 0.24101479915433405, "ndcg@10": 0.16789006978197682, "mrr": 0.14954742847777033},
+    "bm25":           {"recall@10": 0.2219873150105708,  "ndcg@10": 0.14377780444378796, "mrr": 0.12409268717118548},
+    "hibrido":        {"recall@10": 0.2822410147991543,  "ndcg@10": 0.2271548786310991,  "mrr": 0.21111217153764725},
+    "hibrido_rerank": {"recall@10": 0.28012684989429176, "ndcg@10": 0.2135806774817932,  "mrr": 0.1933156898699038}
+  },
+  "coverage_adjusted_recall_at_10": {
+    "note": "raw_recall@10 / coverage_ratio -- de las consultas cuyo gold SI esta en esta tabla de 13736 filas, que fraccion se encontro en el top-10",
+    "denso": 0.809,
+    "bm25": 0.745,
+    "hibrido": 0.947,
+    "hibrido_rerank": 0.940
+  }
+}

@@ -1,0 +1,35 @@
+# Entorno / caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.idea/
+.env
+
+# Lean / Mathlib (GBs de artefactos de build; se reconstruye con `lake exe cache get`)
+lean_project/.lake/
+
+# Datos grandes / regenerables (ver docs/PLAN_RAG.md §6 — se publican en HF Hub, no en git)
+data/raw/
+data/parsed/
+data/corpus/_raw/
+data/corpus/*.jsonl
+# excepción: lista de lemas de competición (778, MIT), pequeña y necesaria para el flujo por goal
+!data/corpus/premise_prior.jsonl
+data/corpus/*_embedded.jsonl
+data/index/
+data/eval/traces/
+tools/
+
+# Licencia desconocida / contenido no redistribuible (SEC-2, docs/AUDIT_2026-09-23.md):
+# el PDF de ejemplo, su caché de MinerU y las corridas (354 citas informales
+# llevan hasta 300 caracteres de su texto en el snippet). Ver DECISIONS #75;
+# `scripts/publish_hf.py` sube una copia saneada aparte, no estos archivos.
+problemas resueltos olimpiadas.pdf
+blobs/
+data/eval/runs/
+
+# Artefactos de Lean sin valor fuera de esta máquina (auditoría §3.D / §9)
+lean_project/scratch/
+lean_project.lock
+.claude/*.graphify-bak

@@ -1,0 +1,20 @@
+{
+  "properties": {
+    "sketch": {
+      "title": "Sketch",
+      "type": "string"
+    },
+    "used_citations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Used Citations",
+      "type": "array"
+    }
+  },
+  "required": [
+    "sketch"
+  ],
+  "title": "GeneratorOutput",
+  "type": "object"
+}

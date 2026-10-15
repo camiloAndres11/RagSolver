@@ -1,0 +1,18 @@
+=== EVAL_V1 2026-09-22 22:32 mem_avail=6595MB ===
+[resume] 52 resultados previos en data/eval/runs/eval-v1/results.jsonl
+  self.pid = _fork_exec(
+[full] imo_1987_p6: fail attempts=1 llm_calls=2 used_in_proof=0/0 500.0s
+[full] mathd_algebra_224: fail attempts=3 llm_calls=11 used_in_proof=0/29 587.7s
+[full] imo_1992_p1: fail attempts=1 llm_calls=2 used_in_proof=0/0 587.8s
+[full] imo_1965_p1: fail attempts=1 llm_calls=2 used_in_proof=0/0 603.7s
+[full] amc12a_2020_p9: fail attempts=1 llm_calls=2 used_in_proof=0/0 616.4s
+[full] amc12_2001_p5: fail attempts=1 llm_calls=2 used_in_proof=0/0 643.5s
+[no_rag] mathd_algebra_125: done attempts=1 llm_calls=3 used_in_proof=0/0 57.3s
+[full] amc12a_2003_p1: fail attempts=3 llm_calls=10 used_in_proof=0/31 247.5s
+[no_rag] algebra_sqineq_2unitcircatblt1: done attempts=1 llm_calls=3 used_in_proof=0/0 48.1s
+[no_rag] mathd_algebra_67: done attempts=1 llm_calls=3 used_in_proof=0/0 32.4s
+[no_rag] mathd_algebra_28: done attempts=1 llm_calls=3 used_in_proof=0/0 94.9s
+[no_rag] mathd_algebra_342: fail attempts=3 llm_calls=11 used_in_proof=0/0 301.3s
+[no_rag] mathd_algebra_209: fail attempts=3 llm_calls=11 used_in_proof=0/0 369.4s
+[full] amc12a_2003_p25: fail attempts=1 llm_calls=2 used_in_proof=0/0 615.6s
+[no_rag] mathd_algebra_77: fail attempts=2 llm_calls=9 used_in_proof=0/0 342.3s

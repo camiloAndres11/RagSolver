@@ -1,0 +1,23 @@
+{
+  "table": "mathlib_full",
+  "rows": 278160,
+  "ann_index": true,
+  "index_type": "IVF_SQ",
+  "num_partitions": 256,
+  "nprobes": 32,
+  "refine_factor": 5,
+  "n_queries": 200,
+  "k": 50,
+  "ann_recall@10_vs_exact": 0.989,
+  "ann_recall@50_vs_exact": 0.9769,
+  "latency_exact_s": {
+    "p50": 2.713,
+    "p95": 2.887
+  },
+  "latency_ann_s": {
+    "p50": 0.045,
+    "p95": 0.078
+  },
+  "maxrss_mb": 1733,
+  "note": "consultas sintéticas normalize(e_i + e_j); latencias medidas con la corrida eval_v1 en paralelo (CPU compartida)"
+}

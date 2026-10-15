@@ -1,0 +1,21 @@
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+mathd_algebra_209 battery_plain False
+mathd_algebra_209 battery_rag False
+mathd_algebra_209 battery_rag_prior False
+aime_1997_p11 battery_rag_prior False
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+mathd_numbertheory_233 battery_plain True
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  35%|███▍      | 108/310 [00:00<00:00, 1065.34it/s]Loading weights:  69%|██████▉   | 215/310 [00:00<00:00, 928.68it/s] Loading weights: 100%|██████████| 310/310 [00:00<00:00, 1356.68it/s]
+mathd_numbertheory_233 battery_rag True
+mathd_numbertheory_233 battery_rag_prior False
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+mathd_numbertheory_403 battery_rag_prior True
+mathd_numbertheory_155 battery_rag_prior True
+amc12_2000_p6 battery_plain False
+amc12_2000_p6 battery_rag False
+amc12_2000_p6 battery_rag_prior False
+{"battery_plain": 11, "battery_rag": 12, "battery_rag_prior": 11}

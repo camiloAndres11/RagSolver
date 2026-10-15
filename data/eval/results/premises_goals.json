@@ -1,0 +1,50 @@
+{
+  "n_goals": 1295,
+  "n_problems": 230,
+  "goal_A_static": {
+    "recall@8": 0.064,
+    "recall@16": 0.261,
+    "recall@32": 0.399
+  },
+  "goal_A_filtered": {
+    "recall@8": 0.071,
+    "recall@16": 0.327,
+    "recall@32": 0.412
+  },
+  "goal_sample": 600,
+  "goal_A_filtered_sample": {
+    "recall@8": 0.076,
+    "recall@16": 0.337,
+    "recall@32": 0.427
+  },
+  "goal_C_dense_goal": {
+    "recall@8": 0.017,
+    "recall@16": 0.028,
+    "recall@32": 0.043
+  },
+  "goal_fused_A_C": {
+    "recall@8": 0.028,
+    "recall@16": 0.097,
+    "recall@32": 0.367
+  },
+  "problem_dense_nl": {
+    "recall@8": 0.002,
+    "recall@16": 0.006,
+    "recall@32": 0.012
+  },
+  "problem_dense_formal": {
+    "recall@8": 0.001,
+    "recall@16": 0.004,
+    "recall@32": 0.008
+  },
+  "problem_prior_static": {
+    "recall@8": 0.129,
+    "recall@16": 0.229,
+    "recall@32": 0.32
+  },
+  "problem_prior_filtered": {
+    "recall@8": 0.149,
+    "recall@16": 0.229,
+    "recall@32": 0.312
+  }
+}

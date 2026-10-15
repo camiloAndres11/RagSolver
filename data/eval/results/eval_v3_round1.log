@@ -1,0 +1,117 @@
+[prover] demostrador local en http://172.31.112.1:8082
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  17%|█▋        | 52/310 [00:00<00:00, 507.85it/s]Loading weights:  33%|███▎      | 103/310 [00:00<00:00, 470.93it/s]Loading weights:  54%|█████▍    | 167/310 [00:00<00:00, 540.40it/s]Loading weights:  72%|███████▏  | 222/310 [00:00<00:00, 498.75it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 699.30it/s]
+[index-check] 20/20 decl_name de la tabla 'mathlib_full' existen en Lean
+[baseline_prover] mathd_algebra_209: done attempts=1 llm_calls=0 used_in_proof=0/0 2.7s
+[baseline_prover] algebra_sqineq_2unitcircatblt1: done attempts=1 llm_calls=0 used_in_proof=0/0 2.7s
+[baseline_prover] mathd_algebra_77: done attempts=1 llm_calls=0 used_in_proof=0/0 164.4s
+[baseline_prover] amc12a_2010_p11: done attempts=1 llm_calls=0 used_in_proof=0/0 554.0s
+[baseline_prover] amc12b_2020_p13: done attempts=1 llm_calls=0 used_in_proof=0/0 862.0s
+[baseline_prover] mathd_numbertheory_728: done attempts=1 llm_calls=0 used_in_proof=0/0 127.4s
+[baseline_prover] imo_1965_p1: done attempts=1 llm_calls=0 used_in_proof=0/0 721.3s
+[baseline_prover] mathd_numbertheory_403: done attempts=1 llm_calls=0 used_in_proof=0/0 730.1s
+[baseline_prover] amc12a_2020_p10: done attempts=1 llm_calls=0 used_in_proof=0/0 782.0s
+[baseline_prover] amc12a_2016_p3: done attempts=1 llm_calls=0 used_in_proof=0/0 206.5s
+[baseline_prover] numbertheory_aneqprodakp4_anmsqrtanp1eq2: fail attempts=1 llm_calls=0 used_in_proof=0/0 2078.8s
+[baseline_prover] mathd_algebra_170: done attempts=1 llm_calls=0 used_in_proof=0/0 239.5s
+[baseline_prover] mathd_algebra_104: done attempts=1 llm_calls=0 used_in_proof=0/0 85.6s
+[baseline_prover] amc12a_2002_p6: done attempts=1 llm_calls=0 used_in_proof=0/0 168.3s
+[full] mathd_algebra_209: done attempts=1 llm_calls=0 used_in_proof=0/0 0.6s
+[full] algebra_sqineq_2unitcircatblt1: done attempts=1 llm_calls=0 used_in_proof=0/0 0.1s
+[full] mathd_algebra_77: done attempts=1 llm_calls=0 used_in_proof=0/0 1.1s
+[full] amc12b_2020_p13: done attempts=1 llm_calls=0 used_in_proof=0/0 4.3s
+[full] amc12a_2010_p11: done attempts=1 llm_calls=0 used_in_proof=0/0 42.8s
+[full] imo_1965_p1: done attempts=1 llm_calls=0 used_in_proof=0/0 3.9s
+[full] mathd_numbertheory_728: done attempts=1 llm_calls=0 used_in_proof=0/0 0.0s
+[full] mathd_numbertheory_403: done attempts=1 llm_calls=0 used_in_proof=0/0 0.2s
+[baseline_prover] imo_1977_p5: fail attempts=1 llm_calls=0 used_in_proof=0/0 1491.3s
+[full] amc12a_2020_p10: done attempts=1 llm_calls=0 used_in_proof=0/0 3.4s
+[full] amc12a_2016_p3: done attempts=1 llm_calls=0 used_in_proof=0/0 0.3s
+[full] imo_1977_p5: fail attempts=2 llm_calls=11 used_in_proof=0/19 754.7s
+[full] mathd_algebra_170: done attempts=1 llm_calls=0 used_in_proof=0/0 6.8s
+[full] mathd_algebra_104: done attempts=1 llm_calls=0 used_in_proof=0/0 6.3s
+[full] amc12a_2002_p6: done attempts=1 llm_calls=0 used_in_proof=0/0 7.3s
+[full] numbertheory_aneqprodakp4_anmsqrtanp1eq2: fail attempts=2 llm_calls=11 used_in_proof=0/19 942.1s
+[cost] 22 llamadas, 65736 tokens de entrada, 40748 de salida, US$0.0141 (OpenRouter usage.cost)
+{
+  "run_id": "eval-v3",
+  "out": "data/eval/runs/eval-v3",
+  "status": "completed",
+  "n_done": 30,
+  "n_pending": 0,
+  "summary": {
+    "baseline_prover": {
+      "n": 15,
+      "pass@1": 0.867,
+      "pass@1_wilson95": [
+        0.621,
+        0.963
+      ],
+      "llm_calls_mean": 0.0,
+      "tokens_mean": 0,
+      "wall_s_median": 239.5,
+      "retrieval_calls_mean": 0.0,
+      "llm_calls_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        296.68,
+        851.33
+      ],
+      "pass_by_attempt": {
+        "1": 0.867
+      },
+      "lemma_use_precision": null,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "unknown": 2
+      },
+      "self_assessed_correct": null
+    },
+    "full": {
+      "n": 15,
+      "pass@1": 0.867,
+      "pass@1_wilson95": [
+        0.621,
+        0.963
+      ],
+      "llm_calls_mean": 1.47,
+      "tokens_mean": 7099,
+      "wall_s_median": 3.9,
+      "retrieval_calls_mean": 1.53,
+      "llm_calls_mean_ci95_bootstrap": [
+        0.0,
+        3.67
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        0.0,
+        17161.53
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        2.91,
+        282.01
+      ],
+      "pass_by_attempt": {
+        "1": 0.867,
+        "2": 0.867
+      },
+      "lemma_use_precision": 0.0,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "planning": 4,
+        "exhausted": 2
+      },
+      "self_assessed_correct": null
+    }
+  },
+  "llm_calls_total": 22,
+  "cost_usd_total": 0.0141,
+  "models_exhausted": []
+}

@@ -1,0 +1,355 @@
+{
+  "$defs": {
+    "Citation": {
+      "properties": {
+        "citation_id": {
+          "title": "Citation Id",
+          "type": "string"
+        },
+        "chunk_id": {
+          "title": "Chunk Id",
+          "type": "string"
+        },
+        "corpus": {
+          "enum": [
+            "mathlib",
+            "informal"
+          ],
+          "title": "Corpus",
+          "type": "string"
+        },
+        "unit_type": {
+          "title": "Unit Type",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "locator": {
+          "additionalProperties": true,
+          "title": "Locator",
+          "type": "object"
+        },
+        "scores": {
+          "$ref": "#/$defs/CitationScores"
+        },
+        "retrieved_for": {
+          "$ref": "#/$defs/RetrievalContext"
+        },
+        "used_in_proof": {
+          "default": false,
+          "title": "Used In Proof",
+          "type": "boolean"
+        },
+        "used_in_sketch": {
+          "default": false,
+          "title": "Used In Sketch",
+          "type": "boolean"
+        },
+        "snippet": {
+          "default": "",
+          "title": "Snippet",
+          "type": "string"
+        }
+      },
+      "required": [
+        "citation_id",
+        "chunk_id",
+        "corpus",
+        "unit_type",
+        "label",
+        "retrieved_for"
+      ],
+      "title": "Citation",
+      "type": "object"
+    },
+    "CitationScores": {
+      "properties": {
+        "dense": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dense"
+        },
+        "sparse": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sparse"
+        },
+        "fused": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fused"
+        },
+        "rerank": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rerank"
+        }
+      },
+      "title": "CitationScores",
+      "type": "object"
+    },
+    "RetrievalContext": {
+      "properties": {
+        "problem_id": {
+          "title": "Problem Id",
+          "type": "string"
+        },
+        "subgoal_id": {
+          "default": "",
+          "title": "Subgoal Id",
+          "type": "string"
+        },
+        "attempt": {
+          "default": 0,
+          "title": "Attempt",
+          "type": "integer"
+        },
+        "agent": {
+          "default": "",
+          "title": "Agent",
+          "type": "string"
+        },
+        "run_id": {
+          "default": "",
+          "title": "Run Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "problem_id"
+      ],
+      "title": "RetrievalContext",
+      "type": "object"
+    },
+    "Verdict": {
+      "properties": {
+        "ok": {
+          "title": "Ok",
+          "type": "boolean"
+        },
+        "errors": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Errors",
+          "type": "array"
+        },
+        "uses_sorry": {
+          "default": false,
+          "title": "Uses Sorry",
+          "type": "boolean"
+        },
+        "axioms": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Axioms",
+          "type": "array"
+        },
+        "used_constants": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Used Constants",
+          "type": "array"
+        },
+        "seconds": {
+          "default": 0.0,
+          "title": "Seconds",
+          "type": "number"
+        },
+        "lean_file": {
+          "default": "",
+          "title": "Lean File",
+          "type": "string"
+        },
+        "raw": {
+          "default": "",
+          "title": "Raw",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ok"
+      ],
+      "title": "Verdict",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "problem_id": {
+      "title": "Problem Id",
+      "type": "string"
+    },
+    "config": {
+      "title": "Config",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "done",
+        "fail",
+        "error"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "attempts": {
+      "default": 0,
+      "title": "Attempts",
+      "type": "integer"
+    },
+    "replans": {
+      "default": 0,
+      "title": "Replans",
+      "type": "integer"
+    },
+    "llm_calls": {
+      "default": 0,
+      "title": "Llm Calls",
+      "type": "integer"
+    },
+    "retrieval_calls": {
+      "default": 0,
+      "title": "Retrieval Calls",
+      "type": "integer"
+    },
+    "tokens_in": {
+      "default": 0,
+      "title": "Tokens In",
+      "type": "integer"
+    },
+    "tokens_out": {
+      "default": 0,
+      "title": "Tokens Out",
+      "type": "integer"
+    },
+    "wall_seconds": {
+      "default": 0.0,
+      "title": "Wall Seconds",
+      "type": "number"
+    },
+    "lean_code": {
+      "default": "",
+      "title": "Lean Code",
+      "type": "string"
+    },
+    "verdict": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Verdict"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "citations": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "title": "Citations",
+      "type": "array"
+    },
+    "n_retrieved": {
+      "default": 0,
+      "title": "N Retrieved",
+      "type": "integer"
+    },
+    "n_used_in_sketch": {
+      "default": 0,
+      "title": "N Used In Sketch",
+      "type": "integer"
+    },
+    "n_used_in_proof": {
+      "default": 0,
+      "title": "N Used In Proof",
+      "type": "integer"
+    },
+    "error_types": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Error Types",
+      "type": "array"
+    },
+    "re_retrievals": {
+      "default": 0,
+      "title": "Re Retrievals",
+      "type": "integer"
+    },
+    "re_retrievals_ok": {
+      "default": 0,
+      "title": "Re Retrievals Ok",
+      "type": "integer"
+    },
+    "models": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Models",
+      "type": "array"
+    },
+    "self_assessed_correct": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Self Assessed Correct"
+    },
+    "solved_by": {
+      "default": "",
+      "title": "Solved By",
+      "type": "string"
+    },
+    "prover_samples": {
+      "default": 0,
+      "title": "Prover Samples",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "problem_id",
+    "config",
+    "status"
+  ],
+  "title": "SolutionReport",
+  "type": "object"
+}

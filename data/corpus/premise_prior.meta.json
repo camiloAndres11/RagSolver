@@ -1,0 +1,10 @@
+{
+  "source": "Goedel-LM/Lean-workbook-proofs",
+  "revision": "b731852af8d8ab11498fda27bce9020738c01c59",
+  "n_proofs": 29750,
+  "n_contaminated_excluded": 0,
+  "n_candidates": 1091,
+  "n_resolved": 847,
+  "n_lemmas": 778,
+  "out": "data/corpus/premise_prior.jsonl"
+}

@@ -1,0 +1,193 @@
+[resume] 90 resultados previos en data/eval/runs/eval-v2/results.jsonl
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  12%|█▏        | 36/310 [00:00<00:00, 353.43it/s]Loading weights:  23%|██▎       | 72/310 [00:00<00:00, 339.98it/s]Loading weights:  35%|███▍      | 107/310 [00:00<00:00, 328.45it/s]Loading weights:  45%|████▌     | 141/310 [00:00<00:00, 331.15it/s]Loading weights:  56%|█████▋    | 175/310 [00:00<00:00, 328.78it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 498.28it/s]
+[index-check] 20/20 decl_name de la tabla 'mathlib_full' existen en Lean
+[full] mathd_algebra_67: done attempts=2 llm_calls=7 used_in_proof=0/19 62.3s
+[full] mathd_algebra_437: fail attempts=1 llm_calls=5 used_in_proof=0/3 133.9s
+[full] mathd_algebra_342: fail attempts=3 llm_calls=13 used_in_proof=0/19 227.2s
+[full] imo_1978_p5: fail attempts=1 llm_calls=7 used_in_proof=0/3 190.5s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[full] numbertheory_notequiv2i2jasqbsqdiv8: fail attempts=2 llm_calls=9 used_in_proof=0/3 233.7s
+[full] aime_1997_p11: fail attempts=2 llm_calls=12 used_in_proof=0/21 532.7s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[full] mathd_numbertheory_155: fail attempts=2 llm_calls=10 used_in_proof=0/19 432.7s
+[full] numbertheory_sqmod3in01d: fail attempts=2 llm_calls=10 used_in_proof=0/19 393.9s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[full] amc12b_2002_p3: fail attempts=1 llm_calls=6 used_in_proof=0/19 488.7s
+[full] mathd_algebra_24: done attempts=1 llm_calls=3 used_in_proof=0/19 50.0s
+[full] amc12b_2003_p17: fail attempts=3 llm_calls=14 used_in_proof=0/19 1362.1s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[full] mathd_algebra_185: fail attempts=1 llm_calls=6 used_in_proof=0/19 641.4s
+[full] imo_1964_p1_1: fail attempts=3 llm_calls=14 used_in_proof=0/19 1136.6s
+[no_rag] mathd_algebra_67: done attempts=1 llm_calls=3 used_in_proof=0/0 11.1s
+[full] amc12_2001_p5: fail attempts=3 llm_calls=13 used_in_proof=0/20 642.8s
+[full] amc12a_2002_p21: fail attempts=2 llm_calls=11 used_in_proof=0/19 1420.6s
+[no_rag] mathd_algebra_342: fail attempts=1 llm_calls=10 used_in_proof=0/0 203.7s
+[no_rag] aime_1997_p11: fail attempts=1 llm_calls=5 used_in_proof=0/0 168.7s
+[no_rag] mathd_algebra_437: fail attempts=2 llm_calls=10 used_in_proof=0/0 239.3s
+[no_rag] numbertheory_notequiv2i2jasqbsqdiv8: fail attempts=1 llm_calls=5 used_in_proof=0/0 110.8s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[no_rag] amc12b_2003_p17: fail attempts=3 llm_calls=15 used_in_proof=0/0 557.8s
+[no_rag] mathd_numbertheory_155: fail attempts=1 llm_calls=6 used_in_proof=0/0 367.3s
+[no_rag] imo_1978_p5: fail attempts=1 llm_calls=5 used_in_proof=0/0 474.6s
+[no_rag] numbertheory_sqmod3in01d: fail attempts=3 llm_calls=14 used_in_proof=0/0 342.0s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[no_rag] mathd_algebra_24: done attempts=1 llm_calls=3 used_in_proof=0/0 184.6s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[no_rag] amc12a_2002_p21: fail attempts=3 llm_calls=14 used_in_proof=0/0 1002.1s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[no_rag] imo_1964_p1_1: fail attempts=3 llm_calls=14 used_in_proof=0/0 1164.8s
+[no_rag] mathd_algebra_185: fail attempts=2 llm_calls=14 used_in_proof=0/0 1016.0s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[no_rag] amc12_2001_p5: fail attempts=3 llm_calls=13 used_in_proof=0/0 483.4s
+[no_rag] amc12b_2002_p3: fail attempts=3 llm_calls=14 used_in_proof=0/0 1459.8s
+[cost] 285 llamadas, 580672 tokens de entrada, 360165 de salida, US$0.1101 (OpenRouter usage.cost)
+{
+  "run_id": "eval-v2",
+  "out": "data/eval/runs/eval-v2",
+  "status": "completed",
+  "n_done": 120,
+  "n_pending": 0,
+  "summary": {
+    "full": {
+      "n": 30,
+      "pass@1": 0.267,
+      "pass@1_wilson95": [
+        0.142,
+        0.444
+      ],
+      "llm_calls_mean": 8.67,
+      "tokens_mean": 33892,
+      "wall_s_median": 476.1,
+      "retrieval_calls_mean": 9.67,
+      "llm_calls_mean_ci95_bootstrap": [
+        7.17,
+        10.07
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        24099.73,
+        45254.6
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        366.79,
+        691.73
+      ],
+      "pass_by_attempt": {
+        "1": 0.2,
+        "2": 0.267,
+        "3": 0.267
+      },
+      "lemma_use_precision": 0.002,
+      "re_retrieval_success": 1.0,
+      "error_taxonomy": {
+        "planning": 29,
+        "exhausted": 14,
+        "llm_output_invalid:critic": 3,
+        "llm_output_invalid:formalizer": 1,
+        "misformalization": 6,
+        "missing_lemma": 3,
+        "lean_syntax": 5,
+        "abandon": 2,
+        "llm_output_invalid:generator": 1,
+        "llm_output_invalid:fill": 1,
+        "unknown": 1
+      },
+      "self_assessed_correct": null
+    },
+    "no_rag": {
+      "n": 30,
+      "pass@1": 0.3,
+      "pass@1_wilson95": [
+        0.167,
+        0.479
+      ],
+      "llm_calls_mean": 9.23,
+      "tokens_mean": 27180,
+      "wall_s_median": 367.3,
+      "retrieval_calls_mean": 0.0,
+      "llm_calls_mean_ci95_bootstrap": [
+        7.57,
+        10.9
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        20628.5,
+        34212.63
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        362.72,
+        660.97
+      ],
+      "pass_by_attempt": {
+        "1": 0.267,
+        "2": 0.267,
+        "3": 0.3
+      },
+      "lemma_use_precision": null,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "llm_output_invalid:critic": 3,
+        "misformalization": 6,
+        "planning": 19,
+        "missing_lemma": 10,
+        "exhausted": 13,
+        "lean_syntax": 11,
+        "llm_output_invalid:fill": 3,
+        "abandon": 2
+      },
+      "self_assessed_correct": null
+    },
+    "baseline_auto": {
+      "n": 60,
+      "pass@1": 0.183,
+      "pass@1_wilson95": [
+        0.106,
+        0.299
+      ],
+      "llm_calls_mean": 0.0,
+      "tokens_mean": 0,
+      "wall_s_median": 8.4,
+      "retrieval_calls_mean": 0.0,
+      "llm_calls_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        12.87,
+        33.18
+      ],
+      "pass_by_attempt": {
+        "1": 0.183
+      },
+      "lemma_use_precision": null,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "unknown": 49
+      },
+      "self_assessed_correct": null
+    }
+  },
+  "llm_calls_total": 285,
+  "cost_usd_total": 0.1101,
+  "models_exhausted": []
+}

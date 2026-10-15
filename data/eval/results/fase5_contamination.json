@@ -1,0 +1,60 @@
+{
+  "threshold": 0.9,
+  "n_cards": 100,
+  "n_minif2f": 488,
+  "n_pairs_over_threshold": 0,
+  "pairs_over_threshold": [],
+  "max_similarity": 0.8181180953979492,
+  "top10_most_similar": [
+    [
+      23,
+      "imo_1959_p1",
+      0.8181180953979492
+    ],
+    [
+      58,
+      "induction_divisibility_3div2tooddnp1",
+      0.8117700815200806
+    ],
+    [
+      76,
+      "algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2",
+      0.7985193729400635
+    ],
+    [
+      70,
+      "amc12a_2020_p4",
+      0.7692816853523254
+    ],
+    [
+      9,
+      "induction_sum_odd",
+      0.7569718360900879
+    ],
+    [
+      74,
+      "algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2",
+      0.7562429308891296
+    ],
+    [
+      15,
+      "aime_1984_p1",
+      0.739531934261322
+    ],
+    [
+      62,
+      "mathd_numbertheory_109",
+      0.7309191226959229
+    ],
+    [
+      47,
+      "amc12a_2003_p23",
+      0.7208618521690369
+    ],
+    [
+      60,
+      "mathd_numbertheory_483",
+      0.7189329862594604
+    ]
+  ]
+}

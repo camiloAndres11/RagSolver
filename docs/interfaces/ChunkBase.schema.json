@@ -1,0 +1,73 @@
+{
+  "description": "Campos comunes a las dos tablas LanceDB (`mathlib`, `informal`).",
+  "properties": {
+    "chunk_id": {
+      "title": "Chunk Id",
+      "type": "string"
+    },
+    "doc_id": {
+      "title": "Doc Id",
+      "type": "string"
+    },
+    "corpus": {
+      "enum": [
+        "mathlib",
+        "informal"
+      ],
+      "title": "Corpus",
+      "type": "string"
+    },
+    "unit_type": {
+      "title": "Unit Type",
+      "type": "string"
+    },
+    "text": {
+      "title": "Text",
+      "type": "string"
+    },
+    "embedding": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Embedding"
+    },
+    "embedding_model": {
+      "default": "",
+      "title": "Embedding Model",
+      "type": "string"
+    },
+    "embedding_dim": {
+      "default": 0,
+      "title": "Embedding Dim",
+      "type": "integer"
+    },
+    "index_version": {
+      "default": "",
+      "title": "Index Version",
+      "type": "string"
+    },
+    "content_sha": {
+      "default": "",
+      "title": "Content Sha",
+      "type": "string"
+    }
+  },
+  "required": [
+    "chunk_id",
+    "doc_id",
+    "corpus",
+    "unit_type",
+    "text"
+  ],
+  "title": "ChunkBase",
+  "type": "object"
+}

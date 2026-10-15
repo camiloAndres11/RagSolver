@@ -1,0 +1,223 @@
+{
+  "description": "Tabla `informal`: problem_card, solution_step, figure, paper_section, theorem.",
+  "properties": {
+    "chunk_id": {
+      "title": "Chunk Id",
+      "type": "string"
+    },
+    "doc_id": {
+      "title": "Doc Id",
+      "type": "string"
+    },
+    "corpus": {
+      "const": "informal",
+      "default": "informal",
+      "title": "Corpus",
+      "type": "string"
+    },
+    "unit_type": {
+      "title": "Unit Type",
+      "type": "string"
+    },
+    "text": {
+      "title": "Text",
+      "type": "string"
+    },
+    "embedding": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Embedding"
+    },
+    "embedding_model": {
+      "default": "",
+      "title": "Embedding Model",
+      "type": "string"
+    },
+    "embedding_dim": {
+      "default": 0,
+      "title": "Embedding Dim",
+      "type": "integer"
+    },
+    "index_version": {
+      "default": "",
+      "title": "Index Version",
+      "type": "string"
+    },
+    "content_sha": {
+      "default": "",
+      "title": "Content Sha",
+      "type": "string"
+    },
+    "parent_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Parent Id"
+    },
+    "children_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Children Ids",
+      "type": "array"
+    },
+    "order": {
+      "default": 0,
+      "title": "Order",
+      "type": "integer"
+    },
+    "content_md": {
+      "default": "",
+      "title": "Content Md",
+      "type": "string"
+    },
+    "context_summary": {
+      "default": "",
+      "title": "Context Summary",
+      "type": "string"
+    },
+    "page_start": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Page Start"
+    },
+    "page_end": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Page End"
+    },
+    "bboxes": {
+      "items": {
+        "items": {
+          "type": "number"
+        },
+        "type": "array"
+      },
+      "title": "Bboxes",
+      "type": "array"
+    },
+    "section_path": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Section Path",
+      "type": "array"
+    },
+    "item_number": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Item Number"
+    },
+    "language": {
+      "default": "es",
+      "title": "Language",
+      "type": "string"
+    },
+    "math_area": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Math Area",
+      "type": "array"
+    },
+    "techniques": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Techniques",
+      "type": "array"
+    },
+    "theorems_used": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Theorems Used",
+      "type": "array"
+    },
+    "mathlib_candidates": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Mathlib Candidates",
+      "type": "array"
+    },
+    "difficulty": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Difficulty"
+    },
+    "keywords": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Keywords",
+      "type": "array"
+    },
+    "figure_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Figure Ids",
+      "type": "array"
+    },
+    "refs_to": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Refs To",
+      "type": "array"
+    }
+  },
+  "required": [
+    "chunk_id",
+    "doc_id",
+    "unit_type",
+    "text"
+  ],
+  "title": "InformalChunk",
+  "type": "object"
+}

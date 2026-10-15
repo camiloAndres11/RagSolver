@@ -1,0 +1,61 @@
+{
+  "$defs": {
+    "Subgoal": {
+      "properties": {
+        "subgoal_id": {
+          "title": "Subgoal Id",
+          "type": "string"
+        },
+        "statement_nl": {
+          "title": "Statement Nl",
+          "type": "string"
+        },
+        "formal_hint": {
+          "default": "",
+          "title": "Formal Hint",
+          "type": "string"
+        },
+        "search_queries": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 3,
+          "title": "Search Queries",
+          "type": "array"
+        },
+        "math_area": {
+          "default": "",
+          "title": "Math Area",
+          "type": "string"
+        }
+      },
+      "required": [
+        "subgoal_id",
+        "statement_nl"
+      ],
+      "title": "Subgoal",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "strategy": {
+      "title": "Strategy",
+      "type": "string"
+    },
+    "subgoals": {
+      "items": {
+        "$ref": "#/$defs/Subgoal"
+      },
+      "maxItems": 6,
+      "minItems": 1,
+      "title": "Subgoals",
+      "type": "array"
+    }
+  },
+  "required": [
+    "strategy",
+    "subgoals"
+  ],
+  "title": "PlannerOutput",
+  "type": "object"
+}

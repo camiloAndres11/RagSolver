@@ -1,0 +1,406 @@
+{
+  "n_queries": 30,
+  "recall@5": 1.0,
+  "recall@5_wilson95": [
+    0.886,
+    1.0
+  ],
+  "figure_dependent": {
+    "n": 15,
+    "recall@5": 1.0,
+    "figure_coverage_mean": 0.911
+  },
+  "mrr": 1.0,
+  "rows": [
+    {
+      "query_id": "f01",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        8,
+        28,
+        17,
+        25,
+        22
+      ],
+      "figure_coverage": 1.0
+    },
+    {
+      "query_id": "f02",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        16,
+        55,
+        75,
+        93,
+        1
+      ],
+      "figure_coverage": 1.0
+    },
+    {
+      "query_id": "f03",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        17,
+        25,
+        28,
+        75,
+        1
+      ],
+      "figure_coverage": 1.0
+    },
+    {
+      "query_id": "f04",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        22,
+        1,
+        99,
+        57,
+        3
+      ],
+      "figure_coverage": 1.0
+    },
+    {
+      "query_id": "f05",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        24,
+        49,
+        8,
+        25,
+        36
+      ],
+      "figure_coverage": 1.0
+    },
+    {
+      "query_id": "f06",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        28,
+        8,
+        25,
+        72,
+        36
+      ],
+      "figure_coverage": 0.6666666666666666
+    },
+    {
+      "query_id": "f07",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        37,
+        71,
+        26,
+        97,
+        29
+      ],
+      "figure_coverage": 1.0
+    },
+    {
+      "query_id": "f08",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        61,
+        42,
+        53,
+        75,
+        74
+      ],
+      "figure_coverage": 1.0
+    },
+    {
+      "query_id": "f09",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        68,
+        63,
+        25,
+        17,
+        1
+      ],
+      "figure_coverage": 1.0
+    },
+    {
+      "query_id": "f10",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        80,
+        79,
+        10,
+        90,
+        82
+      ],
+      "figure_coverage": 1.0
+    },
+    {
+      "query_id": "f11",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        82,
+        80,
+        10,
+        90,
+        79
+      ],
+      "figure_coverage": 1.0
+    },
+    {
+      "query_id": "f12",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        84,
+        5,
+        72,
+        25,
+        24
+      ],
+      "figure_coverage": 1.0
+    },
+    {
+      "query_id": "f13",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        87,
+        65,
+        72,
+        25,
+        68
+      ],
+      "figure_coverage": 0.3333333333333333
+    },
+    {
+      "query_id": "f14",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        99,
+        90,
+        3,
+        57,
+        49
+      ],
+      "figure_coverage": 1.0
+    },
+    {
+      "query_id": "f15",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        90,
+        95,
+        10,
+        49,
+        80
+      ],
+      "figure_coverage": 0.6666666666666666
+    },
+    {
+      "query_id": "t01",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        86,
+        58,
+        50,
+        18,
+        45
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t02",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        11,
+        18,
+        50,
+        20,
+        58
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t03",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        19,
+        32,
+        89,
+        20,
+        11
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t04",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        21,
+        58,
+        50,
+        11,
+        18
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t05",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        66,
+        32,
+        19,
+        86,
+        20
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t06",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        50,
+        41,
+        58,
+        18,
+        11
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t07",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        78,
+        52,
+        89,
+        19,
+        30
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t08",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        76,
+        74,
+        75,
+        95,
+        57
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t09",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        74,
+        76,
+        75,
+        18,
+        92
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t10",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        2,
+        44,
+        21,
+        96,
+        52
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t11",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        9,
+        89,
+        12,
+        78,
+        13
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t12",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        58,
+        11,
+        18,
+        50,
+        21
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t13",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        52,
+        78,
+        77,
+        89,
+        47
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t14",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        44,
+        52,
+        64,
+        45,
+        6
+      ],
+      "figure_coverage": null
+    },
+    {
+      "query_id": "t15",
+      "hit@k": true,
+      "rank": 1,
+      "top_items": [
+        89,
+        19,
+        33,
+        32,
+        30
+      ],
+      "figure_coverage": null
+    }
+  ]
+}

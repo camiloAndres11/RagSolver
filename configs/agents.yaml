@@ -1,0 +1,208 @@
+# Fase 4 — grafo de agentes (docs/PLAN_RAG.md Fase 4; propuesta §6.1-6.3, §8.2).
+prompt_version: "3"   # 2: replan con memoria (DES-1), esqueleto + CLOSE + FILL; 3: prueba estructurada en `have` (el sistema la parte en goals)
+
+k_max: 3          # intentos GENERATE->FORMALIZE->VERIFY por problema ("sin Crítico" = 1)
+max_replans: 1
+llm_budget: 20    # RNF-3: llamadas LLM por problema; al agotarse -> FAIL
+
+retrieval:
+  k_mathlib: 8
+  k_informal: 3
+  n_candidates: 50
+  rerank: false   # el cross-encoder son 2.4 GB más de RAM; en la muestra de 40 consultas sumó +2.5 puntos de recall (docs/DECISIONS.md #40)
+
+lean:
+  # backend `repl` (lean-interact): `import Mathlib` una vez por corrida (~3-5 min) y ~0.3 s
+  # por teorema; `lake`: un proceso por verificación (~3 min c/u), sin estado.
+  backend: repl
+  imports: ["Mathlib", "Aesop"]   # cabecera estándar de miniF2F
+  timeout_s: 600
+  max_heartbeats: 400000
+
+# Flujo por goal (docs/PLAN_MEJORA_RAG.md Fases 2-4): el Autoformalizador escribe un esqueleto
+# `have … := by sorry`; cada `sorry` es un goal de Lean que se cierra con la batería CLOSE (0 LLM, con
+# las premisas recuperadas para ESE goal) y sólo los que quedan abiertos van al LLM (FILL).
+# false = flujo anterior (prueba entera de una vez, recuperación NL por subobjetivo) — config `rag_nl`.
+goal_mode: true
+close:
+  k_premises: 16     # premisas por goal (canal A: prior de competición filtrado por el goal)
+  dense_channel: false   # canal C (índice denso con el goal): recall@16 0.028 y hunde la fusión (DECISIONS #98)
+  timeout_s: 150     # por táctica (ProofStep); `try?` llega a 76 s en goals difíciles (cada sub-táctica con sus heartbeats)
+  # En orden; gana la primera que cierra el goal. `rag`: con premisas recuperadas; `plain`: lo que
+  # corre sin RAG (`no_rag`, `baseline_auto`; null = se omite). Medido en docs/PLAN_MEJORA_RAG.md §2.3.
+  tactics:
+    - {rag: "grind +lax [{premises}]", plain: "grind"}
+    - {rag: "nlinarith [{hints}]", plain: "nlinarith"}
+    - {rag: "grind +suggestions", plain: null}   # canal B: selección nativa de Lean (Sine Qua Non)
+    - {rag: "try?", plain: "try?"}
+
+# Demostrador especializado local (docs/PLAN_REDISENO_PROVER.md): Goedel-Prover-V2-8B en la GPU vía
+# llama-server (puerto 8082). Etapa 0: k_root muestras sobre el teorema completo (0 API); en CLOSE, los
+# goals que la batería no cierra se le piden como lemas (k_goal) antes de FILL. `rag_names`: en la
+# autocorrección, el RAG sugiere nombres que existen en el Mathlib fijado para los identificadores desconocidos.
+prover:
+  enabled: true
+  k_root: 8
+  k_goal: 2
+  max_goals: 2       # goals por intento que se le piden al demostrador (cada muestra son minutos en la GPU)
+  max_tokens: 11500   # slot de 12 288 tokens en el servidor (Q6_K, 8 slots; la GPU satura en ~70 tok/s agregados)
+  temperature: 0.8
+  correction_rounds: 1
+  rag_names: true
+
+llm_supports_vision: false   # imágenes de figuras en el prompt del Generador (sólo descripciones si false)
+# Self-consistency del Generador (propuesta §6.3): n bocetos y se elige el "medoide" (el más parecido
+# a los demás por solapamiento de tokens); cuesta n llamadas por intento. 1 = apagado (presupuesto RNF-3).
+generator_samples: 1
+
+# Configuraciones de ablación (propuesta §8.2). Cada una sobreescribe claves de arriba.
+configs:
+  full: {}
+  no_rag: {rag: false}               # misma batería CLOSE y mismo demostrador, sin premisas recuperadas, ejemplares ni sugerencias de nombres
+  no_critic: {k_max: 1}
+  rag_nl: {goal_mode: false}         # el flujo de eval-v1: recuperación NL por subobjetivo y prueba entera
+  baseline_auto: {mode: baseline_auto}   # 0 LLM: sólo la batería CLOSE (sin premisas) sobre el goal raíz
+  baseline_prover: {mode: baseline_prover}   # 0 API: sólo el demostrador local (k_root + autocorrección con errores de Lean, sin RAG)
+  baseline_a: {mode: baseline_a}   # LLM único: prueba Lean directa, sin agentes
+  baseline_b: {mode: baseline_b}   # LLM único: CoT en lenguaje natural, sin verificación
+
+prompts:
+  system: |
+    You are part of a multi-agent system that solves olympiad-level mathematics problems and certifies
+    the solutions with Lean 4 + Mathlib (tag v4.28.0-rc1). Be precise and terse. Only reference Mathlib
+    declarations that you are sure exist or that appear in the provided context. Answer in English.
+  planner: |
+    Decompose the problem into an ordered list of 1-5 subgoals (chain-of-thought), each one a claim that
+    a proof would establish on the way to the final statement. For each subgoal give: a natural-language
+    statement, a Lean-flavoured formal hint (informal, e.g. "n^2 % 4 = 0 ∨ n^2 % 4 = 1"), 2-3 short search
+    queries to find Mathlib lemmas for it (name the objects and the property: "gcd commutative", "sum of
+    consecutive integers", "prime divides product"), and its math area
+    (algebra | number_theory | combinatorics | geometry | inequalities | analysis).
+
+    ## Problem (natural language)
+    {informal}
+
+    ## Formal statement (Lean 4)
+    {formal}
+
+    ## Similar solved problems (for analogy; cite ids if useful)
+    {exemplars}
+
+    ## Replan feedback (why the previous plan failed and what is already proved; "(none)" on the first plan)
+    {feedback}
+  generator: |
+    Write a complete proof sketch in natural language for the problem, following the plan. Use the
+    retrieved Mathlib lemmas when they apply and say which ones you use by their ids (M1, M2, ...).
+    Use the worked examples only for the idea (ids I1, I2, ...). Be explicit about every algebraic step
+    so that a formalizer can turn each step into Lean tactics. If previous feedback is given, fix exactly
+    what it says.
+
+    ## Problem
+    {informal}
+
+    ## Formal statement (Lean 4)
+    {formal}
+
+    ## Plan
+    {plan}
+
+    ## Retrieved Mathlib lemmas
+    {lemmas}
+
+    ## Similar solved problems
+    {exemplars}
+
+    ## Feedback from the previous attempt
+    {feedback}
+  formalizer: |
+    Translate the proof sketch into Lean 4 tactics for the theorem below. Output ONLY the tactic block
+    that goes after `:= by` (do not repeat the theorem statement, do not add imports, do not use `sorry`,
+    `admit` or `axiom`). Prefer robust tactics (`nlinarith`, `linarith`, `norm_num`, `omega`, `simp`,
+    `ring_nf`, `positivity`, `decide`, `interval_cases`, `rcases`, `constructor`, `refine`) and the exact
+    names and signatures of the retrieved lemmas. Intermediate claims go in `have` steps. Mathlib is
+    imported (`import Mathlib`). If a previous Lean error is given, repair the proof accordingly.
+
+    ## Theorem
+    {formal}
+
+    ## Proof sketch
+    {sketch}
+
+    ## Retrieved Mathlib lemmas (exact names and signatures)
+    {lemmas}
+
+    ## Lean error from the previous attempt
+    {lean_error}
+  formalizer_skeleton: |
+    Translate the proof sketch into a Lean 4 proof SKELETON for the theorem below. Output ONLY the tactic
+    block that goes after `:= by` (do not repeat the theorem statement, do not add imports). Write each
+    intermediate claim of the sketch as its own top-level step `have hᵢ : <claim> := by <tactics>`, then
+    close the main goal from the `have`s. Keep each claim short; each step is checked by Lean on its own, and
+    a step that fails is retried with automation (`nlinarith`, `grind`, `omega`) and retrieved lemmas, so a
+    short claim with a simple proof is better than a long one. If you do not know how to prove a step, write
+    `sorry` as its proof (only as the whole proof of a `have`, never `<;> sorry` or `all_goals sorry`).
+    Mathlib is imported.
+
+    ## Theorem
+    {formal}
+
+    ## Proof sketch
+    {sketch}
+
+    ## Retrieved Mathlib lemmas (exact names and signatures)
+    {lemmas}
+
+    ## Claims already proved in previous attempts (keep these `have` statements verbatim; their proofs are reused)
+    {proved}
+
+    ## Lean error from the previous attempt
+    {lean_error}
+  fill: |
+    Prove each open Lean 4 goal below. Each goal lists its hypotheses and, after `⊢`, its target. For each
+    goal output the tactic block that proves it completely: it replaces a `sorry` exactly at that goal. Use
+    the listed lemmas (exact names and signatures) when they help. Automation (grind, nlinarith, try?)
+    already failed on these goals; its last error is shown. Do not use `sorry`.
+
+    ## Theorem
+    {formal}
+
+    ## Open goals
+    {goals}
+  critic: |
+    The Lean 4 kernel rejected the proof. Classify the failure and decide the next action.
+    error_type: lean_syntax (parse/tactic misuse) | missing_lemma (unknown identifier or a needed lemma
+    not available) | misformalization (the sketch does not match the formal statement) | timeout |
+    planning (the plan itself is wrong) | unknown.
+    action: retry (fix generation/formalization with your feedback) | replan (the decomposition is wrong)
+    | abandon (no reasonable fix). List any identifiers that Lean reported as unknown. Give concrete,
+    actionable feedback (which step, what to change, which tactic).
+
+    ## Theorem
+    {formal}
+
+    ## Proof sketch
+    {sketch}
+
+    ## Lean proof attempted
+    {lean_code}
+
+    ## Lean errors
+    {lean_error}
+
+    ## History of attempts
+    {history}
+  baseline_a: |
+    Prove the following theorem in Lean 4 with Mathlib. Output ONLY the tactic block that goes after
+    `:= by` (no statement, no imports, no `sorry`).
+
+    ## Theorem
+    {formal}
+
+    ## Problem (natural language)
+    {informal}
+  baseline_b: |
+    Solve the following problem with a careful chain-of-thought proof in natural language. Then judge
+    honestly whether your proof is complete and correct (self_assessed_correct).
+
+    ## Problem
+    {informal}

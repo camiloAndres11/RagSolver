@@ -1,0 +1,93 @@
+[resume] 7 pares con status=error se reintentan (movidos a errors.jsonl)
+[resume] 1 resultados previos en data/eval/runs/smoke-goal-mode/results.jsonl
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  46%|████▌     | 143/310 [00:00<00:00, 1429.42it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 2096.05it/s]
+[index-check] 20/20 decl_name de la tabla 'mathlib_full' existen en Lean
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[full] triv_add_zero: done attempts=1 llm_calls=3 used_in_proof=0/3 13.3s
+[full] triv_square_expand: done attempts=1 llm_calls=3 used_in_proof=0/3 16.4s
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[full] triv_even_square: done attempts=2 llm_calls=6 used_in_proof=0/3 31.3s
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 2 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[full] triv_dvd_trans: fail attempts=3 llm_calls=11 used_in_proof=0/3 62.1s
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 2 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[full] mathd_numbertheory_127: fail attempts=2 llm_calls=8 used_in_proof=0/3 74.2s
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 2 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[full] mathd_algebra_160: done attempts=2 llm_calls=6 used_in_proof=0/3 49.7s
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 2 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[full] mathd_numbertheory_1124: fail attempts=1 llm_calls=10 used_in_proof=0/3 293.5s
+[cost] 47 llamadas, 56534 tokens de entrada, 34518 de salida, US$0.0091 (OpenRouter usage.cost)
+{
+  "run_id": "smoke-goal-mode",
+  "out": "data/eval/runs/smoke-goal-mode",
+  "status": "completed",
+  "n_done": 8,
+  "n_pending": 0,
+  "summary": {
+    "full": {
+      "n": 8,
+      "pass@1": 0.625,
+      "pass@1_wilson95": [
+        0.306,
+        0.863
+      ],
+      "llm_calls_mean": 6.25,
+      "tokens_mean": 11827,
+      "wall_s_median": 49.7,
+      "retrieval_calls_mean": 1.38,
+      "llm_calls_mean_ci95_bootstrap": [
+        4.12,
+        8.25
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        4908.75,
+        20642.38
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        30.35,
+        137.34
+      ],
+      "pass_by_attempt": {
+        "1": 0.375,
+        "2": 0.625,
+        "3": 0.625
+      },
+      "lemma_use_precision": 0.0,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "misformalization": 1,
+        "planning": 4,
+        "lean_syntax": 2,
+        "exhausted": 2,
+        "missing_lemma": 1,
+        "llm_output_invalid:critic": 1
+      },
+      "self_assessed_correct": null
+    }
+  },
+  "llm_calls_total": 47,
+  "cost_usd_total": 0.0091,
+  "models_exhausted": []
+}

@@ -1,0 +1,120 @@
+{
+  "properties": {
+    "doc_id": {
+      "title": "Doc Id",
+      "type": "string"
+    },
+    "title": {
+      "default": "",
+      "title": "Title",
+      "type": "string"
+    },
+    "authors": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Authors",
+      "type": "array"
+    },
+    "year": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Year"
+    },
+    "source_type": {
+      "enum": [
+        "olympiad_collection",
+        "paper",
+        "textbook",
+        "notes",
+        "mathlib"
+      ],
+      "title": "Source Type",
+      "type": "string"
+    },
+    "language": {
+      "default": "en",
+      "title": "Language",
+      "type": "string"
+    },
+    "file_path": {
+      "default": "",
+      "title": "File Path",
+      "type": "string"
+    },
+    "sha256": {
+      "default": "",
+      "title": "Sha256",
+      "type": "string"
+    },
+    "n_pages": {
+      "default": 0,
+      "title": "N Pages",
+      "type": "integer"
+    },
+    "url": {
+      "default": "",
+      "title": "Url",
+      "type": "string"
+    },
+    "license": {
+      "default": "",
+      "title": "License",
+      "type": "string"
+    },
+    "redistributable": {
+      "default": false,
+      "title": "Redistributable",
+      "type": "boolean"
+    },
+    "parser": {
+      "default": "",
+      "title": "Parser",
+      "type": "string"
+    },
+    "parser_version": {
+      "default": "",
+      "title": "Parser Version",
+      "type": "string"
+    },
+    "parser_tier": {
+      "default": "",
+      "title": "Parser Tier",
+      "type": "string"
+    },
+    "text_layer_reliable": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Text Layer Reliable"
+    },
+    "ingested_at": {
+      "title": "Ingested At",
+      "type": "string"
+    },
+    "index_version": {
+      "default": "",
+      "title": "Index Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "doc_id",
+    "source_type"
+  ],
+  "title": "Document",
+  "type": "object"
+}

@@ -1,0 +1,55 @@
+{
+  "properties": {
+    "ok": {
+      "title": "Ok",
+      "type": "boolean"
+    },
+    "errors": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Errors",
+      "type": "array"
+    },
+    "uses_sorry": {
+      "default": false,
+      "title": "Uses Sorry",
+      "type": "boolean"
+    },
+    "axioms": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Axioms",
+      "type": "array"
+    },
+    "used_constants": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Used Constants",
+      "type": "array"
+    },
+    "seconds": {
+      "default": 0.0,
+      "title": "Seconds",
+      "type": "number"
+    },
+    "lean_file": {
+      "default": "",
+      "title": "Lean File",
+      "type": "string"
+    },
+    "raw": {
+      "default": "",
+      "title": "Raw",
+      "type": "string"
+    }
+  },
+  "required": [
+    "ok"
+  ],
+  "title": "Verdict",
+  "type": "object"
+}

@@ -1,0 +1,558 @@
+"""Orquestador (docs/PLAN_RAG.md §5.3, Fase 4; propuesta §6.1-6.2; docs/PLAN_MEJORA_RAG.md §4).
+
+PLAN -> RETRIEVE -> GENERATE -> FORMALIZE -> [CLOSE -> FILL] -> VERIFY -> (DONE | CRITIQUE -> retry/replan/fail)
+
+Con `goal_mode` (por defecto) el Autoformalizador escribe un esqueleto `have … := by sorry`; CLOSE
+obtiene del REPL el goal de cada `sorry`, recupera premisas PARA ESE GOAL (rag/premises.py) y prueba
+una batería de tácticas con ellas (0 LLM); FILL (1 llamada) sólo ve los goals que quedaron abiertos.
+Los goals cerrados quedan en `proved` y se reutilizan en reintentos y replans (D5 del plan).
+
+LangGraph `StateGraph` sobre un dict. El estado lleva `evidence` (citas
+consultadas, §6.4), la recuperación por subobjetivo y contadores de presupuesto
+(RNF-3: `llm_budget` llamadas por problema). El retriever cuesta 0 llamadas.
+Sin checkpointer persistente (ponytail: MemorySaver/SQLite cuando haga falta
+reanudar corridas largas).
+"""
+
+from __future__ import annotations
+
+import re
+import time
+from typing import Any, TypedDict
+
+from langgraph.graph import END, START, StateGraph
+
+from ragsolver.agents.agents import Agents, InvalidLLMOutput
+from ragsolver.agents.schemas import CriticOutput, FillOutput, Problem, SolutionReport, Verdict
+from ragsolver.lean.verify import LeanChecker, build_file, count_sorries, fill_sorries, identifiers_used, skeletonize, verify
+from ragsolver.llm import DailyQuotaExhausted
+from ragsolver.prover import goal_to_theorem, prove as prover_prove, renamed_inaccessible
+from ragsolver.rag import premises as P
+from ragsolver.rag.retrieve import Retriever
+from ragsolver.rag.schema import Citation, Hit, RetrievalRequest
+
+
+class State(TypedDict, total=False):
+    problem: Problem
+    cfg: dict
+    run_id: str
+    exemplars: list[Hit]
+    plan: Any
+    lemmas: list[Hit]
+    evidence: dict[str, Citation]
+    citation_ids: dict[str, str]
+    sketch: str
+    used_citations: list[str]
+    proof_tactics: str
+    lean_code: str
+    verdict: Verdict | None
+    lean_error: str
+    feedback: str
+    missing_identifiers: list[str]
+    attempt: int
+    replans: int
+    history: list[dict]
+    error_types: list[str]
+    re_retrievals: int
+    re_retrievals_ok: int
+    llm_calls: int
+    retrieval_calls: int
+    tokens_in: int
+    tokens_out: int
+    models: list[str]
+    status: str
+    fail_reason: str
+    t0: float
+    skeleton: str
+    candidates: list  # bloque del LLM para cada `sorry` del esqueleto (None = sin candidato)
+    goals: list[dict]  # [{goal, proof_state, block, premises}] del esqueleto actual
+    proved: dict[str, str]  # goal normalizado -> bloque que lo cerró (se conserva entre intentos y replans)
+    prover_samples: int
+    solved_by: str
+
+
+def _count(state: State, resp) -> dict:
+    return {
+        "llm_calls": state.get("llm_calls", 0) + getattr(resp, "calls", 1),
+        "tokens_in": state.get("tokens_in", 0) + resp.tokens_in,
+        "tokens_out": state.get("tokens_out", 0) + resp.tokens_out,
+        "models": list(dict.fromkeys(state.get("models", []) + [resp.model])),
+    }
+
+
+def _over_budget(state: State) -> bool:
+    return state.get("llm_calls", 0) >= state["cfg"]["llm_budget"]
+
+
+def _format_error(verdict: Verdict) -> str:
+    return "\n".join(f"line {e['line']}:{e['col']}: {e['message']}" for e in verdict.errors)[:3000] or ("uses sorry" if verdict.uses_sorry else "unknown error")
+
+
+def _assign_citation_ids(state: State, hits: list[Hit], prefix: str) -> dict[str, str]:
+    """BUG-1: mapa `chunk_id -> citation_id` estable durante todo el problema —
+    reutiliza el id ya asignado a un chunk que vuelve a aparecer (tras un replan
+    o una re-recuperación) y sólo asigna el siguiente número libre del prefijo a
+    los chunks nuevos. Antes `retrieve()` renumeraba `M1..Mn` en cada llamada:
+    un chunk que ya estaba en `evidence` con `M3` podía volver a verse como `M1`
+    en la siguiente búsqueda, y el `M1` real quedaba duplicado (34/300 reportes
+    de `eval_v1` con `citation_id` repetidos, afectando `used_in_sketch`)."""
+    ids = dict(state.get("citation_ids", {}))
+    next_n = max((int(v[len(prefix):]) for v in ids.values() if v.startswith(prefix) and v[len(prefix):].isdigit()), default=0) + 1
+    for h in hits:
+        if h.chunk_id not in ids:
+            ids[h.chunk_id] = f"{prefix}{next_n}"
+            next_n += 1
+        h.citation.citation_id = ids[h.chunk_id]
+    return ids
+
+
+def _goal_key(goal: str) -> str:
+    return " ".join(goal.split())
+
+
+def render_tactic(entry: dict, use_rag: bool, premises: list[str], hints: list[str]) -> str | None:
+    """Táctica de la batería CLOSE para una entrada de `close.tactics` (None = se omite)."""
+    if not use_rag:
+        return entry.get("plain")
+    tac = entry["rag"]
+    if ("{premises}" in tac and not premises) or ("{hints}" in tac and not hints):
+        return entry.get("plain")
+    return tac.replace("{premises}", ", ".join(premises)).replace("{hints}", ", ".join(hints))
+
+
+def concrete_block(tactic: str, infos: list[str]) -> str:
+    """`try?` cierra el goal y sugiere el script concreto ("Try this: [apply] exact …"): ese script es
+    el que va al archivo final, para que el kernel nunca acepte una táctica con `?`."""
+    if not tactic.rstrip().endswith("?"):
+        return tactic
+    for info in infos:
+        for line in info.splitlines():
+            line = line.strip()
+            if line.startswith("[apply] "):
+                return line[len("[apply] "):]
+    return tactic
+
+
+def close_goal(checker: LeanChecker, goal: dict, tactics: list[dict], use_rag: bool, premises: list[str], hints: list[str], timeout_s: float = 60, heartbeats: int | None = 200000) -> tuple[str | None, list[dict]]:
+    """Batería CLOSE sobre un goal (docs/PLAN_MEJORA_RAG.md Fase 4): la primera táctica que lo cierra
+    gana. Devuelve (bloque concreto o None, [{tactic, closed, error}])."""
+    log = []
+    for entry in tactics:
+        tac = render_tactic(entry, use_rag, premises, hints)
+        if not tac:
+            continue
+        closed, msg, infos = checker.step(goal["proof_state"], tac, timeout=timeout_s, heartbeats=heartbeats, gen=goal.get("gen"))
+        log.append({"tactic": tac[:200], "closed": closed, "error": "" if closed else msg[:300]})
+        if closed:
+            return concrete_block(tac, infos), log
+        if "stale proof state" in msg or "lean repl failure" in msg:  # el REPL se reinició: el goal queda abierto
+            break
+    return None, log
+
+
+def _premise_hit(name: str, sig: str, dense: dict[str, Hit], ctx: dict) -> Hit:
+    if name in dense:
+        return dense[name]
+    cit = Citation(citation_id="M0", chunk_id=f"mathlib:{name}:0", corpus="mathlib", unit_type="mathlib_decl", label=name, locator={"decl_name": name, "module_path": "", "docs_url": ""}, retrieved_for=ctx)
+    return Hit(chunk_id=cit.chunk_id, corpus="mathlib", unit_type="mathlib_decl", rank=1, text=f"{name} : {sig}", metadata={"decl_name": name, "signature": sig}, citation=cit)
+
+
+def select_premises(retriever: Retriever | None, goal: str, k: int = 16, n_candidates: int = 50, rerank: bool = False, ctx: dict | None = None, dense_channel: bool = False) -> tuple[list[str], dict[str, Hit]]:
+    """Premisas para un goal de Lean (docs/PLAN_MEJORA_RAG.md Fase 3): canal A (prior filtrado por los
+    símbolos del goal) y, si `dense_channel`, canal C (índice denso con la meta del goal) fusionado con
+    RRF. Devuelve (nombres, hits densos por nombre). 0 llamadas LLM.
+
+    El canal C está apagado por defecto (`close.dense_channel`, DECISIONS #98): recall@16 por goal 0.028
+    frente a 0.327 del prior, y fusionado con RRF baja el total a 0.097."""
+    a = P.prior_channel(goal, k=2 * k)
+    dense: dict[str, Hit] = {}
+    if retriever is not None and dense_channel:
+        try:
+            req = RetrievalRequest(queries=[P.goal_target(goal)[:2000] or goal[:2000]], mode="formal", corpora=["mathlib"], k=k, n_candidates=n_candidates, rerank=rerank, include_figures=False, context=ctx or {"problem_id": "", "agent": "close"})
+            dense = {h.metadata.get("decl_name"): h for h in retriever.search(req).hits if h.metadata.get("decl_name")}
+        except Exception:  # sin índice denso (tests, demo sin tabla): sólo el prior
+            pass
+    return P.fuse(a, list(dense), k=k), dense
+
+
+class Orchestrator:
+    def __init__(self, agents: Agents, retriever: Retriever | None, checker: LeanChecker | None = None, prover=None):
+        self.agents = agents
+        self.retriever = retriever
+        self.checker = checker  # None -> un proceso `lake env lean` por verificación
+        self.prover = prover  # demostrador local (ragsolver.prover.LocalProver) o None
+        self.graph = self._build()
+
+    # -- nodos ---------------------------------------------------------------------
+
+    def _prover_cfg(self, state: State) -> dict | None:
+        pcfg = state["cfg"].get("prover") or {}
+        return pcfg if pcfg.get("enabled") and self.prover is not None and self.checker is not None else None
+
+    def prove(self, state: State) -> dict:
+        """Etapa 0 (docs/PLAN_REDISENO_PROVER.md): el demostrador local intenta el teorema completo, 0 API.
+        Con RAG, la autocorrección recibe nombres que existen en el Mathlib fijado (se citan)."""
+        pcfg = self._prover_cfg(state)
+        if pcfg is None:
+            return {}
+        cfg, problem = state["cfg"], state["problem"]
+        name = re.match(r"\s*(?:theorem|lemma)\s+(\S+)", problem.formal_statement)
+        if not name:
+            return {}
+        retr = self.retriever if cfg["rag"] and pcfg.get("rag_names") else None
+        tac, log = prover_prove(self.prover, self.checker, problem.formal_statement, problem.header, name.group(1), k=pcfg["k_root"], correction_rounds=pcfg.get("correction_rounds", 1), retriever=retr, max_heartbeats=cfg["lean"]["max_heartbeats"])
+        self.agents.trace("prover", state["run_id"], problem.problem_id, 1, log.get("seconds", 0) * 1000, {"stage": "root", "solved": bool(tac), **{k: v for k, v in log.items() if k != "suggested"}, "suggested": list(log.get("suggested", {}))})
+        delta = self._cite(state, log.get("suggested", {}), "prover")
+        delta["prover_samples"] = state.get("prover_samples", 0) + log["samples"] + log["rounds"] * 2
+        if tac:
+            delta.update(proof_tactics=tac, solved_by="prover_root")
+        return delta
+
+    def _cite(self, state: State, suggested: dict[str, str], agent: str) -> dict:
+        """Nombres que propuso el RAG (sugerencias de la autocorrección) como citas `M*`."""
+        if not suggested:
+            return {}
+        ctx = {"problem_id": state["problem"].problem_id, "subgoal_id": "", "attempt": state.get("attempt", 1), "agent": agent, "run_id": state["run_id"]}
+        hits = [_premise_hit(n, sig, {}, ctx) for n, sig in suggested.items()]
+        evidence = dict(state.get("evidence", {}))
+        ids = _assign_citation_ids(state, hits, "M")
+        for h in hits:
+            evidence.setdefault(h.chunk_id, h.citation)
+        return {"evidence": evidence, "citation_ids": ids}
+
+    def plan(self, state: State) -> dict:
+        if _over_budget(state):
+            return {"status": "fail", "fail_reason": "budget"}
+        cfg, problem = state["cfg"], state["problem"]
+        exemplars: list[Hit] = []
+        if cfg["rag"] and "informal" in cfg["corpora"] and self.retriever is not None:
+            req = RetrievalRequest(queries=[problem.informal_statement[:2000]], mode="exemplar", corpora=["informal"], k=cfg["retrieval"]["k_informal"], n_candidates=cfg["retrieval"]["n_candidates"], rerank=cfg["retrieval"]["rerank"], context={"problem_id": problem.problem_id, "subgoal_id": "", "attempt": state.get("attempt", 1), "agent": "planner", "run_id": state["run_id"]})
+            exemplars = self.retriever.search(req).hits
+        citation_ids = _assign_citation_ids(state, exemplars, "I")
+        feedback = ""
+        if state.get("plan") is not None:  # replan (DES-1): razón del Crítico + plan anterior + lo ya probado
+            proved = [P.goal_target(k) for k in state.get("proved", {})]
+            feedback = f"Critic: {state.get('feedback', '')}\nPrevious strategy: {state['plan'].strategy}" + ("\nAlready proved (reuse as facts):\n" + "\n".join(f"- {t}" for t in proved) if proved else "")
+        plan, resp = self.agents.plan(problem, exemplars, state["run_id"], state.get("attempt", 1), feedback=feedback)
+        evidence = dict(state.get("evidence", {}))
+        for h in exemplars:
+            evidence.setdefault(h.chunk_id, h.citation)
+        return {"exemplars": exemplars, "plan": plan, "evidence": evidence, "citation_ids": citation_ids, "feedback": "", "solved_by": "", "retrieval_calls": state.get("retrieval_calls", 0) + (1 if exemplars or (cfg["rag"] and "informal" in cfg["corpora"]) else 0), **_count(state, resp)}
+
+    def retrieve(self, state: State) -> dict:
+        cfg, problem = state["cfg"], state["problem"]
+        if not cfg["rag"] or self.retriever is None:
+            return {"lemmas": [], "missing_identifiers": []}
+        hits: dict[str, Hit] = {}
+        k = cfg["retrieval"]["k_mathlib"]
+        ctx = lambda sg, agent: {"problem_id": problem.problem_id, "subgoal_id": sg, "attempt": state.get("attempt", 1), "agent": agent, "run_id": state["run_id"]}
+        re_ok, re_n = state.get("re_retrievals_ok", 0), state.get("re_retrievals", 0)
+        n_calls = state.get("retrieval_calls", 0)
+        missing = state.get("missing_identifiers", [])
+        if missing:  # re-recuperación tras `lema faltante` (0 llamadas LLM)
+            re_n += 1
+            queries = [f"unknown identifier '{m}'" for m in missing[:3]] + [state.get("lean_error", "")[:500] or problem.formal_statement[:500]]
+            res = self.retriever.search(RetrievalRequest(queries=queries[:4], mode="error", corpora=["mathlib"], k=k, n_candidates=cfg["retrieval"]["n_candidates"], rerank=cfg["retrieval"]["rerank"], context=ctx("", "critic")))
+            n_calls += 1
+            if any(h.metadata.get("decl_name") in missing for h in res.hits):
+                re_ok += 1
+            for h in res.hits:
+                hits.setdefault(h.chunk_id, h)
+        for sg in [] if cfg.get("goal_mode") and self.checker is not None else state["plan"].subgoals:  # goal_mode: las premisas se recuperan por goal en CLOSE
+            queries = ([sg.statement_nl] + list(sg.search_queries))[:4]
+            res = self.retriever.search(RetrievalRequest(queries=queries, mode="nl", corpora=["mathlib"], k=k, n_candidates=cfg["retrieval"]["n_candidates"], rerank=cfg["retrieval"]["rerank"], rerank_against=sg.statement_nl, context=ctx(sg.subgoal_id, "retriever")))
+            n_calls += 1
+            for h in res.hits:
+                hits.setdefault(h.chunk_id, h)
+        lemmas = list(hits.values())
+        citation_ids = _assign_citation_ids(state, lemmas, "M")
+        evidence = dict(state.get("evidence", {}))
+        for h in lemmas:
+            evidence.setdefault(h.chunk_id, h.citation)
+        return {"lemmas": lemmas, "evidence": evidence, "citation_ids": citation_ids, "missing_identifiers": [], "re_retrievals": re_n, "re_retrievals_ok": re_ok, "retrieval_calls": n_calls}
+
+    def generate(self, state: State) -> dict:
+        if _over_budget(state):
+            return {"status": "fail", "fail_reason": "budget"}
+        out, resp = self.agents.generate(state["problem"], state["plan"], state.get("lemmas", []), state.get("exemplars", []), state.get("feedback", ""), state["run_id"], state.get("attempt", 1))
+        return {"sketch": out.sketch, "used_citations": out.used_citations, **_count(state, resp)}
+
+    def formalize(self, state: State) -> dict:
+        if _over_budget(state):
+            return {"status": "fail", "fail_reason": "budget"}
+        goal_mode = bool(state["cfg"].get("goal_mode")) and self.checker is not None
+        proved = [f"have : {P.goal_target(k)} := by {b}" for k, b in state.get("proved", {}).items()]
+        out, resp = self.agents.formalize(state["problem"], state["sketch"], state.get("lemmas", []), state.get("lean_error", ""), state["run_id"], state.get("attempt", 1), skeleton=goal_mode, proved=proved)
+        if goal_mode:  # la prueba del modelo se parte en goals; sus bloques son el primer candidato de cada uno
+            skeleton, candidates = skeletonize(out.proof_tactics)
+            return {"skeleton": skeleton, "candidates": candidates, "proof_tactics": skeleton, **_count(state, resp)}
+        lean = state["cfg"]["lean"]
+        problem = state["problem"]
+        # BUG-2: `lean_code` reportado == lo que verifica `verify()` (mismo `theorem_block`, mismos `open`).
+        code = build_file(problem.formal_statement, out.proof_tactics, lean["imports"] + problem.imports, lean["max_heartbeats"], header=problem.header)
+        return {"proof_tactics": out.proof_tactics, "lean_code": code, **_count(state, resp)}
+
+    def close(self, state: State) -> dict:
+        """CLOSE (0 LLM): goals del esqueleto -> premisas por goal -> batería de tácticas."""
+        cfg, problem = state["cfg"], state["problem"]
+        lean, ccfg = cfg["lean"], cfg["close"]
+        skeleton = state["skeleton"]
+        goals, errors = self.checker.goals(problem.formal_statement, skeleton, problem.header, lean["max_heartbeats"])
+        n_tokens = count_sorries(skeleton)
+        if errors or len(goals) != n_tokens:
+            msg = "\n".join(f"line {e['line']}:{e['col']}: {e['message']}" for e in errors) or f"the skeleton has {n_tokens} `sorry` but Lean found {len(goals)} goals: use exactly one `sorry` per goal"
+            self.agents.trace("close", state["run_id"], problem.problem_id, state.get("attempt", 1), 0, {"skeleton_ok": False, "error": msg[:300]})
+            code = build_file(problem.formal_statement, skeleton, lean["imports"] + problem.imports, lean["max_heartbeats"], header=problem.header)
+            return {"goals": [], "lean_error": msg[:3000], "lean_code": code, "verdict": Verdict(ok=False, errors=errors or [{"line": 0, "col": 0, "message": msg}])}
+        use_rag = bool(cfg["rag"]) and self.retriever is not None
+        proved = dict(state.get("proved", {}))
+        evidence = dict(state.get("evidence", {}))
+        new_hits: list[Hit] = []
+        n_calls = state.get("retrieval_calls", 0)
+        candidates = state.get("candidates") or [None] * len(goals)
+        n_prover_goals, prover_samples = 0, state.get("prover_samples", 0)
+        for i, g in enumerate(goals):
+            key = _goal_key(g["goal"])
+            g["candidate"] = candidates[i] if i < len(candidates) else None
+            if key in proved:  # cerrado en un intento anterior: se reutiliza si sigue cerrando aquí
+                closed, _msg, _ = self.checker.step(g["proof_state"], proved[key], timeout=ccfg["timeout_s"], gen=g.get("gen"))
+                if closed:
+                    g.update(block=proved[key], premises=[], log=[{"tactic": "reused", "closed": True, "error": ""}])
+                    continue
+            cand_log = []
+            if g["candidate"]:  # el bloque que escribió el modelo para este paso
+                closed, msg, _ = self.checker.step(g["proof_state"], g["candidate"], timeout=ccfg["timeout_s"], gen=g.get("gen"))
+                cand_log = [{"tactic": "llm", "closed": closed, "error": "" if closed else msg[:300]}]
+                if closed:
+                    g.update(block=g["candidate"], premises=[], log=cand_log)
+                    proved[key] = g["candidate"]
+                    continue
+            names, hints = [], []
+            if use_rag:
+                names, hits = self._premises(state, g["goal"], ccfg["k_premises"], i)
+                hints = P.nlinarith_hints(g["goal"])
+                new_hits += hits
+                n_calls += 1
+            block, log = close_goal(self.checker, g, ccfg["tactics"], use_rag, names, hints, ccfg["timeout_s"])
+            pcfg = self._prover_cfg(state)
+            if block is None and pcfg is not None and n_prover_goals < pcfg.get("max_goals", 3):
+                block, plog, n = self._prove_goal(state, g, i, pcfg)
+                n_prover_goals += 1
+                prover_samples += n
+                log = log + plog
+            log = cand_log + log
+            g.update(block=block, premises=names, log=log)
+            if block:
+                proved[key] = block
+            self.agents.trace("close", state["run_id"], problem.problem_id, state.get("attempt", 1), 0, {"goal": i, "closed": bool(block), "block": (block or "")[:200], "premises": names, "tried": log})
+        citation_ids = _assign_citation_ids(state, new_hits, "M")
+        for h in new_hits:
+            evidence.setdefault(h.chunk_id, h.citation)
+        delta = {"goals": goals, "prover_samples": prover_samples, "lean_error": "", "proved": proved, "evidence": evidence, "citation_ids": citation_ids, "lemmas": list({h.chunk_id: h for h in state.get("lemmas", []) + new_hits}.values()), "retrieval_calls": n_calls}
+        if all(g["block"] for g in goals):
+            delta["proof_tactics"] = fill_sorries(skeleton, [g["block"] for g in goals])
+        return delta
+
+    def _prove_goal(self, state: State, g: dict, i: int, pcfg: dict) -> tuple[str | None, list[dict], int]:
+        """Un goal abierto como lema autónomo para el demostrador (receta DeepSeek-Prover-V2); el bloque se
+        acepta sólo si cierra el goal EN SU CONTEXTO (`step`), con `rename_i` para los nombres inaccesibles."""
+        name = f"rs_goal_{i}"
+        stmt = goal_to_theorem(g["goal"], name)
+        if stmt is None:
+            return None, [{"tactic": "prover", "closed": False, "error": "goal no convertible a lema"}], 0
+        problem = state["problem"]
+        tac, plog = prover_prove(self.prover, self.checker, stmt, problem.header, name, k=pcfg.get("k_goal", 2), correction_rounds=0, max_heartbeats=state["cfg"]["lean"]["max_heartbeats"])
+        n = plog["samples"]
+        if not tac:
+            return None, [{"tactic": "prover", "closed": False, "error": f"{plog['extracted']}/{n} muestras extraídas, ninguna verifica"}], n
+        renamed = renamed_inaccessible(g["goal"])
+        block = (f"rename_i {' '.join(renamed)}\n" if renamed else "") + tac
+        closed, msg, _ = self.checker.step(g["proof_state"], block, timeout=state["cfg"]["close"]["timeout_s"], gen=g.get("gen"))
+        return (block if closed else None), [{"tactic": "prover", "closed": closed, "error": "" if closed else msg[:300]}], n
+
+    def _premises(self, state: State, goal: str, k: int, i: int) -> tuple[list[str], list[Hit]]:
+        problem = state["problem"]
+        ctx = {"problem_id": problem.problem_id, "subgoal_id": f"G{i + 1}", "attempt": state.get("attempt", 1), "agent": "close", "run_id": state["run_id"]}
+        ccfg = state["cfg"]["close"]
+        names, dense = select_premises(self.retriever, goal, k, state["cfg"]["retrieval"]["n_candidates"], state["cfg"]["retrieval"]["rerank"], ctx, dense_channel=bool(ccfg.get("dense_channel")))
+        prior = {r["decl_name"]: r for r in P.load_prior()}
+        return names, [_premise_hit(n, prior.get(n, {}).get("type", ""), dense, ctx) for n in names]
+
+    def fill(self, state: State) -> dict:
+        """FILL (1 llamada): los goals que CLOSE no cerró, cada uno con su goal exacto y sus premisas."""
+        if _over_budget(state):
+            return {"status": "fail", "fail_reason": "budget"}
+        problem, goals = state["problem"], [dict(g) for g in state["goals"]]
+        open_ = [i for i, g in enumerate(goals) if not g.get("block")]
+        sigs = {h.metadata.get("decl_name"): h.metadata.get("signature", "") for h in state.get("lemmas", [])}
+        parts = []
+        for j, i in enumerate(open_):
+            g = goals[i]
+            lem = "\n".join(f"  {n} : {sigs.get(n, '')[:300]}" for n in g.get("premises", [])) or "  (none)"
+            err = next((t["error"] for t in reversed(g.get("log", [])) if t["error"]), "")
+            prev = ""
+            if g.get("candidate"):
+                cand_err = next((t["error"] for t in g.get("log", []) if t["tactic"] == "llm"), "")
+                prev = f"\nYour previous attempt for this goal (rejected by Lean):\n{g['candidate'][:1500]}\nLean error: {cand_err[:400]}"
+            parts.append(f"[G{j + 1}]\n{g['goal']}\nLemmas:\n{lem}{prev}\nAutomation error: {err[:300] or '(none)'}")
+        try:
+            out, resp = self.agents.fill(problem, "\n\n".join(parts), state["run_id"], state.get("attempt", 1))
+        except InvalidLLMOutput as e:  # #110: sin propuestas válidas los goals siguen abiertos; no se tira el problema
+            out, resp = FillOutput(proofs=[]), e
+        by_id = {p.goal_id.strip().upper(): p.tactics for p in out.proofs}
+        proved = dict(state.get("proved", {}))
+        for j, i in enumerate(open_):
+            tac = by_id.get(f"G{j + 1}", "").strip()
+            if not tac:
+                goals[i]["block"] = "done"  # sin respuesta: el goal queda abierto y Lean lo reporta
+                continue
+            closed, msg, _ = self.checker.step(goals[i]["proof_state"], tac, timeout=state["cfg"]["close"]["timeout_s"], gen=goals[i].get("gen"))
+            goals[i]["block"] = tac
+            if closed:
+                proved[_goal_key(goals[i]["goal"])] = tac
+        return {"goals": goals, "proved": proved, "proof_tactics": fill_sorries(state["skeleton"], [g["block"] for g in goals]), **_count(state, resp)}
+
+    def verify(self, state: State) -> dict:
+        lean = state["cfg"]["lean"]
+        problem = state["problem"]
+        if self.checker is not None:
+            v = self.checker.check(problem.formal_statement, state["proof_tactics"], problem.header, lean["max_heartbeats"])
+        else:
+            v = verify(problem.formal_statement, state["proof_tactics"], f"{problem.problem_id}_a{state.get('attempt', 1)}", lean["imports"] + problem.imports, lean["timeout_s"], lean["max_heartbeats"], header=problem.header)
+        self.agents.trace("verifier", state["run_id"], problem.problem_id, state.get("attempt", 1), v.seconds * 1000, {"ok": v.ok, "uses_sorry": v.uses_sorry, "n_errors": len(v.errors), "first_error": (v.errors[0]["message"][:300] if v.errors else "")})
+        # BUG-2: `lean_code` reportado == lo verificado (en goal_mode el archivo se arma recién aquí)
+        code = build_file(problem.formal_statement, state["proof_tactics"], lean["imports"] + problem.imports, lean["max_heartbeats"], header=problem.header)
+        if v.ok:
+            return {"verdict": v, "status": "done", "lean_error": "", "lean_code": code, "solved_by": state.get("solved_by") or "agents"}
+        return {"verdict": v, "lean_error": _format_error(v), "lean_code": code}
+
+    def critique(self, state: State) -> dict:
+        cfg = state["cfg"]
+        attempt = state.get("attempt", 1)
+        history = list(state.get("history", []))
+        if cfg["k_max"] <= 1:  # ablación "sin Crítico": un solo intento, sin llamada
+            history.append({"attempt": attempt, "error_type": "unknown", "summary": state["lean_error"][:200]})
+            return {"status": "fail", "fail_reason": "exhausted", "history": history, "error_types": state.get("error_types", []) + ["unknown"]}
+        if _over_budget(state):
+            return {"status": "fail", "fail_reason": "budget", "history": history}
+        try:
+            out, resp = self.agents.critique(state["problem"], state["sketch"], state["lean_code"], state["lean_error"], history, state["run_id"], attempt)
+        except InvalidLLMOutput as e:  # #110: crítica ilegible -> reintento con los errores de Lean como feedback
+            out, resp = CriticOutput(error_type="unknown", action="retry", feedback=f"Fix the Lean errors:\n{state['lean_error'][:1500]}"), e
+        history.append({"attempt": attempt, "error_type": out.error_type, "action": out.action, "summary": out.feedback[:300]})
+        error_types = state.get("error_types", []) + [out.error_type]
+        delta = {"history": history, "error_types": error_types, "feedback": out.feedback, "missing_identifiers": out.missing_identifiers, "attempt": attempt + 1, **_count(state, resp)}
+        if out.action == "abandon":
+            return {**delta, "status": "fail", "fail_reason": "abandon"}
+        if attempt + 1 > cfg["k_max"]:
+            return {**delta, "status": "fail", "fail_reason": "exhausted"}
+        if out.action == "replan":
+            if state.get("replans", 0) >= cfg["max_replans"]:
+                return {**delta, "status": "fail", "fail_reason": "exhausted"}
+            return {**delta, "replans": state.get("replans", 0) + 1, "status": "replan"}
+        return {**delta, "status": "retry"}
+
+    # -- grafo -------------------------------------------------------------------
+
+    @staticmethod
+    def _guard(node):
+        """JSON inválido tras el reintento (`InvalidLLMOutput`) = el intento termina en fallo dentro del
+        grafo, conservando lo acumulado (llamadas, tokens, evidencia, historial). Antes la excepción
+        salía de `invoke` y el reporte perdía todo lo anterior (DECISIONS #61).
+
+        ACC-1: cualquier OTRA excepción (un bug, el REPL de Lean, la red) se captura igual, a nivel de
+        nodo — el estado acumulado hasta ese punto ya está fusionado por LangGraph y no se pierde,
+        a diferencia del `except Exception` que tenía `solve()` antes, que reemplazaba todo el estado
+        final por `{**init, "fail_reason": ...}` y descartaba llamadas/tokens/evidencia ya generados."""
+
+        def guarded(state: State) -> dict:
+            try:
+                return node(state)
+            except InvalidLLMOutput as e:  # e lleva tokens_in/tokens_out/calls/model, como una respuesta
+                return {"status": "fail", "fail_reason": f"llm_output_invalid:{e.agent}", **_count(state, e)}  # `report` lo agrega a error_types
+            except DailyQuotaExhausted:
+                raise  # sin modelos disponibles hoy: debe salir para que el runner corte la corrida y reanude mañana
+            except Exception as e:
+                return {"status": "error", "fail_reason": f"exception: {type(e).__name__}: {str(e)[:300]}"}
+
+        return guarded
+
+    def _build(self):
+        g = StateGraph(State)
+        for name in ("prove", "plan", "retrieve", "generate", "formalize", "close", "fill", "verify", "critique"):
+            g.add_node(name, self._guard(getattr(self, name)))
+        g.add_edge(START, "prove")
+        g.add_conditional_edges("prove", lambda s: "end" if s.get("status") == "error" else ("verify" if s.get("solved_by") == "prover_root" else "plan"), {"verify": "verify", "plan": "plan", "end": END})
+        g.add_conditional_edges("plan", lambda s: "end" if s.get("status") in ("fail", "error") else "retrieve", {"retrieve": "retrieve", "end": END})
+        g.add_conditional_edges("retrieve", lambda s: "end" if s.get("status") == "error" else "generate", {"generate": "generate", "end": END})
+        g.add_conditional_edges("generate", lambda s: "end" if s.get("status") in ("fail", "error") else "formalize", {"formalize": "formalize", "end": END})
+        g.add_conditional_edges("formalize", lambda s: "end" if s.get("status") in ("fail", "error") else ("close" if s.get("skeleton") is not None and s["cfg"].get("goal_mode") and self.checker is not None else "verify"), {"close": "close", "verify": "verify", "end": END})
+        # CLOSE: esqueleto que no elabora -> Crítico; todo cerrado -> VERIFY; quedan goals -> FILL
+        g.add_conditional_edges("close", lambda s: "end" if s.get("status") == "error" else ("critique" if not s.get("goals") and s.get("lean_error") else ("verify" if all(x.get("block") for x in s.get("goals", [])) else "fill")), {"critique": "critique", "verify": "verify", "fill": "fill", "end": END})
+        g.add_conditional_edges("fill", lambda s: "end" if s.get("status") in ("fail", "error") else "verify", {"verify": "verify", "end": END})
+        # si la etapa 0 dio una prueba que VERIFY no acepta (no debería: ya pasó `check`), siguen los agentes
+        g.add_conditional_edges("verify", lambda s: "end" if s.get("status") in ("done", "error") else ("plan" if s.get("solved_by") == "prover_root" and not s.get("plan") else "critique"), {"critique": "critique", "plan": "plan", "end": END})
+        g.add_conditional_edges(
+            "critique",
+            lambda s: {"retry": ("retrieve" if s.get("missing_identifiers") else "generate"), "replan": "plan"}.get(s.get("status"), "end"),
+            {"retrieve": "retrieve", "generate": "generate", "plan": "plan", "end": END},
+        )
+        return g.compile()
+
+    def solve(self, problem: Problem, cfg: dict, run_id: str) -> SolutionReport:
+        t0 = time.time()
+        if problem.imports:  # nadie usa imports adicionales por problema hoy (auditoría BUG-4); error explícito en vez de ignorarlos en silencio
+            return self.report(problem, cfg, {"fail_reason": f"unsupported: Problem.imports no soportado: {problem.imports}"}, "fail", 0.0)
+        init: State = {"problem": problem, "cfg": cfg, "run_id": run_id, "attempt": 1, "replans": 0, "evidence": {}, "history": [], "error_types": [], "llm_calls": 0, "retrieval_calls": 0, "tokens_in": 0, "tokens_out": 0, "models": [], "status": "running", "lean_error": "", "feedback": "", "missing_identifiers": []}
+        try:
+            final = self.graph.invoke(init, config={"recursion_limit": 60})
+            # ACC-1: "error" (excepción capturada dentro de un nodo, ver `_guard`) es un estado
+            # terminal distinto de "fail" (el grafo llegó a FAIL de forma normal); cualquier otro
+            # valor (no debería darse aquí) cae a "fail" por seguridad.
+            status = final.get("status") if final.get("status") in ("done", "error") else "fail"
+        except DailyQuotaExhausted:
+            raise  # sin modelos disponibles hoy: el runner corta la corrida y se reanuda mañana
+        except Exception as e:  # red de seguridad final: no debería alcanzarse con _guard ya en cada nodo
+            final, status = {**init, "fail_reason": f"exception: {type(e).__name__}: {str(e)[:300]}"}, "error"
+        return self.report(problem, cfg, final, status, time.time() - t0)
+
+    @staticmethod
+    def report(problem: Problem, cfg: dict, final: dict, status: str, wall: float) -> SolutionReport:
+        used_ids = set(final.get("used_citations", []))
+        proof = final.get("proof_tactics", "") if status == "done" else ""
+        # `used_in_proof`: la constante está en el término que aceptó el kernel (REPL). Nombrarla en el texto no
+        # basta: `grind +lax [16 lemas]` nombra 16 y usa uno o dos (smoke 2026-10-14, DECISIONS #101). Sin esa
+        # información (backend `lake`), el criterio textual de antes.
+        verdict = final.get("verdict")
+        used_consts = set(verdict.used_constants) if status == "done" and verdict is not None and verdict.used_constants else None
+        citations = []
+        for c in final.get("evidence", {}).values():
+            c = c.model_copy()
+            c.used_in_sketch = c.citation_id in used_ids
+            name = c.locator.get("decl_name") or ""
+            c.used_in_proof = bool(proof) and c.corpus == "mathlib" and (name in used_consts if used_consts is not None else bool(identifiers_used(proof, [name])))
+            citations.append(c)
+        return SolutionReport(
+            problem_id=problem.problem_id,
+            config=cfg["name"],
+            status=status,
+            attempts=final.get("attempt", 1) if status == "done" else (len(final.get("history", [])) or 1),
+            replans=final.get("replans", 0),
+            llm_calls=final.get("llm_calls", 0),
+            retrieval_calls=final.get("retrieval_calls", 0),
+            tokens_in=final.get("tokens_in", 0),
+            tokens_out=final.get("tokens_out", 0),
+            wall_seconds=round(wall, 1),
+            lean_code=final.get("lean_code", ""),
+            verdict=final.get("verdict"),
+            citations=citations,
+            n_retrieved=len(citations),
+            n_used_in_sketch=sum(c.used_in_sketch for c in citations),
+            n_used_in_proof=sum(c.used_in_proof for c in citations),
+            error_types=final.get("error_types", []) + ([final["fail_reason"]] if final.get("fail_reason") else []),
+            re_retrievals=final.get("re_retrievals", 0),
+            re_retrievals_ok=final.get("re_retrievals_ok", 0),
+            models=final.get("models", []),
+            solved_by=final.get("solved_by", "") if status == "done" else "",
+            prover_samples=final.get("prover_samples", 0),
+        )

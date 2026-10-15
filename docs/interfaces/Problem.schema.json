@@ -1,0 +1,62 @@
+{
+  "properties": {
+    "problem_id": {
+      "title": "Problem Id",
+      "type": "string"
+    },
+    "source": {
+      "default": "trivial",
+      "title": "Source",
+      "type": "string"
+    },
+    "split": {
+      "default": "dev",
+      "title": "Split",
+      "type": "string"
+    },
+    "informal_statement": {
+      "title": "Informal Statement",
+      "type": "string"
+    },
+    "formal_statement": {
+      "title": "Formal Statement",
+      "type": "string"
+    },
+    "area": {
+      "default": "",
+      "title": "Area",
+      "type": "string"
+    },
+    "difficulty": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Difficulty"
+    },
+    "imports": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Imports",
+      "type": "array"
+    },
+    "header": {
+      "default": "",
+      "title": "Header",
+      "type": "string"
+    }
+  },
+  "required": [
+    "problem_id",
+    "informal_statement",
+    "formal_statement"
+  ],
+  "title": "Problem",
+  "type": "object"
+}

@@ -1,0 +1,48 @@
+{
+ "round": 2,
+ "pairs": 45,
+ "key_spent_round": 0.1094,
+ "runner_cost": [
+  "285",
+  "580672",
+  "360165",
+  "0.1101"
+ ],
+ "key_remaining": 0.1798,
+ "retries_429": 0,
+ "status": {
+  "baseline_auto": {
+   "done": 2,
+   "fail": 13,
+   "error": 0
+  },
+  "full": {
+   "done": 2,
+   "fail": 13,
+   "error": 0
+  },
+  "no_rag": {
+   "done": 2,
+   "fail": 13,
+   "error": 0
+  }
+ },
+ "llm_calls_max": {
+  "baseline_auto": 0,
+  "full": 14,
+  "no_rag": 15
+ },
+ "llm_calls_mean": {
+  "baseline_auto": 0.0,
+  "full": 9.33,
+  "no_rag": 9.67
+ },
+ "solved": {
+  "baseline_auto": 2,
+  "full": 2,
+  "no_rag": 2
+ },
+ "cost_per_paid_pair": 0.00365,
+ "projection_remaining_rounds": 0.1094,
+ "alerts": []
+}

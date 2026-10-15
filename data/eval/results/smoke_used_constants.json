@@ -1,0 +1,58 @@
+[
+ {
+  "problem_id": "triv_add_comm",
+  "ok": true,
+  "cited": 0,
+  "used_text": 0,
+  "used_kernel": []
+ },
+ {
+  "problem_id": "triv_add_zero",
+  "ok": true,
+  "cited": 0,
+  "used_text": 0,
+  "used_kernel": []
+ },
+ {
+  "problem_id": "triv_square_expand",
+  "ok": true,
+  "cited": 0,
+  "used_text": 0,
+  "used_kernel": []
+ },
+ {
+  "problem_id": "triv_even_square",
+  "ok": true,
+  "cited": 16,
+  "used_text": 16,
+  "used_kernel": []
+ },
+ {
+  "problem_id": "triv_dvd_trans",
+  "ok": true,
+  "cited": 16,
+  "used_text": 0,
+  "used_kernel": []
+ },
+ {
+  "problem_id": "mathd_numbertheory_127",
+  "ok": true,
+  "cited": 16,
+  "used_text": 16,
+  "used_kernel": []
+ },
+ {
+  "problem_id": "mathd_algebra_160",
+  "ok": true,
+  "cited": 0,
+  "used_text": 0,
+  "used_kernel": []
+ },
+ {
+  "problem_id": "mathd_numbertheory_1124",
+  "ok": true,
+  "cited": 16,
+  "used_text": 16,
+  "used_kernel": []
+ }
+]

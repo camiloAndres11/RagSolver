@@ -1,0 +1,55 @@
+=== EMBED 12:43 ===
+{
+  "n": 3903,
+  "seconds": 756.4,
+  "texts_per_sec": 5.16,
+  "model": "Qwen/Qwen3-Embedding-0.6B",
+  "dim": 1024,
+  "out": "data/corpus/mathlib_sample_embedded.jsonl"
+}
+=== INDEX ===
+{"table": "mathlib", "rows": 3903, "db_path": "data/index/lancedb"}
+=== QR 946 no-rerank 12:56 ===
+{
+  "n_queries": 946,
+  "n_gold_covered_in_table": 793,
+  "coverage_ratio": 0.838,
+  "denso": {
+    "recall@10": 0.6617336152219874,
+    "ndcg@10": 0.568356814360505,
+    "mrr": 0.5420327308550171
+  },
+  "bm25": {
+    "recall@10": 0.595137420718816,
+    "ndcg@10": 0.4813144440854689,
+    "mrr": 0.4485887299524493
+  },
+  "hibrido": {
+    "recall@10": 0.6553911205073996,
+    "ndcg@10": 0.5431892545835532,
+    "mrr": 0.5118433864706224
+  }
+}
+=== PREMISES 13:02 ===
+nl {'recall@8': np.float64(0.08034268001739052), 'recall@20': np.float64(0.15265662162751886), 'ndcg@10': np.float64(0.074155538954075), 'mrr': np.float64(0.1291215806208638)}
+formal {'recall@8': np.float64(0.11771060445001696), 'recall@20': np.float64(0.18023135158427805), 'ndcg@10': np.float64(0.10518363144922233), 'mrr': np.float64(0.17628302796118728)}
+{
+  "n_problems": 352,
+  "n_problems_with_covered_premises": 352,
+  "premise_coverage": 1.0,
+  "rerank": false,
+  "query_nl": {
+    "recall@8": 0.08034268001739052,
+    "recall@20": 0.15265662162751886,
+    "ndcg@10": 0.074155538954075,
+    "mrr": 0.1291215806208638
+  },
+  "query_formal": {
+    "recall@8": 0.11771060445001696,
+    "recall@20": 0.18023135158427805,
+    "ndcg@10": 0.10518363144922233,
+    "mrr": 0.17628302796118728
+  }
+}
+=== INFORMAL GOLD 13:07 ===
+=== INFORMAL GOLD 13:29 ===

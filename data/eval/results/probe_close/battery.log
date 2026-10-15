@@ -1,0 +1,195 @@
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+mathd_algebra_209 battery_plain False
+mathd_algebra_209 battery_rag False
+mathd_algebra_209 battery_rag_prior False
+mathd_algebra_342 battery_plain False
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  24%|██▎       | 73/310 [00:00<00:00, 715.90it/s]Loading weights:  48%|████▊     | 148/310 [00:00<00:00, 733.61it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 1061.68it/s]
+mathd_algebra_342 battery_rag False
+mathd_algebra_342 battery_rag_prior False
+induction_prod1p1onk3le3m1onn battery_plain False
+induction_prod1p1onk3le3m1onn battery_rag False
+induction_prod1p1onk3le3m1onn battery_rag_prior False
+mathd_algebra_125 battery_plain True
+mathd_algebra_125 battery_rag True
+mathd_algebra_125 battery_rag_prior True
+algebra_sqineq_2unitcircatblt1 battery_plain False
+algebra_sqineq_2unitcircatblt1 battery_rag True
+algebra_sqineq_2unitcircatblt1 battery_rag_prior True
+mathd_algebra_67 battery_plain True
+mathd_algebra_67 battery_rag True
+mathd_algebra_67 battery_rag_prior True
+mathd_algebra_214 battery_plain False
+mathd_algebra_214 battery_rag False
+mathd_algebra_214 battery_rag_prior False
+mathd_algebra_28 battery_plain False
+mathd_algebra_28 battery_rag False
+mathd_algebra_28 battery_rag_prior False
+mathd_algebra_77 battery_plain True
+mathd_algebra_77 battery_rag True
+mathd_algebra_77 battery_rag_prior True
+mathd_algebra_437 battery_plain False
+mathd_algebra_437 battery_rag False
+mathd_algebra_437 battery_rag_prior False
+aime_1983_p2 battery_plain False
+aime_1983_p2 battery_rag False
+aime_1983_p2 battery_rag_prior False
+amc12a_2019_p12 battery_plain False
+amc12a_2019_p12 battery_rag False
+amc12a_2019_p12 battery_rag_prior False
+amc12b_2020_p13 battery_plain False
+amc12b_2020_p13 battery_rag False
+amc12b_2020_p13 battery_rag_prior False
+amc12b_2003_p17 battery_plain False
+amc12b_2003_p17 battery_rag False
+amc12b_2003_p17 battery_rag_prior False
+aime_1990_p2 battery_plain False
+aime_1990_p2 battery_rag False
+aime_1990_p2 battery_rag_prior False
+amc12b_2003_p6 battery_plain True
+amc12b_2003_p6 battery_rag True
+amc12b_2003_p6 battery_rag_prior True
+amc12a_2010_p11 battery_plain False
+amc12a_2010_p11 battery_rag False
+amc12a_2010_p11 battery_rag_prior False
+aime_1997_p11 battery_plain False
+aime_1997_p11 battery_rag False
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+aime_1997_p11 battery_rag_prior False
+imo_1981_p6 battery_plain False
+imo_1981_p6 battery_rag False
+imo_1981_p6 battery_rag_prior False
+imo_1962_p2 battery_plain False
+imo_1962_p2 battery_rag False
+imo_1962_p2 battery_rag_prior False
+imo_1965_p1 battery_plain False
+imo_1965_p1 battery_rag False
+imo_1965_p1 battery_rag_prior False
+imo_1978_p5 battery_plain False
+imo_1978_p5 battery_rag False
+imo_1978_p5 battery_rag_prior False
+imo_2006_p3 battery_plain False
+imo_2006_p3 battery_rag False
+imo_2006_p3 battery_rag_prior False
+imo_1993_p5 battery_plain False
+imo_1993_p5 battery_rag False
+imo_1993_p5 battery_rag_prior False
+mathd_numbertheory_728 battery_plain True
+mathd_numbertheory_728 battery_rag True
+mathd_numbertheory_728 battery_rag_prior True
+numbertheory_notequiv2i2jasqbsqdiv8 battery_plain False
+numbertheory_notequiv2i2jasqbsqdiv8 battery_rag False
+numbertheory_notequiv2i2jasqbsqdiv8 battery_rag_prior False
+mathd_numbertheory_229 battery_plain True
+mathd_numbertheory_229 battery_rag True
+mathd_numbertheory_229 battery_rag_prior True
+mathd_numbertheory_233 battery_plain False
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+mathd_numbertheory_233 battery_rag False
+mathd_numbertheory_233 battery_rag_prior False
+mathd_numbertheory_403 battery_plain True
+mathd_numbertheory_403 battery_rag True
+mathd_numbertheory_403 battery_rag_prior False
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+mathd_numbertheory_155 battery_plain True
+mathd_numbertheory_155 battery_rag True
+mathd_numbertheory_155 battery_rag_prior False
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+mathd_numbertheory_101 battery_plain True
+mathd_numbertheory_101 battery_rag True
+mathd_numbertheory_101 battery_rag_prior True
+mathd_numbertheory_109 battery_plain False
+mathd_numbertheory_109 battery_rag False
+mathd_numbertheory_109 battery_rag_prior False
+numbertheory_aneqprodakp4_anmsqrtanp1eq2 battery_plain False
+numbertheory_aneqprodakp4_anmsqrtanp1eq2 battery_rag False
+numbertheory_aneqprodakp4_anmsqrtanp1eq2 battery_rag_prior False
+numbertheory_sqmod3in01d battery_plain False
+numbertheory_sqmod3in01d battery_rag False
+numbertheory_sqmod3in01d battery_rag_prior False
+amc12_2000_p6 battery_plain False
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+amc12_2000_p6 battery_rag False
+amc12_2000_p6 battery_rag_prior False
+amc12a_2003_p23 battery_plain False
+amc12a_2003_p23 battery_rag False
+amc12a_2003_p23 battery_rag_prior False
+amc12a_2020_p10 battery_plain False
+amc12a_2020_p10 battery_rag False
+amc12a_2020_p10 battery_rag_prior False
+amc12a_2002_p21 battery_plain False
+amc12a_2002_p21 battery_rag False
+amc12a_2002_p21 battery_rag_prior False
+amc12a_2008_p15 battery_plain False
+amc12a_2008_p15 battery_rag False
+amc12a_2008_p15 battery_rag_prior False
+amc12b_2002_p11 battery_plain False
+amc12b_2002_p11 battery_rag False
+amc12b_2002_p11 battery_rag_prior False
+amc12a_2016_p3 battery_plain False
+amc12a_2016_p3 battery_rag False
+amc12a_2016_p3 battery_rag_prior False
+amc12b_2002_p3 battery_plain False
+amc12b_2002_p3 battery_rag False
+amc12b_2002_p3 battery_rag_prior False
+imo_1992_p1 battery_plain False
+imo_1992_p1 battery_rag False
+imo_1992_p1 battery_rag_prior False
+imo_1974_p3 battery_plain False
+imo_1974_p3 battery_rag False
+imo_1974_p3 battery_rag_prior False
+imo_1977_p5 battery_plain False
+imo_1977_p5 battery_rag False
+imo_1977_p5 battery_rag_prior False
+imo_1964_p1_1 battery_plain False
+imo_1964_p1_1 battery_rag False
+imo_1964_p1_1 battery_rag_prior False
+imo_1987_p6 battery_plain False
+imo_1987_p6 battery_rag False
+imo_1987_p6 battery_rag_prior False
+imo_1990_p3 battery_plain False
+imo_1990_p3 battery_rag False
+imo_1990_p3 battery_rag_prior False
+mathd_algebra_170 battery_plain False
+mathd_algebra_170 battery_rag False
+mathd_algebra_170 battery_rag_prior False
+mathd_algebra_24 battery_plain False
+mathd_algebra_24 battery_rag False
+mathd_algebra_24 battery_rag_prior False
+mathd_algebra_398 battery_plain False
+mathd_algebra_398 battery_rag False
+mathd_algebra_398 battery_rag_prior False
+mathd_algebra_455 battery_plain False
+mathd_algebra_455 battery_rag False
+mathd_algebra_455 battery_rag_prior False
+mathd_algebra_104 battery_plain True
+mathd_algebra_104 battery_rag True
+mathd_algebra_104 battery_rag_prior True
+mathd_algebra_185 battery_plain False
+mathd_algebra_185 battery_rag False
+mathd_algebra_185 battery_rag_prior False
+mathd_algebra_224 battery_plain False
+mathd_algebra_224 battery_rag False
+mathd_algebra_224 battery_rag_prior False
+amc12a_2020_p9 battery_plain False
+amc12a_2020_p9 battery_rag False
+amc12a_2020_p9 battery_rag_prior False
+amc12a_2002_p6 battery_plain False
+amc12a_2002_p6 battery_rag False
+amc12a_2002_p6 battery_rag_prior False
+amc12_2001_p5 battery_plain False
+amc12_2001_p5 battery_rag False
+amc12_2001_p5 battery_rag_prior False
+amc12a_2003_p1 battery_plain False
+amc12a_2003_p1 battery_rag False
+amc12a_2003_p1 battery_rag_prior False
+amc12a_2003_p25 battery_plain False
+amc12a_2003_p25 battery_rag False
+amc12a_2003_p25 battery_rag_prior False
+{"battery_plain": 10, "battery_rag": 11, "battery_rag_prior": 9}

@@ -1,0 +1,145 @@
+{
+  "description": "Tabla `mathlib`: una declaración por registro (§7.4).",
+  "properties": {
+    "chunk_id": {
+      "title": "Chunk Id",
+      "type": "string"
+    },
+    "doc_id": {
+      "title": "Doc Id",
+      "type": "string"
+    },
+    "corpus": {
+      "const": "mathlib",
+      "default": "mathlib",
+      "title": "Corpus",
+      "type": "string"
+    },
+    "unit_type": {
+      "const": "mathlib_decl",
+      "default": "mathlib_decl",
+      "title": "Unit Type",
+      "type": "string"
+    },
+    "text": {
+      "title": "Text",
+      "type": "string"
+    },
+    "embedding": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Embedding"
+    },
+    "embedding_model": {
+      "default": "",
+      "title": "Embedding Model",
+      "type": "string"
+    },
+    "embedding_dim": {
+      "default": 0,
+      "title": "Embedding Dim",
+      "type": "integer"
+    },
+    "index_version": {
+      "default": "",
+      "title": "Index Version",
+      "type": "string"
+    },
+    "content_sha": {
+      "default": "",
+      "title": "Content Sha",
+      "type": "string"
+    },
+    "decl_name": {
+      "title": "Decl Name",
+      "type": "string"
+    },
+    "decl_names_alt": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Decl Names Alt",
+      "type": "array"
+    },
+    "module_path": {
+      "default": "",
+      "title": "Module Path",
+      "type": "string"
+    },
+    "kind": {
+      "default": "",
+      "title": "Kind",
+      "type": "string"
+    },
+    "signature": {
+      "default": "",
+      "title": "Signature",
+      "type": "string"
+    },
+    "type": {
+      "default": "",
+      "title": "Type",
+      "type": "string"
+    },
+    "value": {
+      "default": "",
+      "title": "Value",
+      "type": "string"
+    },
+    "informal_name": {
+      "default": "",
+      "title": "Informal Name",
+      "type": "string"
+    },
+    "informal_description": {
+      "default": "",
+      "title": "Informal Description",
+      "type": "string"
+    },
+    "docstring": {
+      "default": "",
+      "title": "Docstring",
+      "type": "string"
+    },
+    "dependencies": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Dependencies",
+      "type": "array"
+    },
+    "mathlib_tag": {
+      "default": "",
+      "title": "Mathlib Tag",
+      "type": "string"
+    },
+    "lean_version": {
+      "default": "",
+      "title": "Lean Version",
+      "type": "string"
+    },
+    "docs_url": {
+      "default": "",
+      "title": "Docs Url",
+      "type": "string"
+    }
+  },
+  "required": [
+    "chunk_id",
+    "doc_id",
+    "text",
+    "decl_name"
+  ],
+  "title": "MathlibChunk",
+  "type": "object"
+}

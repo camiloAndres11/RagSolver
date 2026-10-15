@@ -1,0 +1,13 @@
+=== EVAL_V1 2026-09-21 00:22 mem_avail=6410MB ===
+  self.pid = _fork_exec(
+[full] mathd_algebra_67: done attempts=2 llm_calls=6 used_in_proof=0/17 104.2s
+[full] mathd_algebra_125: done attempts=1 llm_calls=3 used_in_proof=0/33 122.0s
+[full] mathd_algebra_209: done attempts=1 llm_calls=3 used_in_proof=0/21 152.4s
+[full] algebra_sqineq_2unitcircatblt1: done attempts=2 llm_calls=6 used_in_proof=2/41 182.5s
+[full] mathd_algebra_28: done attempts=1 llm_calls=3 used_in_proof=0/34 191.5s
+[full] mathd_algebra_77: fail attempts=3 llm_calls=11 used_in_proof=0/64 271.7s
+[full] induction_prod1p1onk3le3m1onn: fail attempts=3 llm_calls=11 used_in_proof=0/45 493.6s
+[full] aime_1983_p2: fail attempts=3 llm_calls=11 used_in_proof=0/37 290.2s
+[full] mathd_algebra_342: fail attempts=3 llm_calls=11 used_in_proof=0/44 759.9s
+[full] amc12a_2019_p12: fail attempts=3 llm_calls=10 used_in_proof=0/27 340.5s
+[full] amc12b_2003_p17: done attempts=2 llm_calls=6 used_in_proof=2/15 206.6s

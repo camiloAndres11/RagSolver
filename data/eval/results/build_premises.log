@@ -1,0 +1,34 @@
+29750 pruebas (0 excluidas por coincidir con miniF2F), 1091 candidatos con freq >= 2
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+{
+  "source": "Goedel-LM/Lean-workbook-proofs",
+  "revision": "b731852af8d8ab11498fda27bce9020738c01c59",
+  "n_proofs": 29750,
+  "n_contaminated_excluded": 0,
+  "n_candidates": 1091,
+  "n_resolved": 847,
+  "n_lemmas": 778,
+  "out": "data/corpus/premise_prior.jsonl"
+}
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+0/438 pruebas, 0 tácticas con constantes, 1 con algún error
+50/438 pruebas, 3469 tácticas con constantes, 35 con algún error
+100/438 pruebas, 5013 tácticas con constantes, 52 con algún error
+150/438 pruebas, 6050 tácticas con constantes, 65 con algún error
+200/438 pruebas, 7003 tácticas con constantes, 94 con algún error
+250/438 pruebas, 8333 tácticas con constantes, 113 con algún error
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+300/438 pruebas, 11000 tácticas con constantes, 137 con algún error
+350/438 pruebas, 11608 tácticas con constantes, 148 con algún error
+400/438 pruebas, 12641 tácticas con constantes, 170 con algún error
+{
+  "proofs": 438,
+  "proofs_with_some_error": 183,
+  "goals": 6022,
+  "problems": 333,
+  "distinct_premises": 412
+}
+CHAIN DONE

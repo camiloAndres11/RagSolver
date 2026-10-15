@@ -1,0 +1,126 @@
+[resume] 30 resultados previos en data/eval/runs/eval-v3/results.jsonl
+[prover] demostrador local en http://172.31.112.1:8082
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:   9%|▉         | 29/310 [00:00<00:01, 270.83it/s]Loading weights:  18%|█▊        | 57/310 [00:00<00:00, 273.16it/s]Loading weights:  30%|███       | 93/310 [00:00<00:00, 297.17it/s]Loading weights:  40%|███▉      | 123/310 [00:00<00:00, 291.26it/s]Loading weights:  51%|█████     | 158/310 [00:00<00:00, 310.55it/s]Loading weights:  64%|██████▎   | 197/310 [00:00<00:00, 331.05it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 467.54it/s]
+[index-check] 20/20 decl_name de la tabla 'mathlib_full' existen en Lean
+[baseline_prover] mathd_algebra_67: done attempts=1 llm_calls=0 used_in_proof=0/0 38.8s
+[baseline_prover] mathd_algebra_342: done attempts=1 llm_calls=0 used_in_proof=0/0 821.4s
+[baseline_prover] amc12b_2003_p17: done attempts=1 llm_calls=0 used_in_proof=0/0 214.0s
+[baseline_prover] mathd_algebra_437: fail attempts=1 llm_calls=0 used_in_proof=0/0 1819.1s
+[baseline_prover] aime_1997_p11: fail attempts=1 llm_calls=0 used_in_proof=0/0 2374.4s
+[baseline_prover] imo_1978_p5: fail attempts=1 llm_calls=0 used_in_proof=0/0 1728.8s
+[baseline_prover] mathd_numbertheory_155: done attempts=1 llm_calls=0 used_in_proof=0/0 192.4s
+[baseline_prover] numbertheory_sqmod3in01d: done attempts=1 llm_calls=0 used_in_proof=0/0 77.2s
+[baseline_prover] numbertheory_notequiv2i2jasqbsqdiv8: fail attempts=1 llm_calls=0 used_in_proof=0/0 1850.3s
+[baseline_prover] amc12a_2002_p21: fail attempts=1 llm_calls=0 used_in_proof=0/0 1891.1s
+[baseline_prover] imo_1964_p1_1: done attempts=1 llm_calls=0 used_in_proof=0/0 176.7s
+[baseline_prover] mathd_algebra_24: done attempts=1 llm_calls=0 used_in_proof=0/0 145.6s
+[baseline_prover] amc12b_2002_p3: fail attempts=1 llm_calls=0 used_in_proof=0/0 822.9s
+[baseline_prover] mathd_algebra_185: done attempts=1 llm_calls=0 used_in_proof=0/0 220.8s
+[full] mathd_algebra_342: done attempts=1 llm_calls=0 used_in_proof=0/0 0.6s
+[full] mathd_algebra_67: done attempts=1 llm_calls=0 used_in_proof=0/0 0.1s
+[full] mathd_algebra_437: fail attempts=3 llm_calls=14 used_in_proof=0/19 719.3s
+[full] amc12b_2003_p17: done attempts=1 llm_calls=0 used_in_proof=0/0 1.2s
+[baseline_prover] amc12_2001_p5: fail attempts=1 llm_calls=0 used_in_proof=0/0 1203.1s
+[full] imo_1978_p5: fail attempts=3 llm_calls=11 used_in_proof=0/23 1496.1s
+[full] numbertheory_notequiv2i2jasqbsqdiv8: fail attempts=2 llm_calls=8 used_in_proof=0/3 162.3s
+[full] mathd_numbertheory_155: done attempts=1 llm_calls=0 used_in_proof=0/0 62.0s
+[full] numbertheory_sqmod3in01d: done attempts=1 llm_calls=0 used_in_proof=0/0 0.3s
+[full] aime_1997_p11: fail attempts=2 llm_calls=10 used_in_proof=0/29 2058.7s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[full] amc12b_2002_p3: fail attempts=3 llm_calls=13 used_in_proof=0/19 1070.0s
+[full] imo_1964_p1_1: done attempts=1 llm_calls=0 used_in_proof=0/0 1.9s
+[full] mathd_algebra_24: done attempts=1 llm_calls=0 used_in_proof=0/0 0.7s
+[full] mathd_algebra_185: done attempts=1 llm_calls=0 used_in_proof=0/0 2.5s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[full] amc12a_2002_p21: fail attempts=3 llm_calls=12 used_in_proof=0/19 1710.0s
+[full] amc12_2001_p5: fail attempts=3 llm_calls=11 used_in_proof=0/12 653.8s
+[cost] 79 llamadas, 238965 tokens de entrada, 101351 de salida, US$0.0477 (OpenRouter usage.cost)
+{
+  "run_id": "eval-v3",
+  "out": "data/eval/runs/eval-v3",
+  "status": "completed",
+  "n_done": 60,
+  "n_pending": 0,
+  "summary": {
+    "baseline_prover": {
+      "n": 30,
+      "pass@1": 0.7,
+      "pass@1_wilson95": [
+        0.521,
+        0.833
+      ],
+      "llm_calls_mean": 0.0,
+      "tokens_mean": 0,
+      "wall_s_median": 554.0,
+      "retrieval_calls_mean": 0.0,
+      "llm_calls_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        474.35,
+        987.96
+      ],
+      "pass_by_attempt": {
+        "1": 0.7
+      },
+      "lemma_use_precision": null,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "unknown": 9
+      },
+      "self_assessed_correct": null
+    },
+    "full": {
+      "n": 30,
+      "pass@1": 0.7,
+      "pass@1_wilson95": [
+        0.521,
+        0.833
+      ],
+      "llm_calls_mean": 3.37,
+      "tokens_mean": 14893,
+      "wall_s_median": 4.3,
+      "retrieval_calls_mean": 3.5,
+      "llm_calls_mean_ci95_bootstrap": [
+        1.6,
+        5.2
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        6769.37,
+        23734.1
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        138.22,
+        531.19
+      ],
+      "pass_by_attempt": {
+        "1": 0.7,
+        "2": 0.7,
+        "3": 0.7
+      },
+      "lemma_use_precision": 0.0,
+      "re_retrieval_success": 0.0,
+      "error_taxonomy": {
+        "planning": 15,
+        "exhausted": 9,
+        "unknown": 1,
+        "lean_syntax": 6,
+        "misformalization": 1
+      },
+      "self_assessed_correct": null
+    }
+  },
+  "llm_calls_total": 79,
+  "cost_usd_total": 0.0477,
+  "models_exhausted": []
+}

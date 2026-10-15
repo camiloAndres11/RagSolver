@@ -1,0 +1,285 @@
+{
+  "$defs": {
+    "Citation": {
+      "properties": {
+        "citation_id": {
+          "title": "Citation Id",
+          "type": "string"
+        },
+        "chunk_id": {
+          "title": "Chunk Id",
+          "type": "string"
+        },
+        "corpus": {
+          "enum": [
+            "mathlib",
+            "informal"
+          ],
+          "title": "Corpus",
+          "type": "string"
+        },
+        "unit_type": {
+          "title": "Unit Type",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "locator": {
+          "additionalProperties": true,
+          "title": "Locator",
+          "type": "object"
+        },
+        "scores": {
+          "$ref": "#/$defs/CitationScores"
+        },
+        "retrieved_for": {
+          "$ref": "#/$defs/RetrievalContext"
+        },
+        "used_in_proof": {
+          "default": false,
+          "title": "Used In Proof",
+          "type": "boolean"
+        },
+        "used_in_sketch": {
+          "default": false,
+          "title": "Used In Sketch",
+          "type": "boolean"
+        },
+        "snippet": {
+          "default": "",
+          "title": "Snippet",
+          "type": "string"
+        }
+      },
+      "required": [
+        "citation_id",
+        "chunk_id",
+        "corpus",
+        "unit_type",
+        "label",
+        "retrieved_for"
+      ],
+      "title": "Citation",
+      "type": "object"
+    },
+    "CitationScores": {
+      "properties": {
+        "dense": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dense"
+        },
+        "sparse": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sparse"
+        },
+        "fused": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fused"
+        },
+        "rerank": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rerank"
+        }
+      },
+      "title": "CitationScores",
+      "type": "object"
+    },
+    "Hit": {
+      "properties": {
+        "chunk_id": {
+          "title": "Chunk Id",
+          "type": "string"
+        },
+        "corpus": {
+          "enum": [
+            "mathlib",
+            "informal"
+          ],
+          "title": "Corpus",
+          "type": "string"
+        },
+        "unit_type": {
+          "title": "Unit Type",
+          "type": "string"
+        },
+        "rank": {
+          "title": "Rank",
+          "type": "integer"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "content_md": {
+          "default": "",
+          "title": "Content Md",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        },
+        "figures": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Figures",
+          "type": "array"
+        },
+        "citation": {
+          "$ref": "#/$defs/Citation"
+        }
+      },
+      "required": [
+        "chunk_id",
+        "corpus",
+        "unit_type",
+        "rank",
+        "text",
+        "citation"
+      ],
+      "title": "Hit",
+      "type": "object"
+    },
+    "RetrievalContext": {
+      "properties": {
+        "problem_id": {
+          "title": "Problem Id",
+          "type": "string"
+        },
+        "subgoal_id": {
+          "default": "",
+          "title": "Subgoal Id",
+          "type": "string"
+        },
+        "attempt": {
+          "default": 0,
+          "title": "Attempt",
+          "type": "integer"
+        },
+        "agent": {
+          "default": "",
+          "title": "Agent",
+          "type": "string"
+        },
+        "run_id": {
+          "default": "",
+          "title": "Run Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "problem_id"
+      ],
+      "title": "RetrievalContext",
+      "type": "object"
+    },
+    "RetrievalTrace": {
+      "properties": {
+        "latency_ms": {
+          "default": 0.0,
+          "title": "Latency Ms",
+          "type": "number"
+        },
+        "n_candidates": {
+          "default": 0,
+          "title": "N Candidates",
+          "type": "integer"
+        },
+        "versions": {
+          "$ref": "#/$defs/VersionsPin"
+        }
+      },
+      "title": "RetrievalTrace",
+      "type": "object"
+    },
+    "VersionsPin": {
+      "properties": {
+        "embedding_model": {
+          "default": "",
+          "title": "Embedding Model",
+          "type": "string"
+        },
+        "reranker_model": {
+          "default": "",
+          "title": "Reranker Model",
+          "type": "string"
+        },
+        "index_version": {
+          "default": "",
+          "title": "Index Version",
+          "type": "string"
+        },
+        "mathlib_tag": {
+          "default": "",
+          "title": "Mathlib Tag",
+          "type": "string"
+        },
+        "mathlib_table": {
+          "default": "",
+          "title": "Mathlib Table",
+          "type": "string"
+        }
+      },
+      "title": "VersionsPin",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "hits": {
+      "items": {
+        "$ref": "#/$defs/Hit"
+      },
+      "title": "Hits",
+      "type": "array"
+    },
+    "citations": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "title": "Citations",
+      "type": "array"
+    },
+    "trace": {
+      "$ref": "#/$defs/RetrievalTrace"
+    }
+  },
+  "title": "RetrievalResult",
+  "type": "object"
+}

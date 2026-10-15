@@ -1,0 +1,153 @@
+{
+  "$defs": {
+    "CitationScores": {
+      "properties": {
+        "dense": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dense"
+        },
+        "sparse": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sparse"
+        },
+        "fused": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fused"
+        },
+        "rerank": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rerank"
+        }
+      },
+      "title": "CitationScores",
+      "type": "object"
+    },
+    "RetrievalContext": {
+      "properties": {
+        "problem_id": {
+          "title": "Problem Id",
+          "type": "string"
+        },
+        "subgoal_id": {
+          "default": "",
+          "title": "Subgoal Id",
+          "type": "string"
+        },
+        "attempt": {
+          "default": 0,
+          "title": "Attempt",
+          "type": "integer"
+        },
+        "agent": {
+          "default": "",
+          "title": "Agent",
+          "type": "string"
+        },
+        "run_id": {
+          "default": "",
+          "title": "Run Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "problem_id"
+      ],
+      "title": "RetrievalContext",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "citation_id": {
+      "title": "Citation Id",
+      "type": "string"
+    },
+    "chunk_id": {
+      "title": "Chunk Id",
+      "type": "string"
+    },
+    "corpus": {
+      "enum": [
+        "mathlib",
+        "informal"
+      ],
+      "title": "Corpus",
+      "type": "string"
+    },
+    "unit_type": {
+      "title": "Unit Type",
+      "type": "string"
+    },
+    "label": {
+      "title": "Label",
+      "type": "string"
+    },
+    "locator": {
+      "additionalProperties": true,
+      "title": "Locator",
+      "type": "object"
+    },
+    "scores": {
+      "$ref": "#/$defs/CitationScores"
+    },
+    "retrieved_for": {
+      "$ref": "#/$defs/RetrievalContext"
+    },
+    "used_in_proof": {
+      "default": false,
+      "title": "Used In Proof",
+      "type": "boolean"
+    },
+    "used_in_sketch": {
+      "default": false,
+      "title": "Used In Sketch",
+      "type": "boolean"
+    },
+    "snippet": {
+      "default": "",
+      "title": "Snippet",
+      "type": "string"
+    }
+  },
+  "required": [
+    "citation_id",
+    "chunk_id",
+    "corpus",
+    "unit_type",
+    "label",
+    "retrieved_for"
+  ],
+  "title": "Citation",
+  "type": "object"
+}

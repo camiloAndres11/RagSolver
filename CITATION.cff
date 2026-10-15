@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: "RagSolver: a multi-agent system for olympiad-style problem solving with embeddings-based retrieval and Lean 4 verification"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - name: "RagSolver team (UPTC, Ingeniería de Sistemas y Computación, curso de Inteligencia Artificial)"
+version: 0.1.0
+date-released: "2026-09-20"
+license: Apache-2.0
+repository-code: "https://github.com/<usuario>/RagSolver"
+abstract: >-
+  Multi-agent pipeline (planner, retriever, generator, autoformalizer, verifier, critic)
+  orchestrated with LangGraph that solves competition mathematics problems and certifies
+  solutions with the Lean 4 kernel and Mathlib (v4.28.0-rc1). Retrieval-augmented generation
+  over the LeanSearch v2 informalized Mathlib corpus (LanceDB, hybrid dense + BM25) and over
+  a corpus of solved olympiad problems parsed from PDF (MinerU + VLM figure descriptions).
+keywords: [Lean 4, Mathlib, retrieval-augmented generation, multi-agent systems, theorem proving, miniF2F]
+references:
+  - type: dataset
+    title: "lsv2-mathlib-v4.28.0-rc1-jsonl (LeanSearch v2 corpus)"
+    authors: [{name: "FrenzyMath"}]
+    license: Apache-2.0
+  - type: dataset
+    title: "miniF2F-v2"
+    authors: [{name: "roozbeh-yz"}]
+    license: Apache-2.0

@@ -1,0 +1,778 @@
+{"decl_name": "sq_nonneg", "freq": 16719, "type": "∀ {R : Type u_1} [inst : Semiring R] [inst_1 : LinearOrder R] [ExistsAddOfLE R] [PosMulMono R]\n  [AddLeftMono R] (a : R), 0 ≤ a ^ 2"}
+{"decl_name": "mul_nonneg", "freq": 2387, "type": "∀ {α : Type u_1} [inst : MulZeroClass α] {a b : α} [inst_1 : Preorder α] [PosMulMono α],\n  0 ≤ a → 0 ≤ b → 0 ≤ a * b"}
+{"decl_name": "mul_pos", "freq": 2182, "type": "∀ {α : Type u_1} [inst : MulZeroClass α] {a b : α} [inst_1 : Preorder α] [PosMulStrictMono α],\n  0 < a → 0 < b → 0 < a * b"}
+{"decl_name": "mul_self_nonneg", "freq": 1765, "type": "∀ {R : Type u_1} [inst : Semiring R] [inst_1 : LinearOrder R] [ExistsAddOfLE R] [PosMulMono R]\n  [AddLeftMono R] (a : R), 0 ≤ a * a"}
+{"decl_name": "sq_sqrt", "freq": 1620, "type": "∀ {x : ℝ}, 0 ≤ x → √x ^ 2 = x"}
+{"decl_name": "mul_comm", "freq": 1334, "type": "∀ {G : Type u_1} [inst : CommMagma G] (a b : G), a * b = b * a"}
+{"decl_name": "sub_nonneg", "freq": 1200, "type": "∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LE α] [AddRightMono α] {a b : α}, 0 ≤ a - b ↔ b ≤ a"}
+{"decl_name": "mul_assoc", "freq": 1100, "type": "∀ {G : Type u_1} [inst : Semigroup G] (a b c : G), a * b * c = a * (b * c)"}
+{"decl_name": "add_assoc", "freq": 1084, "type": "∀ {G : Type u_1} [inst : AddSemigroup G] (a b c : G), a + b + c = a + (b + c)"}
+{"decl_name": "mul_left_comm", "freq": 1035, "type": "∀ {G : Type u_1} [inst : CommSemigroup G] (a b c : G), a * (b * c) = b * (a * c)"}
+{"decl_name": "add_left_comm", "freq": 859, "type": "∀ {G : Type u_1} [inst : AddCommSemigroup G] (a b c : G), a + (b + c) = b + (a + c)"}
+{"decl_name": "add_comm", "freq": 834, "type": "∀ {G : Type u_1} [inst : AddCommMagma G] (a b : G), a + b = b + a"}
+{"decl_name": "Real.sqrt_nonneg", "freq": 796, "type": "∀ (x : ℝ), 0 ≤ √x"}
+{"decl_name": "mul_add", "freq": 743, "type": "∀ {R : Type u_1} [inst : Mul R] [inst_1 : Add R] [LeftDistribClass R] (a b c : R),\n  a * (b + c) = a * b + a * c"}
+{"decl_name": "le_total", "freq": 710, "type": "∀ {α : Type u_1} [inst : LinearOrder α] (a b : α), a ≤ b ∨ b ≤ a"}
+{"decl_name": "Int.mul_emod", "freq": 536, "type": "∀ (a b n : ℤ), a * b % n = a % n * (b % n) % n"}
+{"decl_name": "abs_of_nonneg", "freq": 515, "type": "∀ {α : Type u_1} [inst : Lattice α] [inst_1 : AddGroup α] {a : α} [AddLeftMono α], 0 ≤ a → |a| = a"}
+{"decl_name": "mul_one", "freq": 504, "type": "∀ {M : Type u_1} [inst : MulOneClass M] (a : M), a * 1 = a"}
+{"decl_name": "abs_of_nonpos", "freq": 495, "type": "∀ {α : Type u_1} [inst : Lattice α] [inst_1 : AddGroup α] {a : α} [AddLeftMono α], a ≤ 0 → |a| = -a"}
+{"decl_name": "sub_pos", "freq": 427, "type": "∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LT α] [AddRightStrictMono α] {a b : α}, 0 < a - b ↔ b < a"}
+{"decl_name": "Nat.pow_succ", "freq": 425, "type": "∀ (n m : ℕ), n ^ m.succ = n ^ m * n"}
+{"decl_name": "Int.add_emod", "freq": 418, "type": "∀ (a b n : ℤ), (a + b) % n = (a % n + b % n) % n"}
+{"decl_name": "mul_sub", "freq": 395, "type": "∀ {α : Type u_1} [inst : NonUnitalNonAssocRing α] (a b c : α), a * (b - c) = a * b - a * c"}
+{"decl_name": "pow_two", "freq": 362, "type": "∀ {M : Type u_1} [inst : Monoid M] (a : M), a ^ 2 = a * a"}
+{"decl_name": "sub_eq_add_neg", "freq": 342, "type": "∀ {G : Type u_1} [inst : SubNegMonoid G] (a b : G), a - b = a + -b"}
+{"decl_name": "Finset.sum_range_succ", "freq": 326, "type": "∀ {M : Type u_1} [inst : AddCommMonoid M] (f : ℕ → M) (n : ℕ),\n  ∑ x ∈ Finset.range (n + 1), f x = ∑ x ∈ Finset.range n, f x + f n"}
+{"decl_name": "add_pos", "freq": 312, "type": "∀ {α : Type u_1} [inst : AddZeroClass α] [inst_1 : Preorder α] [AddLeftStrictMono α] {a b : α},\n  0 < a → 0 < b → 0 < a + b"}
+{"decl_name": "pow_succ", "freq": 287, "type": "∀ {M : Type u_1} [inst : Monoid M] (a : M) (n : ℕ), a ^ (n + 1) = a ^ n * a"}
+{"decl_name": "add_right_comm", "freq": 263, "type": "∀ {G : Type u_1} [inst : AddCommSemigroup G] (a b c : G), a + b + c = a + c + b"}
+{"decl_name": "Nat.div_eq_of_lt", "freq": 263, "type": "∀ {a b : ℕ}, a < b → a / b = 0"}
+{"decl_name": "mul_neg", "freq": 254, "type": "∀ {α : Type u_1} [inst : Mul α] [inst_1 : HasDistribNeg α] (a b : α), a * -b = -(a * b)"}
+{"decl_name": "ge_iff_le", "freq": 247, "type": "∀ {α : Type u_1} [inst : LE α] {x y : α}, x ≥ y ↔ y ≤ x"}
+{"decl_name": "add_mul", "freq": 243, "type": "∀ {R : Type u_1} [inst : Mul R] [inst_1 : Add R] [RightDistribClass R] (a b c : R),\n  (a + b) * c = a * c + b * c"}
+{"decl_name": "Nat.mul_succ", "freq": 237, "type": "∀ (n m : ℕ), n * m.succ = n * m + n"}
+{"decl_name": "mul_left_cancel₀", "freq": 232, "type": "∀ {M₀ : Type u_1} [inst : Mul M₀] [inst_1 : Zero M₀] [IsLeftCancelMulZero M₀] {a b c : M₀},\n  a ≠ 0 → a * b = a * c → b = c"}
+{"decl_name": "sub_nonpos", "freq": 228, "type": "∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LE α] [AddRightMono α] {a b : α}, a - b ≤ 0 ↔ a ≤ b"}
+{"decl_name": "le_sqrt_of_sq_le", "freq": 219, "type": "∀ {x y : ℝ}, x ^ 2 ≤ y → x ≤ √y"}
+{"decl_name": "zero_add", "freq": 213, "type": "∀ {M : Type u_1} [inst : AddZeroClass M] (a : M), 0 + a = a"}
+{"decl_name": "neg_neg", "freq": 209, "type": "∀ {G : Type u_1} [inst : InvolutiveNeg G] (a : G), - -a = a"}
+{"decl_name": "add_zero", "freq": 206, "type": "∀ {M : Type u_1} [inst : AddZeroClass M] (a : M), a + 0 = a"}
+{"decl_name": "le_of_sub_nonneg", "freq": 203, "type": "∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LE α] [AddRightMono α] {a b : α}, 0 ≤ a - b → b ≤ a"}
+{"decl_name": "sub_ne_zero", "freq": 198, "type": "∀ {G : Type u_1} [inst : AddGroup G] {a b : G}, a - b ≠ 0 ↔ a ≠ b"}
+{"decl_name": "sub_mul", "freq": 195, "type": "∀ {α : Type u_1} [inst : NonUnitalNonAssocRing α] (a b c : α), (a - b) * c = a * c - b * c"}
+{"decl_name": "neg_add_rev", "freq": 173, "type": "∀ {G : Type u_1} [inst : SubtractionMonoid G] (a b : G), -(a + b) = -b + -a"}
+{"decl_name": "mul_zero", "freq": 169, "type": "∀ {M₀ : Type u_1} [self : MulZeroClass M₀] (a : M₀), a * 0 = 0"}
+{"decl_name": "div_le_one", "freq": 164, "type": "∀ {α : Type u_1} [inst : Semifield α] [inst_1 : PartialOrder α] [PosMulReflectLT α] {a b : α},\n  0 < b → (a / b ≤ 1 ↔ a ≤ b)"}
+{"decl_name": "Nat.succ_eq_add_one", "freq": 159, "type": "∀ (n : ℕ), n.succ = n + 1"}
+{"decl_name": "Real.sqrt_pos", "freq": 159, "type": "∀ {x : ℝ}, 0 < √x ↔ 0 < x"}
+{"decl_name": "or_iff_not_imp_left", "freq": 156, "type": "∀ {a b : Prop}, a ∨ b ↔ ¬a → b"}
+{"decl_name": "mul_right_comm", "freq": 152, "type": "∀ {G : Type u_1} [inst : CommSemigroup G] (a b c : G), a * b * c = a * c * b"}
+{"decl_name": "neg_mul", "freq": 148, "type": "∀ {α : Type u_1} [inst : Mul α] [inst_1 : HasDistribNeg α] (a b : α), -a * b = -(a * b)"}
+{"decl_name": "sub_eq_zero", "freq": 147, "type": "∀ {G : Type u_1} [inst : AddGroup G] {a b : G}, a - b = 0 ↔ a = b"}
+{"decl_name": "Int.sub_emod", "freq": 146, "type": "∀ (a b n : ℤ), (a - b) % n = (a % n - b % n) % n"}
+{"decl_name": "Nat.mul_mod", "freq": 140, "type": "∀ (a b n : ℕ), a * b % n = a % n * (b % n) % n"}
+{"decl_name": "le_of_lt", "freq": 140, "type": "∀ {α : Type u_1} [inst : Preorder α] {a b : α}, a < b → a ≤ b"}
+{"decl_name": "sub_neg_eq_add", "freq": 137, "type": "∀ {α : Type u_1} [inst : SubtractionMonoid α] (a b : α), a - -b = a + b"}
+{"decl_name": "add_nonneg", "freq": 130, "type": "∀ {α : Type u_1} [inst : AddZeroClass α] [inst_1 : Preorder α] [AddLeftMono α] {a b : α},\n  0 ≤ a → 0 ≤ b → 0 ≤ a + b"}
+{"decl_name": "Nat.add_mod", "freq": 129, "type": "∀ (a b n : ℕ), (a + b) % n = (a % n + b % n) % n"}
+{"decl_name": "Real.le_sqrt_of_sq_le", "freq": 129, "type": "∀ {x y : ℝ}, x ^ 2 ≤ y → x ≤ √y"}
+{"decl_name": "Nat.add_assoc", "freq": 128, "type": "∀ (n m k : ℕ), n + m + k = n + (m + k)"}
+{"decl_name": "cos_sq", "freq": 127, "type": "∀ (x : ℝ), cos x ^ 2 = 1 / 2 + cos (2 * x) / 2"}
+{"decl_name": "pow_mul", "freq": 126, "type": "∀ {M : Type u_1} [inst : Monoid M] (a : M) (m n : ℕ), a ^ (m * n) = (a ^ m) ^ n"}
+{"decl_name": "pow_pos", "freq": 126, "type": "∀ {M₀ : Type u_1} [inst : MonoidWithZero M₀] [inst_1 : PartialOrder M₀] {a : M₀} [PosMulStrictMono M₀]\n  [ZeroLEOneClass M₀], 0 < a → ∀ (n : ℕ), 0 < a ^ n"}
+{"decl_name": "Real.sq_sqrt", "freq": 122, "type": "∀ {x : ℝ}, 0 ≤ x → √x ^ 2 = x"}
+{"decl_name": "sin_sq", "freq": 121, "type": "∀ (x : ℝ), sin x ^ 2 = 1 - cos x ^ 2"}
+{"decl_name": "abs_cases", "freq": 114, "type": "∀ {G : Type u_1} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] (a : G),\n  |a| = a ∧ 0 ≤ a ∨ |a| = -a ∧ a < 0"}
+{"decl_name": "pow_three", "freq": 114, "type": "∀ {M : Type u_1} [inst : Monoid M] (a : M), a ^ 3 = a * (a * a)"}
+{"decl_name": "sub_ne_zero_of_ne", "freq": 114, "type": "∀ {α : Type u_1} [inst : SubtractionMonoid α] {a b : α}, a ≠ b → a - b ≠ 0"}
+{"decl_name": "Nat.succ_le_iff", "freq": 111, "type": "∀ {m n : ℕ}, m.succ ≤ n ↔ m < n"}
+{"decl_name": "pow_add", "freq": 109, "type": "∀ {M : Type u_1} [inst : Monoid M] (a : M) (m n : ℕ), a ^ (m + n) = a ^ m * a ^ n"}
+{"decl_name": "sin_add", "freq": 107, "type": "∀ (x y : ℝ), sin (x + y) = sin x * cos y + cos x * sin y"}
+{"decl_name": "sub_zero", "freq": 102, "type": "∀ {G : Type u_1} [inst : SubNegZeroMonoid G] (a : G), a - 0 = a"}
+{"decl_name": "Nat.add_comm", "freq": 95, "type": "∀ (n m : ℕ), n + m = m + n"}
+{"decl_name": "Nat.choose_succ_succ", "freq": 94, "type": "∀ (n k : ℕ), n.succ.choose k.succ = n.choose k + n.choose k.succ"}
+{"decl_name": "Nat.mod_eq_of_lt", "freq": 93, "type": "∀ {a b : ℕ}, a < b → a % b = a"}
+{"decl_name": "Int.dvd_iff_emod_eq_zero", "freq": 93, "type": "∀ {a b : ℤ}, a ∣ b ↔ b % a = 0"}
+{"decl_name": "Int.pow_succ", "freq": 88, "type": "∀ (m : ℤ) (n : ℕ), m ^ n.succ = m ^ n * m"}
+{"decl_name": "Real.cos_sq", "freq": 86, "type": "∀ (x : ℝ), cos x ^ 2 = 1 / 2 + cos (2 * x) / 2"}
+{"decl_name": "Int.emod_emod", "freq": 85, "type": "∀ (a b : ℤ), a % b % b = a % b"}
+{"decl_name": "sin_sq_add_cos_sq", "freq": 83, "type": "∀ (x : ℝ), sin x ^ 2 + cos x ^ 2 = 1"}
+{"decl_name": "neg_zero", "freq": 82, "type": "∀ {G : Type u_1} [inst : NegZeroClass G], -0 = 0"}
+{"decl_name": "Nat.pow_mod", "freq": 82, "type": "∀ (a b n : ℕ), a ^ b % n = (a % n) ^ b % n"}
+{"decl_name": "Nat.add_left_comm", "freq": 82, "type": "∀ (n m k : ℕ), n + (m + k) = m + (n + k)"}
+{"decl_name": "Or.inl", "freq": 78, "type": "∀ {a b : Prop}, a → a ∨ b"}
+{"decl_name": "div_eq_mul_inv", "freq": 78, "type": "∀ {G : Type u_1} [inst : DivInvMonoid G] (a b : G), a / b = a * b⁻¹"}
+{"decl_name": "zero_sub", "freq": 78, "type": "∀ {G : Type u_1} [inst : SubNegMonoid G] (a : G), 0 - a = -a"}
+{"decl_name": "Finset.sum_Icc_succ_top", "freq": 77, "type": "∀ {M : Type u_1} [inst : AddCommMonoid M] {a b : ℕ},\n  a ≤ b + 1 → ∀ (f : ℕ → M), ∑ k ∈ Finset.Icc a (b + 1), f k = ∑ k ∈ Finset.Icc a b, f k + f (b + 1)"}
+{"decl_name": "Real.sin_sq", "freq": 76, "type": "∀ (x : ℝ), sin x ^ 2 = 1 - cos x ^ 2"}
+{"decl_name": "abs_le", "freq": 75, "type": "∀ {G : Type u_1} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b : G},\n  |a| ≤ b ↔ -b ≤ a ∧ a ≤ b"}
+{"decl_name": "pow_two_nonneg", "freq": 75, "type": "∀ {R : Type u_1} [inst : Semiring R] [inst_1 : LinearOrder R] [ExistsAddOfLE R] [PosMulMono R]\n  [AddLeftMono R] (a : R), 0 ≤ a ^ 2"}
+{"decl_name": "Eq.refl", "freq": 75, "type": "∀ {α : Sort u_1} (a : α), a = a"}
+{"decl_name": "Int.pow_zero", "freq": 75, "type": "∀ (m : ℤ), m ^ 0 = 1"}
+{"decl_name": "cos_add", "freq": 74, "type": "∀ (x y : ℝ), cos (x + y) = cos x * cos y - sin x * sin y"}
+{"decl_name": "rpow_two", "freq": 74, "type": "∀ (x : ℝ), x ^ 2 = x ^ 2"}
+{"decl_name": "sin_sub", "freq": 73, "type": "∀ (x y : ℝ), sin (x - y) = sin x * cos y - cos x * sin y"}
+{"decl_name": "Or.inr", "freq": 73, "type": "∀ {a b : Prop}, b → a ∨ b"}
+{"decl_name": "or_iff_not_imp_right", "freq": 73, "type": "∀ {a b : Prop}, a ∨ b ↔ ¬b → a"}
+{"decl_name": "Nat.dvd_iff_mod_eq_zero", "freq": 72, "type": "∀ {m n : ℕ}, m ∣ n ↔ n % m = 0"}
+{"decl_name": "Nat.dvd_of_mod_eq_zero", "freq": 72, "type": "∀ {m n : ℕ}, n % m = 0 → m ∣ n"}
+{"decl_name": "pow_one", "freq": 69, "type": "∀ {M : Type u_1} [inst : Monoid M] (a : M), a ^ 1 = a"}
+{"decl_name": "lt_of_sub_pos", "freq": 68, "type": "∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LT α] [AddRightStrictMono α] {a b : α},\n  0 < a - b → b < a"}
+{"decl_name": "sum_range_choose", "freq": 68, "type": "∀ (n : ℕ), ∑ m ∈ Finset.range (n + 1), n.choose m = 2 ^ n"}
+{"decl_name": "Nat.div_self", "freq": 67, "type": "∀ {n : ℕ}, 0 < n → n / n = 1"}
+{"decl_name": "cos_sub", "freq": 66, "type": "∀ (x y : ℝ), cos (x - y) = cos x * cos y + sin x * sin y"}
+{"decl_name": "Real.sin_sq_add_cos_sq", "freq": 65, "type": "∀ (x : ℝ), sin x ^ 2 + cos x ^ 2 = 1"}
+{"decl_name": "Nat.mul_assoc", "freq": 65, "type": "∀ (n m k : ℕ), n * m * k = n * (m * k)"}
+{"decl_name": "Nat.mul_comm", "freq": 64, "type": "∀ (n m : ℕ), n * m = m * n"}
+{"decl_name": "Real.sin_add", "freq": 64, "type": "∀ (x y : ℝ), sin (x + y) = sin x * cos y + cos x * sin y"}
+{"decl_name": "neg_sub", "freq": 64, "type": "∀ {α : Type u_1} [inst : SubtractionMonoid α] (a b : α), -(a - b) = b - a"}
+{"decl_name": "choose_succ_succ", "freq": 63, "type": "∀ (n k : ℕ), n.succ.choose k.succ = n.choose k + n.choose k.succ"}
+{"decl_name": "And.intro", "freq": 61, "type": "∀ {a b : Prop}, a → b → a ∧ b"}
+{"decl_name": "Real.cos_add", "freq": 60, "type": "∀ (x y : ℝ), cos (x + y) = cos x * cos y - sin x * sin y"}
+{"decl_name": "Int.dvd_of_emod_eq_zero", "freq": 58, "type": "∀ {a b : ℤ}, b % a = 0 → a ∣ b"}
+{"decl_name": "Nat.mul_one", "freq": 57, "type": "∀ (n : ℕ), n * 1 = n"}
+{"decl_name": "Int.emod_eq_of_lt", "freq": 57, "type": "∀ {a b : ℤ}, 0 ≤ a → a < b → a % b = a"}
+{"decl_name": "Real.cos_sub", "freq": 54, "type": "∀ (x y : ℝ), cos (x - y) = cos x * cos y + sin x * sin y"}
+{"decl_name": "Nat.cast_succ", "freq": 53, "type": "∀ {R : Type u_1} [inst : AddMonoidWithOne R] (n : ℕ), ↑n.succ = ↑n + 1"}
+{"decl_name": "div_nonneg", "freq": 53, "type": "∀ {G₀ : Type u_1} [inst : GroupWithZero G₀] [inst_1 : PartialOrder G₀] [PosMulReflectLT G₀] {a b : G₀},\n  0 ≤ a → 0 ≤ b → 0 ≤ a / b"}
+{"decl_name": "Nat.cast_one", "freq": 52, "type": "∀ {R : Type u_1} [inst : AddMonoidWithOne R], ↑1 = 1"}
+{"decl_name": "add_one_le_exp", "freq": 52, "type": "∀ (x : ℝ), x + 1 ≤ rexp x"}
+{"decl_name": "Nat.mod_mod", "freq": 51, "type": "∀ (a n : ℕ), a % n % n = a % n"}
+{"decl_name": "sq_pos_of_ne_zero", "freq": 51, "type": "∀ {R : Type u_1} [inst : Semiring R] [inst_1 : LinearOrder R] [IsStrictOrderedRing R]\n  [ExistsAddOfLE R] {a : R}, a ≠ 0 → 0 < a ^ 2"}
+{"decl_name": "Nat.succ_mul", "freq": 51, "type": "∀ (n m : ℕ), n.succ * m = n * m + m"}
+{"decl_name": "Real.sqrt_le_iff", "freq": 51, "type": "∀ {x y : ℝ}, √x ≤ y ↔ 0 ≤ y ∧ x ≤ y ^ 2"}
+{"decl_name": "Nat.pow_zero", "freq": 51, "type": "∀ (n : ℕ), n ^ 0 = 1"}
+{"decl_name": "add_sub_cancel", "freq": 50, "type": "∀ {G : Type u_1} [inst : AddCommGroup G] (a b : G), a + (b - a) = b"}
+{"decl_name": "Nat.mul_zero", "freq": 50, "type": "∀ (n : ℕ), n * 0 = 0"}
+{"decl_name": "sq_pos_of_pos", "freq": 50, "type": "∀ {M₀ : Type u_1} [inst : MonoidWithZero M₀] [inst_1 : PartialOrder M₀] {a : M₀} [PosMulStrictMono M₀],\n  0 < a → 0 < a ^ 2"}
+{"decl_name": "eq_zero_or_eq_zero_of_mul_eq_zero", "freq": 50, "type": "∀ {M₀ : Type u_1} {inst : Mul M₀} {inst_1 : Zero M₀} [self : NoZeroDivisors M₀]\n  {a b : M₀}, a * b = 0 → a = 0 ∨ b = 0"}
+{"decl_name": "one_pow", "freq": 49, "type": "∀ {M : Type u_1} [inst : Monoid M] (n : ℕ), 1 ^ n = 1"}
+{"decl_name": "Real.sin_sub", "freq": 49, "type": "∀ (x y : ℝ), sin (x - y) = sin x * cos y - cos x * sin y"}
+{"decl_name": "Real.sqrt_eq_iff_mul_self_eq", "freq": 48, "type": "∀ {x y : ℝ}, 0 ≤ x → 0 ≤ y → (√x = y ↔ x = y * y)"}
+{"decl_name": "zero_mul", "freq": 48, "type": "∀ {M₀ : Type u_1} [self : MulZeroClass M₀] (a : M₀), 0 * a = 0"}
+{"decl_name": "Real.sqrt_le_sqrt", "freq": 47, "type": "∀ {x y : ℝ}, x ≤ y → √x ≤ √y"}
+{"decl_name": "nat_sub_dvd_pow_sub_pow", "freq": 46, "type": "∀ (x y n : ℕ), x - y ∣ x ^ n - y ^ n"}
+{"decl_name": "Real.cos_le_one", "freq": 46, "type": "∀ (x : ℝ), cos x ≤ 1"}
+{"decl_name": "Complex.ext_iff", "freq": 46, "type": "∀ {z w : ℂ}, z = w ↔ z.re = w.re ∧ z.im = w.im"}
+{"decl_name": "mul_div_cancel_left", "freq": 44, "type": "∀ {G : Type u_1} [inst : CommGroup G] (a b : G), a * b / a = b"}
+{"decl_name": "Nat.cast_zero", "freq": 44, "type": "∀ {R : Type u_1} [inst : AddMonoidWithOne R], ↑0 = 0"}
+{"decl_name": "Nat.cast_add", "freq": 44, "type": "∀ {R : Type u_1} [inst : AddMonoidWithOne R] (m n : ℕ), ↑(m + n) = ↑m + ↑n"}
+{"decl_name": "Nat.mul_add", "freq": 43, "type": "∀ (n m k : ℕ), n * (m + k) = n * m + n * k"}
+{"decl_name": "Nat.add_zero", "freq": 43, "type": "∀ (n : ℕ), n + 0 = n"}
+{"decl_name": "sum_Icc_choose", "freq": 43, "type": "∀ (n k : ℕ), ∑ m ∈ Finset.Icc k n, m.choose k = (n + 1).choose (k + 1)"}
+{"decl_name": "Nat.mul_left_comm", "freq": 42, "type": "∀ (n m k : ℕ), n * (m * k) = m * (n * k)"}
+{"decl_name": "Real.cos_two_mul", "freq": 41, "type": "∀ (x : ℝ), cos (2 * x) = 2 * cos x ^ 2 - 1"}
+{"decl_name": "Nat.cast_mul", "freq": 41, "type": "∀ {α : Type u_1} [inst : NonAssocSemiring α] (m n : ℕ), ↑(m * n) = ↑m * ↑n"}
+{"decl_name": "add_eq_zero_iff_eq_neg", "freq": 41, "type": "∀ {G : Type u_1} [inst : AddGroup G] {a b : G}, a + b = 0 ↔ a = -b"}
+{"decl_name": "Real.log_mul", "freq": 40, "type": "∀ {x y : ℝ}, x ≠ 0 → y ≠ 0 → Real.log (x * y) = Real.log x + Real.log y"}
+{"decl_name": "add_sub_assoc", "freq": 39, "type": "∀ {G : Type u_1} [inst : SubNegMonoid G] (a b c : G), a + b - c = a + (b - c)"}
+{"decl_name": "sin_two_mul", "freq": 39, "type": "∀ (x : ℝ), sin (2 * x) = 2 * sin x * cos x"}
+{"decl_name": "cos_two_mul", "freq": 39, "type": "∀ (x : ℝ), cos (2 * x) = 2 * cos x ^ 2 - 1"}
+{"decl_name": "Int.floor_eq_iff", "freq": 37, "type": "∀ {R : Type u_1} [inst : Ring R] [inst_1 : LinearOrder R] [inst_2 : FloorRing R] {z : ℤ} {a : R},\n  ⌊a⌋ = z ↔ ↑z ≤ a ∧ a < ↑z + 1"}
+{"decl_name": "Real.sin_two_mul", "freq": 37, "type": "∀ (x : ℝ), sin (2 * x) = 2 * sin x * cos x"}
+{"decl_name": "Finset.prod_Icc_succ_top", "freq": 37, "type": "∀ {M : Type u_1} [inst : CommMonoid M] {a b : ℕ},\n  a ≤ b + 1 → ∀ (f : ℕ → M), ∏ k ∈ Finset.Icc a (b + 1), f k = (∏ k ∈ Finset.Icc a b, f k) * f (b + 1)"}
+{"decl_name": "Int.floor_le", "freq": 37, "type": "∀ {α : Type u_1} [inst : Ring α] [inst_1 : LinearOrder α] [inst_2 : FloorRing α] (a : α), ↑⌊a⌋ ≤ a"}
+{"decl_name": "Finset.prod_range_succ", "freq": 37, "type": "∀ {M : Type u_1} [inst : CommMonoid M] (f : ℕ → M) (n : ℕ),\n  ∏ x ∈ Finset.range (n + 1), f x = (∏ x ∈ Finset.range n, f x) * f n"}
+{"decl_name": "Nat.mul_sub_left_distrib", "freq": 36, "type": "∀ (n m k : ℕ), n * (m - k) = n * m - n * k"}
+{"decl_name": "Set.mem_Icc", "freq": 36, "type": "∀ {α : Type u_1} [inst : Preorder α] {a b x : α}, x ∈ Set.Icc a b ↔ a ≤ x ∧ x ≤ b"}
+{"decl_name": "add_nonpos", "freq": 35, "type": "∀ {α : Type u_1} [inst : AddZeroClass α] [inst_1 : Preorder α] [AddLeftMono α] {a b : α},\n  a ≤ 0 → b ≤ 0 → a + b ≤ 0"}
+{"decl_name": "Real.sin_le_one", "freq": 34, "type": "∀ (x : ℝ), sin x ≤ 1"}
+{"decl_name": "Nat.add_mul", "freq": 33, "type": "∀ (n m k : ℕ), (n + m) * k = n * k + m * k"}
+{"decl_name": "Nat.choose_zero_right", "freq": 33, "type": "∀ (n : ℕ), n.choose 0 = 1"}
+{"decl_name": "pow_nonneg", "freq": 33, "type": "∀ {M₀ : Type u_1} [inst : MonoidWithZero M₀] [inst_1 : Preorder M₀] {a : M₀} [ZeroLEOneClass M₀]\n  [PosMulMono M₀], 0 ≤ a → ∀ (n : ℕ), 0 ≤ a ^ n"}
+{"decl_name": "dvd_iff_exists_eq_mul_left", "freq": 33, "type": "∀ {α : Type u_1} [inst : CommSemigroup α] {a b : α}, a ∣ b ↔ ∃ c, b = c * a"}
+{"decl_name": "Int.lt_floor_add_one", "freq": 31, "type": "∀ {R : Type u_1} [inst : Ring R] [inst_1 : LinearOrder R] [inst_2 : FloorRing R] (a : R),\n  a < ↑⌊a⌋ + 1"}
+{"decl_name": "one_mul", "freq": 31, "type": "∀ {M : Type u_1} [inst : MulOneClass M] (a : M), 1 * a = a"}
+{"decl_name": "add_sub", "freq": 31, "type": "∀ {G : Type u_1} [inst : SubNegMonoid G] (a b c : G), a + (b - c) = a + b - c"}
+{"decl_name": "abs_lt", "freq": 31, "type": "∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LinearOrder α] [AddLeftMono α] {a b : α} [AddRightMono α],\n  |a| < b ↔ -b < a ∧ a < b"}
+{"decl_name": "sub_add_eq_add_sub", "freq": 29, "type": "∀ {α : Type u_1} [inst : SubtractionCommMonoid α] (a b c : α), a - b + c = a + c - b"}
+{"decl_name": "sub_sub_sub_cancel_left", "freq": 29, "type": "∀ {G : Type u_1} [inst : AddCommGroup G] (a b c : G), c - a - (c - b) = b - a"}
+{"decl_name": "Nat.pow_mul", "freq": 29, "type": "∀ (a m n : ℕ), a ^ (m * n) = (a ^ m) ^ n"}
+{"decl_name": "congr_arg", "freq": 29, "type": "∀ {α : Sort u_1} {β : Sort u_2} {a₁ a₂ : α} (f : α → β), a₁ = a₂ → f a₁ = f a₂"}
+{"decl_name": "Int.emod_eq_emod_iff_emod_sub_eq_zero", "freq": 28, "type": "∀ {m n k : ℤ}, m % n = k % n ↔ (m - k) % n = 0"}
+{"decl_name": "eq_comm", "freq": 27, "type": "∀ {α : Sort u_1} {a b : α}, a = b ↔ b = a"}
+{"decl_name": "Nat.choose_eq_factorial_div_factorial", "freq": 26, "type": "∀ {n k : ℕ}, k ≤ n → n.choose k = n ! / (k ! * (n - k)!)"}
+{"decl_name": "Real.mul_self_sqrt", "freq": 26, "type": "∀ {x : ℝ}, 0 ≤ x → √x * √x = x"}
+{"decl_name": "Real.log_le_sub_one_of_pos", "freq": 26, "type": "∀ {x : ℝ}, 0 < x → Real.log x ≤ x - 1"}
+{"decl_name": "sub_sub_eq_add_sub", "freq": 26, "type": "∀ {α : Type u_1} [inst : SubtractionMonoid α] (a b c : α), a - (b - c) = a + c - b"}
+{"decl_name": "Nat.cast_sub", "freq": 25, "type": "∀ {R : Type u_1} [inst : AddGroupWithOne R] {m n : ℕ}, m ≤ n → ↑(n - m) = ↑n - ↑m"}
+{"decl_name": "Set.mem_inter_iff", "freq": 25, "type": "∀ {α : Type u_1} (x : α) (a b : Set α), x ∈ a ∩ b ↔ x ∈ a ∧ x ∈ b"}
+{"decl_name": "sub_sub", "freq": 25, "type": "∀ {α : Type u_1} [inst : SubtractionCommMonoid α] (a b c : α), a - b - c = a - (b + c)"}
+{"decl_name": "Nat.succ_pos", "freq": 24, "type": "∀ (n : ℕ), 0 < n.succ"}
+{"decl_name": "pow_zero", "freq": 24, "type": "∀ {M : Type u_1} [inst : Monoid M] (a : M), a ^ 0 = 1"}
+{"decl_name": "Nat.mul_div_cancel_left", "freq": 24, "type": "∀ (m : ℕ) {n : ℕ}, 0 < n → n * m / n = m"}
+{"decl_name": "Nat.zero_le", "freq": 24, "type": "∀ (n : ℕ), 0 ≤ n"}
+{"decl_name": "tan_eq_sin_div_cos", "freq": 23, "type": "∀ (x : ℝ), tan x = sin x / cos x"}
+{"decl_name": "add_neg_cancel_left", "freq": 23, "type": "∀ {G : Type u_1} [inst : AddGroup G] (a b : G), a + (-a + b) = b"}
+{"decl_name": "Real.pi_pos", "freq": 23, "type": "0 < π"}
+{"decl_name": "Finset.sum_le_sum", "freq": 23, "type": "∀ {ι : Type u_1} {N : Type u_2} [inst : AddCommMonoid N] [inst_1 : PartialOrder N] {f g : ι → N}\n  {s : Finset ι} [AddLeftMono N], (∀ i ∈ s, f i ≤ g i) → ∑ i ∈ s, f i ≤ ∑ i ∈ s, g i"}
+{"decl_name": "choose_symm_of_eq_add", "freq": 23, "type": "∀ {n a b : ℕ}, n = a + b → n.choose a = n.choose b"}
+{"decl_name": "Finset.sum_range_zero", "freq": 22, "type": "∀ {M : Type u_1} [inst : AddCommMonoid M] (f : ℕ → M), ∑ k ∈ Finset.range 0, f k = 0"}
+{"decl_name": "Nat.choose_one_right", "freq": 22, "type": "∀ (n : ℕ), n.choose 1 = n"}
+{"decl_name": "fib_add_two", "freq": 22, "type": "∀ {n : ℕ}, fib (n + 2) = fib n + fib (n + 1)"}
+{"decl_name": "Nat.zero_eq", "freq": 22, "type": "zero = 0"}
+{"decl_name": "sub_sub_sub_cancel_right", "freq": 22, "type": "∀ {G : Type u_1} [inst : AddGroup G] (a b c : G), a - c - (b - c) = a - b"}
+{"decl_name": "add_pow", "freq": 22, "type": "∀ {R : Type u_1} [inst : CommSemiring R] (x y : R) (n : ℕ),\n  (x + y) ^ n = ∑ m ∈ Finset.range (n + 1), x ^ m * y ^ (n - m) * ↑(n.choose m)"}
+{"decl_name": "Nat.lt_pow_self", "freq": 22, "type": "∀ {n a : ℕ}, 1 < a → n < a ^ n"}
+{"decl_name": "sin_le_one", "freq": 22, "type": "∀ (x : ℝ), sin x ≤ 1"}
+{"decl_name": "Finset.sum_range_one", "freq": 21, "type": "∀ {M : Type u_1} [inst : AddCommMonoid M] (f : ℕ → M), ∑ k ∈ Finset.range 1, f k = f 0"}
+{"decl_name": "add_sq", "freq": 21, "type": "∀ {α : Type u_1} [inst : CommSemiring α] (a b : α), (a + b) ^ 2 = a ^ 2 + 2 * a * b + b ^ 2"}
+{"decl_name": "Real.log_rpow", "freq": 21, "type": "∀ {x : ℝ}, 0 < x → ∀ (y : ℝ), Real.log (x ^ y) = y * Real.log x"}
+{"decl_name": "Nat.lt_succ_iff", "freq": 20, "type": "∀ {m n : ℕ}, m < n.succ ↔ m ≤ n"}
+{"decl_name": "sub_self", "freq": 20, "type": "∀ {G : Type u_1} [inst : AddGroup G] (a : G), a - a = 0"}
+{"decl_name": "sub_eq_iff_eq_add", "freq": 20, "type": "∀ {G : Type u_1} [inst : AddGroup G] {a b c : G}, a - b = c ↔ a = c + b"}
+{"decl_name": "sub_add", "freq": 20, "type": "∀ {α : Type u_1} [inst : SubtractionCommMonoid α] (a b c : α), a - b + c = a - (b - c)"}
+{"decl_name": "fib_one", "freq": 20, "type": "fib 1 = 1"}
+{"decl_name": "Nat.gcd_eq_right", "freq": 20, "type": "∀ {m n : ℕ}, n ∣ m → m.gcd n = n"}
+{"decl_name": "Real.sin_lt", "freq": 19, "type": "∀ {x : ℝ}, 0 < x → sin x < x"}
+{"decl_name": "norm_eq_abs", "freq": 19, "type": "∀ (r : ℝ), ‖r‖ = |r|"}
+{"decl_name": "Nat.cast_pow", "freq": 19, "type": "∀ {α : Type u_1} [inst : Semiring α] (m n : ℕ), ↑(m ^ n) = ↑m ^ n"}
+{"decl_name": "tsum_eq_single", "freq": 19, "type": "∀ {α : Type u_1} {β : Type u_2} [inst : AddCommMonoid α] [inst_1 : TopologicalSpace α]\n  {L : SummationFilter β} [L.LeAtTop] {f : β → α} (b : β), (∀ (b' : β), b' ≠ b → f b' = 0) → ∑'[L] (b : β), f b = f b"}
+{"decl_name": "abs_nonneg", "freq": 19, "type": "∀ {α : Type u_1} [inst : Lattice α] [inst_1 : AddGroup α] [AddLeftMono α] [AddRightMono α] (a : α),\n  0 ≤ |a|"}
+{"decl_name": "cos_sq_add_sin_sq", "freq": 18, "type": "∀ (x : ℝ), cos x ^ 2 + sin x ^ 2 = 1"}
+{"decl_name": "div_le_self", "freq": 18, "type": "∀ {α : Type u_1} [inst : Semifield α] [inst_1 : PartialOrder α] [PosMulReflectLT α] {a b : α}\n  [IsStrictOrderedRing α], 0 ≤ a → 1 ≤ b → a / b ≤ a"}
+{"decl_name": "Real.log_inv", "freq": 18, "type": "∀ (x : ℝ), Real.log x⁻¹ = -Real.log x"}
+{"decl_name": "Nat.mul_sub_right_distrib", "freq": 18, "type": "∀ (n m k : ℕ), (n - m) * k = n * k - m * k"}
+{"decl_name": "eq_of_sub_eq_zero", "freq": 18, "type": "∀ {α : Type u_1} [inst : SubtractionMonoid α] {a b : α}, a - b = 0 → a = b"}
+{"decl_name": "Finset.sum_congr", "freq": 18, "type": "∀ {ι : Type u_1} {M : Type u_2} {s₁ s₂ : Finset ι} [inst : AddCommMonoid M] {f g : ι → M},\n  s₁ = s₂ → (∀ x ∈ s₂, f x = g x) → s₁.sum f = s₂.sum g"}
+{"decl_name": "Nat.coprime_iff_gcd_eq_one", "freq": 18, "type": "∀ {m n : ℕ}, m.Coprime n ↔ m.gcd n = 1"}
+{"decl_name": "Real.sqrt_ne_zero", "freq": 17, "type": "∀ {x : ℝ}, 0 ≤ x → (√x ≠ 0 ↔ x ≠ 0)"}
+{"decl_name": "Real.sqrt_sq_eq_abs", "freq": 17, "type": "∀ (x : ℝ), √(x ^ 2) = |x|"}
+{"decl_name": "Real.sin_pi_div_two", "freq": 17, "type": "sin (π / 2) = 1"}
+{"decl_name": "Set.mem_union", "freq": 17, "type": "∀ {α : Type u_1} (x : α) (a b : Set α), x ∈ a ∪ b ↔ x ∈ a ∨ x ∈ b"}
+{"decl_name": "div_pos", "freq": 17, "type": "∀ {G₀ : Type u_1} [inst : GroupWithZero G₀] [inst_1 : PartialOrder G₀] [PosMulReflectLT G₀] {a b : G₀},\n  0 < a → 0 < b → 0 < a / b"}
+{"decl_name": "even_iff_two_dvd", "freq": 17, "type": "∀ {α : Type u_1} [inst : Semiring α] {a : α}, Even a ↔ 2 ∣ a"}
+{"decl_name": "Nat.cast_ofNat", "freq": 17, "type": "∀ {R : Type u_1} {n : ℕ} [inst : NatCast R] [inst_1 : n.AtLeastTwo], ↑(OfNat.ofNat n) = OfNat.ofNat n"}
+{"decl_name": "Iff.intro", "freq": 17, "type": "∀ {a b : Prop}, (a → b) → (b → a) → (a ↔ b)"}
+{"decl_name": "gt_iff_lt", "freq": 17, "type": "∀ {α : Type u_1} [inst : LT α] {x y : α}, x > y ↔ y < x"}
+{"decl_name": "Real.cos_pi_div_two", "freq": 16, "type": "cos (π / 2) = 0"}
+{"decl_name": "Nat.gcd_comm", "freq": 16, "type": "∀ (m n : ℕ), m.gcd n = n.gcd m"}
+{"decl_name": "Real.sqrt_sq", "freq": 16, "type": "∀ {x : ℝ}, 0 ≤ x → √(x ^ 2) = x"}
+{"decl_name": "exp_pos", "freq": 16, "type": "∀ (x : ℝ), 0 < rexp x"}
+{"decl_name": "neg_add", "freq": 16, "type": "∀ {α : Type u_1} [inst : SubtractionCommMonoid α] (a b : α), -(a + b) = -a + -b"}
+{"decl_name": "max_le_iff", "freq": 16, "type": "∀ {α : Type u_1} [inst : LinearOrder α] {a b c : α}, max a b ≤ c ↔ a ≤ c ∧ b ≤ c"}
+{"decl_name": "one_div", "freq": 16, "type": "∀ {G : Type u_1} [inst : DivInvMonoid G] (a : G), 1 / a = a⁻¹"}
+{"decl_name": "sin_neg", "freq": 16, "type": "∀ (x : ℝ), sin (-x) = -sin x"}
+{"decl_name": "Int.mul_comm", "freq": 16, "type": "∀ (a b : ℤ), a * b = b * a"}
+{"decl_name": "Finset.mem_Icc", "freq": 15, "type": "∀ {α : Type u_1} [inst : Preorder α] [inst_1 : LocallyFiniteOrder α] {a b x : α},\n  x ∈ Finset.Icc a b ↔ a ≤ x ∧ x ≤ b"}
+{"decl_name": "Fin.sum_univ_succ", "freq": 15, "type": "∀ {M : Type u_1} [inst : AddCommMonoid M] {n : ℕ} (f : Fin (n + 1) → M),\n  ∑ i, f i = f 0 + ∑ i, f i.succ"}
+{"decl_name": "sin_three_mul", "freq": 15, "type": "∀ (x : ℝ), sin (3 * x) = 3 * sin x - 4 * sin x ^ 3"}
+{"decl_name": "Real.sqrt_mul", "freq": 15, "type": "∀ {x : ℝ}, 0 ≤ x → ∀ (y : ℝ), √(x * y) = √x * √y"}
+{"decl_name": "Real.log_pow", "freq": 15, "type": "∀ (x : ℝ) (n : ℕ), Real.log (x ^ n) = ↑n * Real.log x"}
+{"decl_name": "Nat.zero_add", "freq": 15, "type": "∀ (n : ℕ), 0 + n = n"}
+{"decl_name": "Set.mem_setOf_eq", "freq": 15, "type": "∀ {α : Type u_1} {x : α} {p : α → Prop}, (x ∈ {y | p y}) = p x"}
+{"decl_name": "Finset.sum_nonneg", "freq": 14, "type": "∀ {ι : Type u_1} {N : Type u_2} [inst : AddCommMonoid N] [inst_1 : PartialOrder N] {f : ι → N}\n  {s : Finset ι} [AddLeftMono N], (∀ i ∈ s, 0 ≤ f i) → 0 ≤ ∑ i ∈ s, f i"}
+{"decl_name": "mul_pow", "freq": 14, "type": "∀ {M : Type u_1} [inst : CommMonoid M] (a b : M) (n : ℕ), (a * b) ^ n = a ^ n * b ^ n"}
+{"decl_name": "Real.log_le_iff_le_exp", "freq": 14, "type": "∀ {x y : ℝ}, 0 < x → (Real.log x ≤ y ↔ x ≤ rexp y)"}
+{"decl_name": "mul_nonpos_of_nonpos_of_nonneg", "freq": 14, "type": "∀ {α : Type u_1} [inst : MulZeroClass α] {a b : α} [inst_1 : Preorder α]\n  [MulPosMono α], a ≤ 0 → 0 ≤ b → a * b ≤ 0"}
+{"decl_name": "pow_mod", "freq": 14, "type": "∀ (a b n : ℕ), a ^ b % n = (a % n) ^ b % n"}
+{"decl_name": "zpow_neg", "freq": 14, "type": "∀ {α : Type u_1} [inst : DivisionMonoid α] (a : α) (n : ℤ), a ^ (-n) = (a ^ n)⁻¹"}
+{"decl_name": "Int.mul_assoc", "freq": 14, "type": "∀ (a b c : ℤ), a * b * c = a * (b * c)"}
+{"decl_name": "Real.sqrt_lt_sqrt", "freq": 14, "type": "∀ {x y : ℝ}, 0 ≤ x → x < y → √x < √y"}
+{"decl_name": "sub_sub_cancel", "freq": 14, "type": "∀ {G : Type u_1} [inst : AddCommGroup G] (a b : G), a - (a - b) = b"}
+{"decl_name": "mul_neg_one", "freq": 14, "type": "∀ {α : Type u_1} [inst : MulOneClass α] [inst_1 : HasDistribNeg α] (a : α), a * -1 = -a"}
+{"decl_name": "Set.mem_diff", "freq": 14, "type": "∀ {α : Type u_1} {s t : Set α} (x : α), x ∈ s \\ t ↔ x ∈ s ∧ x ∉ t"}
+{"decl_name": "max_eq_right", "freq": 14, "type": "∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, a ≤ b → max a b = b"}
+{"decl_name": "max_eq_left", "freq": 14, "type": "∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, b ≤ a → max a b = a"}
+{"decl_name": "cos_le_one", "freq": 14, "type": "∀ (x : ℝ), cos x ≤ 1"}
+{"decl_name": "zero_le_one", "freq": 14, "type": "∀ {α : Type u_1} [inst : Zero α] [inst_1 : One α] [inst_2 : LE α] [ZeroLEOneClass α], 0 ≤ 1"}
+{"decl_name": "mul_right_cancel₀", "freq": 13, "type": "∀ {M₀ : Type u_1} [inst : Mul M₀] [inst_1 : Zero M₀] [IsRightCancelMulZero M₀] {a b c : M₀},\n  b ≠ 0 → a * b = c * b → a = c"}
+{"decl_name": "Nat.mod_add_div", "freq": 13, "type": "∀ (m k : ℕ), m % k + k * (m / k) = m"}
+{"decl_name": "Real.log_lt_sub_one_of_pos", "freq": 13, "type": "∀ {x : ℝ}, 0 < x → x ≠ 1 → Real.log x < x - 1"}
+{"decl_name": "Int.add_mul", "freq": 13, "type": "∀ (a b c : ℤ), (a + b) * c = a * c + b * c"}
+{"decl_name": "Real.sqrt_lt", "freq": 13, "type": "∀ {x y : ℝ}, 0 ≤ x → 0 ≤ y → (√x < y ↔ x < y ^ 2)"}
+{"decl_name": "Nat.add_succ", "freq": 13, "type": "∀ (n m : ℕ), n + m.succ = (n + m).succ"}
+{"decl_name": "Real.sqrt_one", "freq": 13, "type": "√1 = 1"}
+{"decl_name": "Nat.pow_two", "freq": 13, "type": "∀ (a : ℕ), a ^ 2 = a * a"}
+{"decl_name": "Real.cos_three_mul", "freq": 13, "type": "∀ (x : ℝ), cos (3 * x) = 4 * cos x ^ 3 - 3 * cos x"}
+{"decl_name": "Int.add_assoc", "freq": 13, "type": "∀ (a b c : ℤ), a + b + c = a + (b + c)"}
+{"decl_name": "sub_add_cancel", "freq": 12, "type": "∀ {G : Type u_1} [inst : AddGroup G] (a b : G), a - b + b = a"}
+{"decl_name": "Nat.choose_two_right", "freq": 12, "type": "∀ (n : ℕ), n.choose 2 = n * (n - 1) / 2"}
+{"decl_name": "Nat.lt_succ_self", "freq": 12, "type": "∀ (n : ℕ), n < n.succ"}
+{"decl_name": "Nat.zero_lt_succ", "freq": 12, "type": "∀ (n : ℕ), 0 < n.succ"}
+{"decl_name": "Nat.factorial_succ", "freq": 12, "type": "∀ (n : ℕ), (n + 1)! = (n + 1) * n !"}
+{"decl_name": "norm_add_le", "freq": 12, "type": "∀ {E : Type u_1} [inst : SeminormedAddGroup E] (a b : E), ‖a + b‖ ≤ ‖a‖ + ‖b‖"}
+{"decl_name": "Polynomial.sub_dvd_eval_sub", "freq": 12, "type": "∀ {R : Type u_1} [inst : CommRing R] (a b : R) (p : Polynomial R),\n  a - b ∣ Polynomial.eval a p - Polynomial.eval b p"}
+{"decl_name": "add_neg_cancel_right", "freq": 12, "type": "∀ {G : Type u_1} [inst : AddGroup G] (a b : G), a + b + -b = a"}
+{"decl_name": "Nat.choose_self", "freq": 12, "type": "∀ (n : ℕ), n.choose n = 1"}
+{"decl_name": "le_of_not_gt", "freq": 12, "type": "∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, ¬b < a → a ≤ b"}
+{"decl_name": "Set.mem_range", "freq": 12, "type": "∀ {α : Type u_1} {ι : Sort u_2} {f : ι → α} {x : α}, x ∈ Set.range f ↔ ∃ y, f y = x"}
+{"decl_name": "Int.even_mul", "freq": 12, "type": "∀ {m n : ℤ}, Even (m * n) ↔ Even m ∨ Even n"}
+{"decl_name": "Int.even_add", "freq": 12, "type": "∀ {m n : ℤ}, Even (m + n) ↔ (Even m ↔ Even n)"}
+{"decl_name": "congr_fun", "freq": 12, "type": "∀ {α : Sort u_1} {β : α → Sort u_2} {f g : (x : α) → β x}, f = g → ∀ (a : α), f a = g a"}
+{"decl_name": "neg_mul_eq_neg_mul", "freq": 12, "type": "∀ {α : Type u_1} [inst : Mul α] [inst_1 : HasDistribNeg α] (a b : α), -(a * b) = -a * b"}
+{"decl_name": "Real.lt_sqrt_of_sq_lt", "freq": 12, "type": "∀ {x y : ℝ}, x ^ 2 < y → x < √y"}
+{"decl_name": "Nat.coprime_comm", "freq": 12, "type": "∀ {n m : ℕ}, n.Coprime m ↔ m.Coprime n"}
+{"decl_name": "Nat.coprime_mul_iff_left", "freq": 12, "type": "∀ {m n k : ℕ}, (m * n).Coprime k ↔ m.Coprime k ∧ n.Coprime k"}
+{"decl_name": "add_one_lt_exp", "freq": 12, "type": "∀ {x : ℝ}, x ≠ 0 → x + 1 < rexp x"}
+{"decl_name": "Int.emod_add_ediv", "freq": 12, "type": "∀ (a b : ℤ), a % b + b * (a / b) = a"}
+{"decl_name": "Nat.modEq_iff_dvd", "freq": 12, "type": "∀ {n a b : ℕ}, a ≡ b [MOD n] ↔ ↑n ∣ ↑b - ↑a"}
+{"decl_name": "le_add_iff_nonneg_right", "freq": 12, "type": "∀ {α : Type u_1} [inst : AddZeroClass α] [inst_1 : LE α] [AddLeftMono α] [AddLeftReflectLE α]\n  (a : α) {b : α}, a ≤ a + b ↔ 0 ≤ b"}
+{"decl_name": "abs_of_pos", "freq": 12, "type": "∀ {α : Type u_1} [inst : Lattice α] [inst_1 : AddGroup α] {a : α} [AddLeftMono α], 0 < a → |a| = a"}
+{"decl_name": "exp_add", "freq": 12, "type": "∀ (x y : ℝ), rexp (x + y) = rexp x * rexp y"}
+{"decl_name": "mul_right_inj'", "freq": 12, "type": "∀ {M₀ : Type u_1} [inst : Mul M₀] [inst_1 : Zero M₀] [IsLeftCancelMulZero M₀] {a b c : M₀},\n  a ≠ 0 → (a * b = a * c ↔ b = c)"}
+{"decl_name": "Real.log_div", "freq": 12, "type": "∀ {x y : ℝ}, x ≠ 0 → y ≠ 0 → Real.log (x / y) = Real.log x - Real.log y"}
+{"decl_name": "Int.gcd_eq_gcd_ab", "freq": 11, "type": "∀ (x y : ℤ), ↑(x.gcd y) = x * x.gcdA y + y * x.gcdB y"}
+{"decl_name": "Set.mem_singleton_iff", "freq": 11, "type": "∀ {α : Type u_1} {a b : α}, a ∈ {b} ↔ a = b"}
+{"decl_name": "Real.neg_one_le_cos", "freq": 11, "type": "∀ (x : ℝ), -1 ≤ cos x"}
+{"decl_name": "zpow_two", "freq": 11, "type": "∀ {G : Type u_1} [inst : DivInvMonoid G] (a : G), a ^ 2 = a * a"}
+{"decl_name": "Real.sin_three_mul", "freq": 11, "type": "∀ (x : ℝ), sin (3 * x) = 3 * sin x - 4 * sin x ^ 3"}
+{"decl_name": "lt_sqrt_of_sq_lt", "freq": 11, "type": "∀ {x y : ℝ}, x ^ 2 < y → x < √y"}
+{"decl_name": "fib_add", "freq": 11, "type": "∀ (m n : ℕ), fib (m + n + 1) = fib m * fib n + fib (m + 1) * fib (n + 1)"}
+{"decl_name": "Int.mul_add", "freq": 11, "type": "∀ (a b c : ℤ), a * (b + c) = a * b + a * c"}
+{"decl_name": "Finset.mem_insert", "freq": 11, "type": "∀ {α : Type u_1} [inst : DecidableEq α] {s : Finset α} {a b : α}, a ∈ insert b s ↔ a = b ∨ a ∈ s"}
+{"decl_name": "Finset.mem_singleton", "freq": 11, "type": "∀ {α : Type u_1} {a b : α}, b ∈ {a} ↔ b = a"}
+{"decl_name": "Finset.mem_range", "freq": 10, "type": "∀ {n m : ℕ}, m ∈ Finset.range n ↔ m < n"}
+{"decl_name": "le_of_eq", "freq": 10, "type": "∀ {α : Type u_1} [inst : Preorder α] {a b : α}, a = b → a ≤ b"}
+{"decl_name": "Finset.abs_sum_le_sum_abs", "freq": 10, "type": "∀ {ι : Type u_1} {G : Type u_2} [inst : AddCommGroup G] [inst_1 : LinearOrder G]\n  [IsOrderedAddMonoid G] (f : ι → G) (s : Finset ι), |∑ i ∈ s, f i| ≤ ∑ i ∈ s, |f i|"}
+{"decl_name": "Matrix.mul_apply", "freq": 10, "type": "∀ {l : Type u_2} {m : Type u_3} {n : Type u_4} {α : Type u_1} [inst : Fintype m] [inst_1 : Mul α]\n  [inst_2 : AddCommMonoid α] {M : Matrix l m α} {N : Matrix m n α} {i : l} {k : n}, (M * N) i k = ∑ j, M i j * N j k"}
+{"decl_name": "norm_mul", "freq": 10, "type": "∀ {α : Type u_1} [inst : Norm α] [inst_1 : Mul α] [NormMulClass α] (a b : α), ‖a * b‖ = ‖a‖ * ‖b‖"}
+{"decl_name": "cos_three_mul", "freq": 10, "type": "∀ (x : ℝ), cos (3 * x) = 4 * cos x ^ 3 - 3 * cos x"}
+{"decl_name": "Int.even_pow", "freq": 10, "type": "∀ {m : ℤ} {n : ℕ}, Even (m ^ n) ↔ Even m ∧ n ≠ 0"}
+{"decl_name": "Real.neg_one_le_sin", "freq": 10, "type": "∀ (x : ℝ), -1 ≤ sin x"}
+{"decl_name": "fib_zero", "freq": 10, "type": "fib 0 = 0"}
+{"decl_name": "abs_mul", "freq": 10, "type": "∀ {α : Type u_1} [inst : Ring α] [inst_1 : LinearOrder α] [IsOrderedRing α] (a b : α), |a * b| = |a| * |b|"}
+{"decl_name": "Nat.one_le_iff_ne_zero", "freq": 10, "type": "∀ {n : ℕ}, 1 ≤ n ↔ n ≠ 0"}
+{"decl_name": "Nat.pow_add", "freq": 10, "type": "∀ (a m n : ℕ), a ^ (m + n) = a ^ m * a ^ n"}
+{"decl_name": "le_refl", "freq": 10, "type": "∀ {α : Type u_1} [inst : Preorder α] (a : α), a ≤ a"}
+{"decl_name": "Matrix.det_fin_three", "freq": 10, "type": "∀ {R : Type u_1} [inst : CommRing R] (A : Matrix (Fin 3) (Fin 3) R),\n  A.det =\n    A 0 0 * A 1 1 * A 2 2 - A 0 0 * A 1 2 * A 2 1 - A 0 1 * A 1 0 * A 2 2 + A 0 1 * A 1 2 * A 2 0 +\n        A 0 2 * A 1 0 * A 2 1 -\n      A 0 2 * A 1 1 * A 2 0"}
+{"decl_name": "Nat.coprime_mul_iff_right", "freq": 10, "type": "∀ {k m n : ℕ}, k.Coprime (m * n) ↔ k.Coprime m ∧ k.Coprime n"}
+{"decl_name": "Int.mul_left_comm", "freq": 10, "type": "∀ (a b c : ℤ), a * (b * c) = b * (a * c)"}
+{"decl_name": "neg_one_le_sin", "freq": 10, "type": "∀ (x : ℝ), -1 ≤ sin x"}
+{"decl_name": "le_add_iff_nonneg_left", "freq": 10, "type": "∀ {α : Type u_1} [inst : AddZeroClass α] [inst_1 : LE α] [AddRightMono α]\n  [AddRightReflectLE α] (a : α) {b : α}, a ≤ b + a ↔ 0 ≤ b"}
+{"decl_name": "Real.cos_pi_div_four", "freq": 10, "type": "cos (π / 4) = √2 / 2"}
+{"decl_name": "Int.add_left_comm", "freq": 10, "type": "∀ (a b c : ℤ), a + (b + c) = b + (a + c)"}
+{"decl_name": "Finset.card_eq_succ", "freq": 10, "type": "∀ {α : Type u_1} {s : Finset α} {n : ℕ} [inst : DecidableEq α],\n  s.card = n + 1 ↔ ∃ a t, a ∉ t ∧ insert a t = s ∧ t.card = n"}
+{"decl_name": "Real.lt_tan", "freq": 9, "type": "∀ {x : ℝ}, 0 < x → x < π / 2 → x < tan x"}
+{"decl_name": "Nat.even_iff", "freq": 9, "type": "∀ {n : ℕ}, Even n ↔ n % 2 = 0"}
+{"decl_name": "Int.neg_mul", "freq": 9, "type": "∀ (a b : ℤ), -a * b = -(a * b)"}
+{"decl_name": "Int.mul_neg", "freq": 9, "type": "∀ (a b : ℤ), a * -b = -(a * b)"}
+{"decl_name": "Nat.add_right_comm", "freq": 9, "type": "∀ (n m k : ℕ), n + m + k = n + k + m"}
+{"decl_name": "cos_pi_div_two", "freq": 9, "type": "cos (π / 2) = 0"}
+{"decl_name": "sin_pi_div_two", "freq": 9, "type": "sin (π / 2) = 1"}
+{"decl_name": "Int.even_sub", "freq": 9, "type": "∀ {m n : ℤ}, Even (m - n) ↔ (Even m ↔ Even n)"}
+{"decl_name": "Real.cos_pos_of_mem_Ioo", "freq": 9, "type": "∀ {x : ℝ}, x ∈ Set.Ioo (-(π / 2)) (π / 2) → 0 < cos x"}
+{"decl_name": "Nat.choose_succ_right_eq", "freq": 9, "type": "∀ (n k : ℕ), n.choose (k + 1) * (k + 1) = n.choose k * (n - k)"}
+{"decl_name": "Nat.totient_mul", "freq": 9, "type": "∀ {m n : ℕ}, m.Coprime n → φ (m * n) = φ m * φ n"}
+{"decl_name": "Nat.gcd_eq_gcd_ab", "freq": 9, "type": "∀ (x y : ℕ), ↑(x.gcd y) = ↑x * x.gcdA y + ↑y * x.gcdB y"}
+{"decl_name": "tsum_geometric_of_abs_lt_one", "freq": 9, "type": "∀ {r : ℝ}, |r| < 1 → ∑' (n : ℕ), r ^ n = (1 - r)⁻¹"}
+{"decl_name": "neg_one_le_cos", "freq": 9, "type": "∀ (x : ℝ), -1 ≤ cos x"}
+{"decl_name": "Real.log_pos", "freq": 9, "type": "∀ {x : ℝ}, 1 < x → 0 < Real.log x"}
+{"decl_name": "continuous_const", "freq": 9, "type": "∀ {X : Type u_1} {Y : Type u_2} [inst : TopologicalSpace X] [inst_1 : TopologicalSpace Y] {y : Y},\n  Continuous fun x => y"}
+{"decl_name": "Function.comp_apply", "freq": 9, "type": "∀ {β : Sort u_1} {δ : Sort u_2} {α : Sort u_3} {f : β → δ} {g : α → β} {x : α},\n  (f ∘ g) x = f (g x)"}
+{"decl_name": "add_right_inj", "freq": 8, "type": "∀ {G : Type u_1} [inst : Add G] [IsLeftCancelAdd G] (a : G) {b c : G}, a + b = a + c ↔ b = c"}
+{"decl_name": "Finset.mem_filter", "freq": 8, "type": "∀ {α : Type u_1} {p : α → Prop} [inst : DecidablePred p] {s : Finset α} {a : α},\n  a ∈ Finset.filter p s ↔ a ∈ s ∧ p a"}
+{"decl_name": "sin_lt", "freq": 8, "type": "∀ {x : ℝ}, 0 < x → sin x < x"}
+{"decl_name": "Finset.sum_range", "freq": 8, "type": "∀ {M : Type u_1} [inst : AddCommMonoid M] {n : ℕ} (f : ℕ → M), ∑ i ∈ Finset.range n, f i = ∑ i, f ↑i"}
+{"decl_name": "Real.cos_sq_add_sin_sq", "freq": 8, "type": "∀ (x : ℝ), cos x ^ 2 + sin x ^ 2 = 1"}
+{"decl_name": "eq_self_iff_true", "freq": 8, "type": "∀ {α : Sort u_1} (a : α), a = a ↔ True"}
+{"decl_name": "sub_right_inj", "freq": 8, "type": "∀ {G : Type u_1} [inst : AddGroup G] {a b c : G}, a - b = a - c ↔ b = c"}
+{"decl_name": "mul_nonpos_of_nonneg_of_nonpos", "freq": 8, "type": "∀ {α : Type u_1} [inst : MulZeroClass α] {a b : α} [inst_1 : Preorder α]\n  [PosMulMono α], 0 ≤ a → b ≤ 0 → a * b ≤ 0"}
+{"decl_name": "sum_totient", "freq": 8, "type": "∀ (n : ℕ), n.divisors.sum φ = n"}
+{"decl_name": "dvd_iff_mod_eq_zero", "freq": 8, "type": "∀ {m n : ℕ}, m ∣ n ↔ n % m = 0"}
+{"decl_name": "Nat.one_mul", "freq": 8, "type": "∀ (n : ℕ), 1 * n = n"}
+{"decl_name": "Real.tan_eq_sin_div_cos", "freq": 8, "type": "∀ (x : ℝ), tan x = sin x / cos x"}
+{"decl_name": "cos_neg", "freq": 8, "type": "∀ (x : ℝ), cos (-x) = cos x"}
+{"decl_name": "dvd_add", "freq": 8, "type": "∀ {α : Type u_1} [inst : Add α] [inst_1 : Semigroup α] [LeftDistribClass α] {a b c : α},\n  a ∣ b → a ∣ c → a ∣ b + c"}
+{"decl_name": "Finset.sum_const", "freq": 8, "type": "∀ {ι : Type u_1} {M : Type u_2} {s : Finset ι} [inst : AddCommMonoid M] (b : M),\n  ∑ _x ∈ s, b = s.card • b"}
+{"decl_name": "Finset.card_range", "freq": 8, "type": "∀ (n : ℕ), (Finset.range n).card = n"}
+{"decl_name": "Nat.gcd_mul_lcm", "freq": 8, "type": "∀ (m n : ℕ), m.gcd n * m.lcm n = m * n"}
+{"decl_name": "Int.add_comm", "freq": 8, "type": "∀ (a b : ℤ), a + b = b + a"}
+{"decl_name": "gcd_dvd_right", "freq": 8, "type": "∀ {α : Type u_1} {inst : CommMonoidWithZero α} [self : GCDMonoid α] (a b : α), gcd a b ∣ b"}
+{"decl_name": "Complex.ofReal_re", "freq": 8, "type": "∀ (r : ℝ), (↑r).re = r"}
+{"decl_name": "Complex.ofReal_im", "freq": 8, "type": "∀ (r : ℝ), (↑r).im = 0"}
+{"decl_name": "add_left_inj", "freq": 7, "type": "∀ {G : Type u_1} [inst : Add G] [IsRightCancelAdd G] (a : G) {b c : G}, b + a = c + a ↔ b = c"}
+{"decl_name": "true_and", "freq": 7, "type": "∀ (p : Prop), (True ∧ p) = p"}
+{"decl_name": "mul_self_pos", "freq": 7, "type": "∀ {R : Type u_1} [inst : Semiring R] [inst_1 : LinearOrder R] [ExistsAddOfLE R] [PosMulStrictMono R]\n  [MulPosStrictMono R] [AddLeftStrictMono R] [AddLeftReflectLT R] {a : R}, 0 < a * a ↔ a ≠ 0"}
+{"decl_name": "abs_le_sqrt", "freq": 7, "type": "∀ {x y : ℝ}, x ^ 2 ≤ y → |x| ≤ √y"}
+{"decl_name": "rpow_add", "freq": 7, "type": "∀ {x : ℝ}, 0 < x → ∀ (y z : ℝ), x ^ (y + z) = x ^ y * x ^ z"}
+{"decl_name": "Nat.sub_zero", "freq": 7, "type": "∀ (n : ℕ), n - 0 = n"}
+{"decl_name": "sum_range_choose_halfway", "freq": 7, "type": "∀ (m : ℕ), ∑ i ∈ Finset.range (m + 1), (2 * m + 1).choose i = 4 ^ m"}
+{"decl_name": "Real.log_nonneg", "freq": 7, "type": "∀ {x : ℝ}, 1 ≤ x → 0 ≤ Real.log x"}
+{"decl_name": "abs_div", "freq": 7, "type": "∀ {α : Type u_1} [inst : Field α] [inst_1 : LinearOrder α] [IsStrictOrderedRing α] (a b : α),\n  |a / b| = |a| / |b|"}
+{"decl_name": "Int.even_iff", "freq": 7, "type": "∀ {n : ℤ}, Even n ↔ n % 2 = 0"}
+{"decl_name": "mul_eq_zero", "freq": 7, "type": "∀ {M₀ : Type u_1} [inst : MulZeroClass M₀] [NoZeroDivisors M₀] {a b : M₀}, a * b = 0 ↔ a = 0 ∨ b = 0"}
+{"decl_name": "zero_le_two", "freq": 7, "type": "∀ {α : Type u_1} [inst : AddMonoidWithOne α] [inst_1 : Preorder α] [ZeroLEOneClass α] [AddLeftMono α],\n  0 ≤ 2"}
+{"decl_name": "Nat.pow_right_injective", "freq": 7, "type": "∀ {a : ℕ}, 2 ≤ a → Function.Injective fun x => a ^ x"}
+{"decl_name": "Real.sin_pi_div_four", "freq": 7, "type": "sin (π / 4) = √2 / 2"}
+{"decl_name": "gcd_dvd_left", "freq": 7, "type": "∀ {α : Type u_1} {inst : CommMonoidWithZero α} [self : GCDMonoid α] (a b : α), gcd a b ∣ a"}
+{"decl_name": "min_eq_left", "freq": 7, "type": "∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, a ≤ b → min a b = a"}
+{"decl_name": "min_eq_right", "freq": 7, "type": "∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, b ≤ a → min a b = b"}
+{"decl_name": "exists_rat_btwn", "freq": 7, "type": "∀ {K : Type u_1} [inst : Field K] [inst_1 : LinearOrder K] [IsStrictOrderedRing K] [Archimedean K]\n  {x y : K}, x < y → ∃ q, x < ↑q ∧ ↑q < y"}
+{"decl_name": "Int.mul_one", "freq": 7, "type": "∀ (a : ℤ), a * 1 = a"}
+{"decl_name": "Complex.I_sq", "freq": 6, "type": "Complex.I ^ 2 = -1"}
+{"decl_name": "Nat.succ_lt_succ", "freq": 6, "type": "∀ {n m : ℕ}, n < m → n.succ < m.succ"}
+{"decl_name": "and_imp", "freq": 6, "type": "∀ {a b c : Prop}, a ∧ b → c ↔ a → b → c"}
+{"decl_name": "Real.rpow_def_of_pos", "freq": 6, "type": "∀ {x : ℝ}, 0 < x → ∀ (y : ℝ), x ^ y = rexp (Real.log x * y)"}
+{"decl_name": "Set.mem_compl_iff", "freq": 6, "type": "∀ {α : Type u_1} (s : Set α) (x : α), x ∈ sᶜ ↔ x ∉ s"}
+{"decl_name": "zero_div", "freq": 6, "type": "∀ {G₀ : Type u_1} [inst : GroupWithZero G₀] (a : G₀), 0 / a = 0"}
+{"decl_name": "Nat.sub_self", "freq": 6, "type": "∀ (n : ℕ), n - n = 0"}
+{"decl_name": "Real.sin_pos_of_pos_of_lt_pi", "freq": 6, "type": "∀ {x : ℝ}, 0 < x → x < π → 0 < sin x"}
+{"decl_name": "irrational_sqrt_two.ne_rat", "freq": 6, "type": "∀ (q : ℚ), √2 ≠ ↑q"}
+{"decl_name": "sub_sq", "freq": 6, "type": "∀ {R : Type u_1} [inst : CommRing R] (a b : R), (a - b) ^ 2 = a ^ 2 - 2 * a * b + b ^ 2"}
+{"decl_name": "Finset.sum_range_id", "freq": 6, "type": "∀ (n : ℕ), ∑ i ∈ Finset.range n, i = n * (n - 1) / 2"}
+{"decl_name": "Finset.sum_le_sum_of_subset_of_nonneg", "freq": 6, "type": "∀ {ι : Type u_1} {N : Type u_2} [inst : AddCommMonoid N]\n  [inst_1 : PartialOrder N] {f : ι → N} {s t : Finset ι} [AddLeftMono N],\n  s ⊆ t → (∀ i ∈ t, i ∉ s → 0 ≤ f i) → ∑ i ∈ s, f i ≤ ∑ i ∈ t, f i"}
+{"decl_name": "Nat.Prime.dvd_choose_self", "freq": 6, "type": "∀ {p k : ℕ}, Nat.Prime p → k ≠ 0 → k < p → p ∣ p.choose k"}
+{"decl_name": "choose_zero_right", "freq": 6, "type": "∀ (n : ℕ), n.choose 0 = 1"}
+{"decl_name": "sub_add_eq_sub_sub", "freq": 6, "type": "∀ {α : Type u_1} [inst : SubtractionCommMonoid α] (a b c : α), a - (b + c) = a - b - c"}
+{"decl_name": "Set.mem_insert_iff", "freq": 6, "type": "∀ {α : Type u_1} {x a : α} {s : Set α}, x ∈ insert a s ↔ x = a ∨ x ∈ s"}
+{"decl_name": "dvd_mul_of_dvd_left", "freq": 6, "type": "∀ {α : Type u_1} [inst : Semigroup α] {a b : α}, a ∣ b → ∀ (c : α), a ∣ b * c"}
+{"decl_name": "Real.lt_sqrt", "freq": 6, "type": "∀ {x y : ℝ}, 0 ≤ x → (x < √y ↔ x ^ 2 < y)"}
+{"decl_name": "Finset.sum_filter", "freq": 6, "type": "∀ {ι : Type u_1} {M : Type u_2} {s : Finset ι} [inst : AddCommMonoid M] (p : ι → Prop)\n  [inst_1 : DecidablePred p] (f : ι → M), ∑ a ∈ s with p a, f a = ∑ a ∈ s, if p a then f a else 0"}
+{"decl_name": "Nat.div_le_self", "freq": 6, "type": "∀ (n k : ℕ), n / k ≤ n"}
+{"decl_name": "Finset.sum_eq_multiset_sum", "freq": 6, "type": "∀ {ι : Type u_1} {M : Type u_2} [inst : AddCommMonoid M] (s : Finset ι) (f : ι → M),\n  ∑ x ∈ s, f x = (Multiset.map f s.val).sum"}
+{"decl_name": "norm_sub_le", "freq": 5, "type": "∀ {E : Type u_1} [inst : SeminormedAddGroup E] (a b : E), ‖a - b‖ ≤ ‖a‖ + ‖b‖"}
+{"decl_name": "neg_nonpos", "freq": 5, "type": "∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LE α] [AddLeftMono α] {a : α}, -a ≤ 0 ↔ 0 ≤ a"}
+{"decl_name": "two_mul", "freq": 5, "type": "∀ {α : Type u_1} [inst : NonAssocSemiring α] (n : α), 2 * n = n + n"}
+{"decl_name": "Real.cos_pi_div_two_sub", "freq": 5, "type": "∀ (x : ℝ), cos (π / 2 - x) = sin x"}
+{"decl_name": "dvd_trans", "freq": 5, "type": "∀ {α : Type u_1} [inst : Semigroup α] {a b c : α}, a ∣ b → b ∣ c → a ∣ c"}
+{"decl_name": "sub_neg", "freq": 5, "type": "∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LT α] [AddRightStrictMono α] {a b : α}, a - b < 0 ↔ a < b"}
+{"decl_name": "Real.sin_pi_div_three", "freq": 5, "type": "sin (π / 3) = √3 / 2"}
+{"decl_name": "Int.emod_two_eq_zero_or_one", "freq": 5, "type": "∀ (n : ℤ), n % 2 = 0 ∨ n % 2 = 1"}
+{"decl_name": "Nat.totient_prime", "freq": 5, "type": "∀ {p : ℕ}, Nat.Prime p → φ p = p - 1"}
+{"decl_name": "abs_of_neg", "freq": 5, "type": "∀ {α : Type u_1} [inst : Lattice α] [inst_1 : AddGroup α] {a : α} [AddLeftMono α], a < 0 → |a| = -a"}
+{"decl_name": "rpow_lt_rpow_of_exponent_lt", "freq": 5, "type": "∀ {x y z : ℝ}, 1 < x → y < z → x ^ y < x ^ z"}
+{"decl_name": "Complex.I_mul_I", "freq": 5, "type": "Complex.I * Complex.I = -1"}
+{"decl_name": "choose_mul", "freq": 5, "type": "∀ {n k s : ℕ}, s ≤ k → n.choose k * k.choose s = n.choose s * (n - s).choose (k - s)"}
+{"decl_name": "le_antisymm", "freq": 5, "type": "∀ {α : Type u_1} [inst : PartialOrder α] {a b : α}, a ≤ b → b ≤ a → a = b"}
+{"decl_name": "Real.exp_log", "freq": 5, "type": "∀ {x : ℝ}, 0 < x → rexp (Real.log x) = x"}
+{"decl_name": "Matrix.cons_val_zero", "freq": 5, "type": "∀ {α : Type u_1} {m : ℕ} (x : α) (u : Fin m → α), Matrix.vecCons x u 0 = x"}
+{"decl_name": "Matrix.head_cons", "freq": 5, "type": "∀ {α : Type u_1} {m : ℕ} (x : α) (u : Fin m → α), Matrix.vecHead (Matrix.vecCons x u) = x"}
+{"decl_name": "Matrix.cons_val_two", "freq": 5, "type": "∀ {α : Type u_1} {m : ℕ} (x : α) (u : Fin m.succ.succ → α),\n  Matrix.vecCons x u 2 = Matrix.vecHead (Matrix.vecTail u)"}
+{"decl_name": "Matrix.cons_val_one", "freq": 5, "type": "∀ {α : Type u_1} {m : ℕ} (x : α) (u : Fin m.succ → α), Matrix.vecCons x u 1 = u 0"}
+{"decl_name": "Matrix.tail_cons", "freq": 5, "type": "∀ {α : Type u_1} {m : ℕ} (x : α) (u : Fin m → α), Matrix.vecTail (Matrix.vecCons x u) = u"}
+{"decl_name": "zero_lt_one", "freq": 5, "type": "∀ {α : Type u_1} [inst : Zero α] [inst_1 : One α] [inst_2 : PartialOrder α] [ZeroLEOneClass α]\n  [NeZero 1], 0 < 1"}
+{"decl_name": "norm_sum_le", "freq": 5, "type": "∀ {ι : Type u_1} {E : Type u_2} [inst : SeminormedAddCommGroup E] (s : Finset ι) (f : ι → E),\n  ‖∑ i ∈ s, f i‖ ≤ ∑ i ∈ s, ‖f i‖"}
+{"decl_name": "zpow_ofNat", "freq": 5, "type": "∀ {G : Type u_1} [inst : DivInvMonoid G] (a : G) (n : ℕ), a ^ OfNat.ofNat n = a ^ OfNat.ofNat n"}
+{"decl_name": "abs_sub_lt_iff", "freq": 5, "type": "∀ {G : Type u_1} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] {a b c : G},\n  |a - b| < c ↔ a - b < c ∧ b - a < c"}
+{"decl_name": "div_neg_of_neg_of_pos", "freq": 5, "type": "∀ {α : Type u_1} [inst : Field α] [inst_1 : PartialOrder α] [PosMulReflectLT α]\n  [IsStrictOrderedRing α] {a b : α}, a < 0 → 0 < b → a / b < 0"}
+{"decl_name": "Nat.div_eq_of_eq_mul_left", "freq": 5, "type": "∀ {n m k : ℕ}, 0 < n → m = k * n → m / n = k"}
+{"decl_name": "choose_one_right", "freq": 5, "type": "∀ (n : ℕ), n.choose 1 = n"}
+{"decl_name": "choose_two_right", "freq": 5, "type": "∀ (n : ℕ), n.choose 2 = n * (n - 1) / 2"}
+{"decl_name": "lt_or_gt_of_ne", "freq": 5, "type": "∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, a ≠ b → a < b ∨ b < a"}
+{"decl_name": "abs_sub_comm", "freq": 5, "type": "∀ {α : Type u_1} [inst : Lattice α] [inst_1 : AddGroup α] (a b : α), |a - b| = |b - a|"}
+{"decl_name": "norm_of_nonneg", "freq": 5, "type": "∀ {r : ℝ}, 0 ≤ r → ‖r‖ = r"}
+{"decl_name": "Nat.le_of_lt", "freq": 5, "type": "∀ {n m : ℕ}, n < m → n ≤ m"}
+{"decl_name": "sub_right_comm", "freq": 5, "type": "∀ {α : Type u_1} [inst : SubtractionCommMonoid α] (a b c : α), a - b - c = a - c - b"}
+{"decl_name": "Nat.div_le_iff_le_mul_add_pred", "freq": 5, "type": "∀ {b a c : ℕ}, 0 < b → (a / b ≤ c ↔ a ≤ b * c + (b - 1))"}
+{"decl_name": "sub_le_iff_le_add", "freq": 5, "type": "∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LE α] [AddRightMono α] {a b c : α},\n  a - c ≤ b ↔ a ≤ b + c"}
+{"decl_name": "le_sub_iff_add_le", "freq": 5, "type": "∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LE α] [AddRightMono α] {a b c : α},\n  a ≤ c - b ↔ a + b ≤ c"}
+{"decl_name": "Nat.sub_eq_zero_of_le", "freq": 5, "type": "∀ {n m : ℕ}, n ≤ m → n - m = 0"}
+{"decl_name": "Nat.add_sub_cancel", "freq": 5, "type": "∀ (n m : ℕ), n + m - m = n"}
+{"decl_name": "Fin.sum_univ_one", "freq": 5, "type": "∀ {M : Type u_1} [inst : AddCommMonoid M] (f : Fin 1 → M), ∑ i, f i = f 0"}
+{"decl_name": "Nat.fib_gcd", "freq": 5, "type": "∀ (m n : ℕ), fib (m.gcd n) = (fib m).gcd (fib n)"}
+{"decl_name": "ne_of_gt", "freq": 5, "type": "∀ {α : Type u_1} [inst : Preorder α] {a b : α}, b < a → a ≠ b"}
+{"decl_name": "mul_inv", "freq": 5, "type": "∀ {α : Type u_1} [inst : DivisionCommMonoid α] (a b : α), (a * b)⁻¹ = a⁻¹ * b⁻¹"}
+{"decl_name": "Set.mem_Ioi", "freq": 5, "type": "∀ {α : Type u_1} [inst : Preorder α] {b x : α}, x ∈ Set.Ioi b ↔ b < x"}
+{"decl_name": "Ideal.mul_eq_inf_of_coprime", "freq": 4, "type": "∀ {R : Type u_1} [inst : CommSemiring R] {I J : Ideal R}, I ⊔ J = ⊤ → I * J = I ⊓ J"}
+{"decl_name": "sinh_add", "freq": 4, "type": "∀ (x y : ℝ), sinh (x + y) = sinh x * cosh y + cosh x * sinh y"}
+{"decl_name": "pow_ne_zero", "freq": 4, "type": "∀ {M₀ : Type u_1} [inst : MonoidWithZero M₀] {a : M₀} [IsReduced M₀] (n : ℕ), a ≠ 0 → a ^ n ≠ 0"}
+{"decl_name": "Real.sin_pi_div_two_sub", "freq": 4, "type": "∀ (x : ℝ), sin (π / 2 - x) = cos x"}
+{"decl_name": "or_true", "freq": 4, "type": "∀ (p : Prop), (p ∨ True) = True"}
+{"decl_name": "div_zero", "freq": 4, "type": "∀ {G₀ : Type u_1} [inst : GroupWithZero G₀] (a : G₀), a / 0 = 0"}
+{"decl_name": "sub_sub_cancel_left", "freq": 4, "type": "∀ {G : Type u_1} [inst : AddCommGroup G] (a b : G), a - b - a = -b"}
+{"decl_name": "Complex.ofReal_mul", "freq": 4, "type": "∀ (r s : ℝ), ↑(r * s) = ↑r * ↑s"}
+{"decl_name": "Nat.odd_iff", "freq": 4, "type": "∀ {n : ℕ}, Odd n ↔ n % 2 = 1"}
+{"decl_name": "Nat.Prime.dvd_mul", "freq": 4, "type": "∀ {p m n : ℕ}, Nat.Prime p → (p ∣ m * n ↔ p ∣ m ∨ p ∣ n)"}
+{"decl_name": "Real.cos_pi_div_three", "freq": 4, "type": "cos (π / 3) = 1 / 2"}
+{"decl_name": "Real.cos_arcsin", "freq": 4, "type": "∀ (x : ℝ), cos (arcsin x) = √(1 - x ^ 2)"}
+{"decl_name": "Finset.card_powerset", "freq": 4, "type": "∀ {α : Type u_1} (s : Finset α), s.powerset.card = 2 ^ s.card"}
+{"decl_name": "Real.logb_mul", "freq": 4, "type": "∀ {b x y : ℝ}, x ≠ 0 → y ≠ 0 → logb b (x * y) = logb b x + logb b y"}
+{"decl_name": "Finset.prod_range_one", "freq": 4, "type": "∀ {M : Type u_1} [inst : CommMonoid M] (f : ℕ → M), ∏ k ∈ Finset.range 1, f k = f 0"}
+{"decl_name": "Nat.fib_dvd", "freq": 4, "type": "∀ (m n : ℕ), m ∣ n → fib m ∣ fib n"}
+{"decl_name": "exp_le_one_iff", "freq": 4, "type": "∀ {x : ℝ}, rexp x ≤ 1 ↔ x ≤ 0"}
+{"decl_name": "Int.even_or_odd", "freq": 4, "type": "∀ (n : ℤ), Even n ∨ Odd n"}
+{"decl_name": "Int.cast_ofNat", "freq": 4, "type": "∀ {R : Type u_1} [inst : AddGroupWithOne R] (n : ℕ) [inst_1 : n.AtLeastTwo],\n  ↑(OfNat.ofNat n) = OfNat.ofNat n"}
+{"decl_name": "one_div_le_one_div_of_le", "freq": 4, "type": "∀ {α : Type u_1} [inst : Semifield α] [inst_1 : PartialOrder α] [PosMulReflectLT α]\n  {a b : α}, 0 < a → a ≤ b → 1 / b ≤ 1 / a"}
+{"decl_name": "Nat.gcd_add_self_right", "freq": 4, "type": "∀ (m n : ℕ), m.gcd (n + m) = m.gcd n"}
+{"decl_name": "cosh_add", "freq": 4, "type": "∀ (x y : ℝ), cosh (x + y) = cosh x * cosh y + sinh x * sinh y"}
+{"decl_name": "Nat.zero_mul", "freq": 4, "type": "∀ (n : ℕ), 0 * n = 0"}
+{"decl_name": "Set.mem_Ioo", "freq": 4, "type": "∀ {α : Type u_1} [inst : Preorder α] {a b x : α}, x ∈ Set.Ioo a b ↔ a < x ∧ x < b"}
+{"decl_name": "sinh_neg", "freq": 4, "type": "∀ (x : ℝ), sinh (-x) = -sinh x"}
+{"decl_name": "Nat.gcd_mul_left", "freq": 4, "type": "∀ (m n k : ℕ), (m * n).gcd (m * k) = m * n.gcd k"}
+{"decl_name": "Int.mul_sub", "freq": 4, "type": "∀ (a b c : ℤ), a * (b - c) = a * b - a * c"}
+{"decl_name": "Int.sub_mul", "freq": 4, "type": "∀ (a b c : ℤ), (a - b) * c = a * c - b * c"}
+{"decl_name": "fib_two", "freq": 4, "type": "fib 2 = 1"}
+{"decl_name": "dvd_sub", "freq": 4, "type": "∀ {α : Type u_1} [inst : NonUnitalRing α] {a b c : α}, a ∣ b → a ∣ c → a ∣ b - c"}
+{"decl_name": "norm_of_nonpos", "freq": 4, "type": "∀ {r : ℝ}, r ≤ 0 → ‖r‖ = -r"}
+{"decl_name": "div_nonpos_of_nonpos_of_nonneg", "freq": 4, "type": "∀ {G₀ : Type u_1} [inst : GroupWithZero G₀] [inst_1 : PartialOrder G₀]\n  [MulPosReflectLT G₀] {a b : G₀}, a ≤ 0 → 0 ≤ b → a / b ≤ 0"}
+{"decl_name": "Nat.gcd_eq_left", "freq": 4, "type": "∀ {m n : ℕ}, m ∣ n → m.gcd n = m"}
+{"decl_name": "Real.exp_add", "freq": 4, "type": "∀ (x y : ℝ), rexp (x + y) = rexp x * rexp y"}
+{"decl_name": "Real.exp_nonneg", "freq": 4, "type": "∀ (x : ℝ), 0 ≤ rexp x"}
+{"decl_name": "Int.ModEq.of_dvd", "freq": 4, "type": "∀ {m n a b : ℤ}, m ∣ n → a ≡ b [ZMOD n] → a ≡ b [ZMOD m]"}
+{"decl_name": "Nat.pow_one", "freq": 4, "type": "∀ (a : ℕ), a ^ 1 = a"}
+{"decl_name": "Nat.zero_sub", "freq": 4, "type": "∀ (n : ℕ), 0 - n = 0"}
+{"decl_name": "tsum_mul_left", "freq": 4, "type": "∀ {ι : Type u_1} {α : Type u_2} {L : SummationFilter ι} [inst : DivisionSemiring α]\n  [inst_1 : TopologicalSpace α] [IsTopologicalSemiring α] {f : ι → α} {a : α} [T2Space α],\n  ∑'[L] (x : ι), a * f x = a * ∑'[L] (x : ι), f x"}
+{"decl_name": "and_true", "freq": 4, "type": "∀ (p : Prop), (p ∧ True) = p"}
+{"decl_name": "choose_eq_factorial_div_factorial", "freq": 4, "type": "∀ {n k : ℕ}, k ≤ n → n.choose k = n ! / (k ! * (n - k)!)"}
+{"decl_name": "Set.mem_prod", "freq": 4, "type": "∀ {α : Type u_1} {β : Type u_2} {s : Set α} {t : Set β} {p : α × β}, p ∈ s ×ˢ t ↔ p.1 ∈ s ∧ p.2 ∈ t"}
+{"decl_name": "Real.log_lt_iff_lt_exp", "freq": 4, "type": "∀ {x y : ℝ}, 0 < x → (Real.log x < y ↔ x < rexp y)"}
+{"decl_name": "Real.exp_pos", "freq": 4, "type": "∀ (x : ℝ), 0 < rexp x"}
+{"decl_name": "div_lt_one", "freq": 4, "type": "∀ {α : Type u_1} [inst : Semifield α] [inst_1 : PartialOrder α] [PosMulReflectLT α] {a b : α},\n  0 < b → (a / b < 1 ↔ a < b)"}
+{"decl_name": "Real.log_ne_zero_of_pos_of_ne_one", "freq": 4, "type": "∀ {x : ℝ}, 0 < x → x ≠ 1 → Real.log x ≠ 0"}
+{"decl_name": "Matrix.mul_eq_one_comm", "freq": 4, "type": "∀ {M : Type u_1} [inst : MulOne M] [IsDedekindFiniteMonoid M] {a b : M}, a * b = 1 ↔ b * a = 1"}
+{"decl_name": "le_add_of_nonneg_right", "freq": 4, "type": "∀ {α : Type u_1} [inst : AddZeroClass α] [inst_1 : LE α] [AddLeftMono α] {a b : α},\n  0 ≤ b → a ≤ a + b"}
+{"decl_name": "Real.sqrt_lt_sqrt_iff", "freq": 4, "type": "∀ {x y : ℝ}, 0 ≤ x → (√x < √y ↔ x < y)"}
+{"decl_name": "Nat.lt_of_le_of_lt", "freq": 4, "type": "∀ {n m k : ℕ}, n ≤ m → m < k → n < k"}
+{"decl_name": "norm_add_sq_real", "freq": 4, "type": "∀ {F : Type u_1} [inst : SeminormedAddCommGroup F] [inst_1 : InnerProductSpace ℝ F] (x y : F),\n  ‖x + y‖ ^ 2 = ‖x‖ ^ 2 + 2 * inner ℝ x y + ‖y‖ ^ 2"}
+{"decl_name": "norm_sub_sq_real", "freq": 4, "type": "∀ {F : Type u_1} [inst : SeminormedAddCommGroup F] [inst_1 : InnerProductSpace ℝ F] (x y : F),\n  ‖x - y‖ ^ 2 = ‖x‖ ^ 2 - 2 * inner ℝ x y + ‖y‖ ^ 2"}
+{"decl_name": "lt_of_not_ge", "freq": 4, "type": "∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, ¬b ≤ a → a < b"}
+{"decl_name": "cos_zero", "freq": 4, "type": "cos 0 = 1"}
+{"decl_name": "sin_zero", "freq": 4, "type": "sin 0 = 0"}
+{"decl_name": "Real.log_lt_log", "freq": 4, "type": "∀ {x y : ℝ}, 0 < x → x < y → Real.log x < Real.log y"}
+{"decl_name": "Nat.floor_eq_iff", "freq": 4, "type": "∀ {R : Type u_1} [inst : Semiring R] [inst_1 : LinearOrder R] [inst_2 : FloorSemiring R] {a : R}\n  {n : ℕ}, 0 ≤ a → (⌊a⌋₊ = n ↔ ↑n ≤ a ∧ a < ↑n + 1)"}
+{"decl_name": "mul_two", "freq": 4, "type": "∀ {α : Type u_1} [inst : NonAssocSemiring α] (n : α), n * 2 = n + n"}
+{"decl_name": "neg_add_cancel_left", "freq": 4, "type": "∀ {G : Type u_1} [inst : AddGroup G] (a b : G), -a + (a + b) = b"}
+{"decl_name": "eq_or_eq_neg_of_sq_eq_sq", "freq": 4, "type": "∀ {R : Type u_1} [inst : CommRing R] [NoZeroDivisors R] (a b : R),\n  a ^ 2 = b ^ 2 → a = b ∨ a = -b"}
+{"decl_name": "Matrix.det_fin_two", "freq": 4, "type": "∀ {R : Type u_1} [inst : CommRing R] (A : Matrix (Fin 2) (Fin 2) R),\n  A.det = A 0 0 * A 1 1 - A 0 1 * A 1 0"}
+{"decl_name": "Set.ext_iff", "freq": 4, "type": "∀ {α : Type u_1} {a b : Set α}, a = b ↔ ∀ (x : α), x ∈ a ↔ x ∈ b"}
+{"decl_name": "Ideal.sum_eq_sup", "freq": 3, "type": "∀ {R : Type u_1} [inst : Semiring R] {ι : Type u_2} (s : Finset ι) (f : ι → Ideal R),\n  s.sum f = s.sup f"}
+{"decl_name": "Complex.sin_add", "freq": 3, "type": "∀ (x y : ℂ), Complex.sin (x + y) = Complex.sin x * Complex.cos y + Complex.cos x * Complex.sin y"}
+{"decl_name": "Complex.cos_sub", "freq": 3, "type": "∀ (x y : ℂ), Complex.cos (x - y) = Complex.cos x * Complex.cos y + Complex.sin x * Complex.sin y"}
+{"decl_name": "Complex.cos_add", "freq": 3, "type": "∀ (x y : ℂ), Complex.cos (x + y) = Complex.cos x * Complex.cos y - Complex.sin x * Complex.sin y"}
+{"decl_name": "Complex.sin_sub", "freq": 3, "type": "∀ (x y : ℂ), Complex.sin (x - y) = Complex.sin x * Complex.cos y - Complex.cos x * Complex.sin y"}
+{"decl_name": "Real.cosh_log", "freq": 3, "type": "∀ {x : ℝ}, 0 < x → cosh (Real.log x) = (x + x⁻¹) / 2"}
+{"decl_name": "totient_dvd_of_dvd", "freq": 3, "type": "∀ {a b : ℕ}, a ∣ b → φ a ∣ φ b"}
+{"decl_name": "Int.floor_add_fract", "freq": 3, "type": "∀ {R : Type u_1} [inst : Ring R] [inst_1 : LinearOrder R] [inst_2 : FloorRing R] (a : R),\n  ↑⌊a⌋ + Int.fract a = a"}
+{"decl_name": "Finset.sum_eq_zero_iff_of_nonneg", "freq": 3, "type": "∀ {ι : Type u_1} {N : Type u_2} [inst : AddCommMonoid N] [inst_1 : PartialOrder N]\n  {f : ι → N} {s : Finset ι} [AddLeftMono N], (∀ i ∈ s, 0 ≤ f i) → (∑ i ∈ s, f i = 0 ↔ ∀ i ∈ s, f i = 0)"}
+{"decl_name": "sub_lt_iff_lt_add", "freq": 3, "type": "∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LT α] [AddRightStrictMono α] {a b c : α},\n  a - c < b ↔ a < b + c"}
+{"decl_name": "Int.gcd_eq_natAbs", "freq": 3, "type": "∀ {a b : ℤ}, a.gcd b = a.natAbs.gcd b.natAbs"}
+{"decl_name": "Real.sqrt_pos_of_pos", "freq": 3, "type": "∀ {x : ℝ}, 0 < x → 0 < √x"}
+{"decl_name": "Nat.factorial_zero", "freq": 3, "type": "0! = 1"}
+{"decl_name": "Nat.cast_two", "freq": 3, "type": "∀ {R : Type u_1} [inst : NatCast R], ↑2 = 2"}
+{"decl_name": "cos_sub_cos", "freq": 3, "type": "∀ (x y : ℝ), cos x - cos y = -2 * sin ((x + y) / 2) * sin ((x - y) / 2)"}
+{"decl_name": "Complex.ofReal_pow", "freq": 3, "type": "∀ (r : ℝ) (n : ℕ), ↑(r ^ n) = ↑r ^ n"}
+{"decl_name": "Real.arcsin_le_pi_div_two", "freq": 3, "type": "∀ (x : ℝ), arcsin x ≤ π / 2"}
+{"decl_name": "Real.sin_arcsin", "freq": 3, "type": "∀ {x : ℝ}, -1 ≤ x → x ≤ 1 → sin (arcsin x) = x"}
+{"decl_name": "Real.neg_pi_div_two_le_arcsin", "freq": 3, "type": "∀ (x : ℝ), -(π / 2) ≤ arcsin x"}
+{"decl_name": "Nat.mul_div_assoc", "freq": 3, "type": "∀ {k n : ℕ} (m : ℕ), k ∣ n → m * n / k = m * (n / k)"}
+{"decl_name": "div_le_iff_of_neg", "freq": 3, "type": "∀ {α : Type u_1} [inst : Field α] [inst_1 : PartialOrder α] [PosMulReflectLT α]\n  [IsStrictOrderedRing α] {a b c : α}, c < 0 → (b / c ≤ a ↔ a * c ≤ b)"}
+{"decl_name": "Nat.even_add", "freq": 3, "type": "∀ {m n : ℕ}, Even (m + n) ↔ (Even m ↔ Even n)"}
+{"decl_name": "Finset.sum_nonpos", "freq": 3, "type": "∀ {ι : Type u_1} {N : Type u_2} [inst : AddCommMonoid N] [inst_1 : PartialOrder N] {f : ι → N}\n  {s : Finset ι} [AddLeftMono N], (∀ i ∈ s, f i ≤ 0) → ∑ i ∈ s, f i ≤ 0"}
+{"decl_name": "zpow_one", "freq": 3, "type": "∀ {G : Type u_1} [inst : DivInvMonoid G] (a : G), a ^ 1 = a"}
+{"decl_name": "Finset.prod_range_succ'", "freq": 3, "type": "∀ {M : Type u_1} [inst : CommMonoid M] (f : ℕ → M) (n : ℕ),\n  ∏ k ∈ Finset.range (n + 1), f k = (∏ k ∈ Finset.range n, f (k + 1)) * f 0"}
+{"decl_name": "Nat.sqrt_eq_zero", "freq": 3, "type": "∀ {n : ℕ}, n.sqrt = 0 ↔ n = 0"}
+{"decl_name": "Set.ext", "freq": 3, "type": "∀ {α : Type u_1} {a b : Set α}, (∀ (x : α), x ∈ a ↔ x ∈ b) → a = b"}
+{"decl_name": "Function.cantor_surjective", "freq": 3, "type": "∀ {α : Type u_1} (f : α → Set α), ¬Function.Surjective f"}
+{"decl_name": "Nat.even_mul", "freq": 3, "type": "∀ {m n : ℕ}, Even (m * n) ↔ Even m ∨ Even n"}
+{"decl_name": "exp_nonneg", "freq": 3, "type": "∀ (x : ℝ), 0 ≤ rexp x"}
+{"decl_name": "Nat.mul_pos", "freq": 3, "type": "∀ {n m : ℕ}, 0 < n → 0 < m → 0 < n * m"}
+{"decl_name": "Real.rpow_lt_one", "freq": 3, "type": "∀ {x z : ℝ}, 0 ≤ x → x < 1 → 0 < z → x ^ z < 1"}
+{"decl_name": "Set.mem_inter", "freq": 3, "type": "∀ {α : Type u_1} {x : α} {a b : Set α}, x ∈ a → x ∈ b → x ∈ a ∩ b"}
+{"decl_name": "fib_dvd", "freq": 3, "type": "∀ (m n : ℕ), m ∣ n → fib m ∣ fib n"}
+{"decl_name": "zpow_mul", "freq": 3, "type": "∀ {α : Type u_1} [inst : DivisionMonoid α] (a : α) (m n : ℤ), a ^ (m * n) = (a ^ m) ^ n"}
+{"decl_name": "Nat.digits_zero", "freq": 3, "type": "∀ (b : ℕ), b.digits 0 = []"}
+{"decl_name": "le_max_iff", "freq": 3, "type": "∀ {α : Type u_1} [inst : LinearOrder α] {a b c : α}, a ≤ max b c ↔ a ≤ b ∨ a ≤ c"}
+{"decl_name": "add_sub_cancel_left", "freq": 3, "type": "∀ {G : Type u_1} [inst : AddCommGroup G] (a b : G), a + b - a = b"}
+{"decl_name": "inv_eq_zero", "freq": 3, "type": "∀ {G₀ : Type u_1} [inst : GroupWithZero G₀] {a : G₀}, a⁻¹ = 0 ↔ a = 0"}
+{"decl_name": "choose_symm", "freq": 3, "type": "∀ {n k : ℕ}, k ≤ n → n.choose (n - k) = n.choose k"}
+{"decl_name": "Real.log_sqrt", "freq": 3, "type": "∀ {x : ℝ}, 0 ≤ x → Real.log √x = Real.log x / 2"}
+{"decl_name": "even_add", "freq": 3, "type": "∀ {m n : ℕ}, Even (m + n) ↔ (Even m ↔ Even n)"}
+{"decl_name": "Nat.le_of_eq", "freq": 3, "type": "∀ {n m : ℕ}, n = m → n ≤ m"}
+{"decl_name": "lt_tan", "freq": 3, "type": "∀ {x : ℝ}, 0 < x → x < π / 2 → x < tan x"}
+{"decl_name": "sub_eq_neg_add", "freq": 3, "type": "∀ {α : Type u_1} [inst : SubtractionCommMonoid α] (a b : α), a - b = -b + a"}
+{"decl_name": "Real.sin_pos_of_mem_Ioo", "freq": 3, "type": "∀ {x : ℝ}, x ∈ Set.Ioo 0 π → 0 < sin x"}
+{"decl_name": "Nat.choose_symm_of_eq_add", "freq": 3, "type": "∀ {n a b : ℕ}, n = a + b → n.choose a = n.choose b"}
+{"decl_name": "Real.rpow_logb", "freq": 3, "type": "∀ {b x : ℝ}, 0 < b → b ≠ 1 → 0 < x → b ^ logb b x = x"}
+{"decl_name": "Finset.mul_sum", "freq": 3, "type": "∀ {ι : Type u_1} {R : Type u_2} [inst : NonUnitalNonAssocSemiring R] (s : Finset ι) (f : ι → R)\n  (a : R), a * ∑ i ∈ s, f i = ∑ i ∈ s, a * f i"}
+{"decl_name": "two_ne_zero'", "freq": 3, "type": "∀ (α : Type u_1) [inst : Zero α] [inst_1 : OfNat α 2] [NeZero 2], 2 ≠ 0"}
+{"decl_name": "Int.pow_dvd_pow_iff", "freq": 3, "type": "∀ {a b : ℤ} {n : ℕ}, n ≠ 0 → (a ^ n ∣ b ^ n ↔ a ∣ b)"}
+{"decl_name": "Int.ceil_eq_iff", "freq": 3, "type": "∀ {R : Type u_1} [inst : Ring R] [inst_1 : LinearOrder R] [inst_2 : FloorRing R] {z : ℤ} {a : R},\n  ⌈a⌉ = z ↔ ↑z - 1 < a ∧ a ≤ ↑z"}
+{"decl_name": "norm_nonneg", "freq": 3, "type": "∀ {E : Type u_1} [inst : SeminormedAddGroup E] (a : E), 0 ≤ ‖a‖"}
+{"decl_name": "Nat.add_sub_assoc", "freq": 3, "type": "∀ {m k : ℕ}, k ≤ m → ∀ (n : ℕ), n + m - k = n + (m - k)"}
+{"decl_name": "Nat.factorial_pos", "freq": 3, "type": "∀ (n : ℕ), 0 < n !"}
+{"decl_name": "norm_inv", "freq": 3, "type": "∀ {α : Type u_1} [inst : NormedDivisionRing α] (a : α), ‖a⁻¹‖ = ‖a‖⁻¹"}
+{"decl_name": "Nat.le_of_dvd", "freq": 3, "type": "∀ {m n : ℕ}, 0 < n → m ∣ n → m ≤ n"}
+{"decl_name": "Nat.pos_of_ne_zero", "freq": 3, "type": "∀ {n : ℕ}, n ≠ 0 → 0 < n"}
+{"decl_name": "Real.log_exp", "freq": 3, "type": "∀ (x : ℝ), Real.log (rexp x) = x"}
+{"decl_name": "add_pos_of_pos_of_nonneg", "freq": 3, "type": "∀ {α : Type u_1} [inst : AddZeroClass α] [inst_1 : Preorder α] [AddLeftMono α] {a b : α},\n  0 < a → 0 ≤ b → 0 < a + b"}
+{"decl_name": "mul_le_mul_right", "freq": 3, "type": "∀ {α : Type u_1} [inst : Mul α] [inst_1 : LE α] [MulLeftMono α] {b c : α},\n  b ≤ c → ∀ (a : α), a * b ≤ a * c"}
+{"decl_name": "Set.mem_preimage", "freq": 3, "type": "∀ {α : Type u_1} {β : Type u_2} {f : α → β} {s : Set β} {a : α}, a ∈ f ⁻¹' s ↔ f a ∈ s"}
+{"decl_name": "Rat.num_div_den", "freq": 3, "type": "∀ (r : ℚ), ↑r.num / ↑r.den = r"}
+{"decl_name": "Nat.factorial_ne_zero", "freq": 3, "type": "∀ (n : ℕ), n ! ≠ 0"}
+{"decl_name": "Finset.sum_add_distrib", "freq": 3, "type": "∀ {ι : Type u_1} {M : Type u_2} {s : Finset ι} [inst : AddCommMonoid M] {f g : ι → M},\n  ∑ x ∈ s, (f x + g x) = ∑ x ∈ s, f x + ∑ x ∈ s, g x"}
+{"decl_name": "div_eq_iff", "freq": 3, "type": "∀ {G₀ : Type u_1} [inst : GroupWithZero G₀] {a b c : G₀}, b ≠ 0 → (a / b = c ↔ a = c * b)"}
+{"decl_name": "sq_abs", "freq": 3, "type": "∀ {α : Type u_1} [inst : Ring α] [inst_1 : LinearOrder α] (a : α), |a| ^ 2 = a ^ 2"}
+{"decl_name": "not_false_iff", "freq": 3, "type": "¬False ↔ True"}
+{"decl_name": "abs_one", "freq": 3, "type": "∀ {α : Type u_1} [inst : Ring α] [inst_1 : LinearOrder α] [IsOrderedRing α], |1| = 1"}
+{"decl_name": "abs_pow", "freq": 3, "type": "∀ {α : Type u_1} [inst : Ring α] [inst_1 : LinearOrder α] [IsOrderedRing α] (a : α) (n : ℕ),\n  |a ^ n| = |a| ^ n"}
+{"decl_name": "Finset.sum_Ico_succ_top", "freq": 3, "type": "∀ {M : Type u_1} [inst : AddCommMonoid M] {a b : ℕ},\n  a ≤ b → ∀ (f : ℕ → M), ∑ k ∈ Finset.Ico a (b + 1), f k = ∑ k ∈ Finset.Ico a b, f k + f b"}
+{"decl_name": "Finset.card_filter", "freq": 3, "type": "∀ {ι : Type u_1} (p : ι → Prop) [inst : DecidablePred p] (s : Finset ι),\n  {i ∈ s | p i}.card = ∑ i ∈ s, if p i then 1 else 0"}
+{"decl_name": "Real.log_one", "freq": 3, "type": "Real.log 1 = 0"}
+{"decl_name": "zero_lt_two", "freq": 3, "type": "∀ {α : Type u_1} [inst : AddMonoidWithOne α] [inst_1 : PartialOrder α] [ZeroLEOneClass α] [NeZero 1]\n  [AddLeftMono α], 0 < 2"}
+{"decl_name": "Dvd.intro", "freq": 3, "type": "∀ {α : Type u_1} [inst : Semigroup α] {a b : α} (c : α), a * c = b → a ∣ b"}
+{"decl_name": "Finset.sum_range_succ'", "freq": 3, "type": "∀ {M : Type u_1} [inst : AddCommMonoid M] (f : ℕ → M) (n : ℕ),\n  ∑ k ∈ Finset.range (n + 1), f k = ∑ k ∈ Finset.range n, f (k + 1) + f 0"}
+{"decl_name": "zero_le_three", "freq": 3, "type": "∀ {α : Type u_1} [inst : AddMonoidWithOne α] [inst_1 : Preorder α] [ZeroLEOneClass α] [AddLeftMono α],\n  0 ≤ 3"}
+{"decl_name": "abs_pos", "freq": 3, "type": "∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LinearOrder α] [AddLeftMono α] {a : α}, 0 < |a| ↔ a ≠ 0"}
+{"decl_name": "tan_two_mul", "freq": 3, "type": "∀ {x : ℝ}, tan (2 * x) = 2 * tan x / (1 - tan x ^ 2)"}
+{"decl_name": "Nat.gcd_mul_right", "freq": 3, "type": "∀ (m n k : ℕ), (m * n).gcd (k * n) = m.gcd k * n"}
+{"decl_name": "Int.cast_one", "freq": 3, "type": "∀ {R : Type u_1} [inst : AddGroupWithOne R], ↑1 = 1"}
+{"decl_name": "Int.cast_add", "freq": 3, "type": "∀ {R : Type u_1} [inst : AddGroupWithOne R] (m n : ℤ), ↑(m + n) = ↑m + ↑n"}
+{"decl_name": "Int.mul_zero", "freq": 3, "type": "∀ (a : ℤ), a * 0 = 0"}
+{"decl_name": "mul_ne_zero", "freq": 3, "type": "∀ {M₀ : Type u_1} [inst : Mul M₀] [inst_1 : Zero M₀] [NoZeroDivisors M₀] {a b : M₀},\n  a ≠ 0 → b ≠ 0 → a * b ≠ 0"}
+{"decl_name": "tsum_geometric_of_lt_one", "freq": 3, "type": "∀ {r : ℝ}, 0 ≤ r → r < 1 → ∑' (n : ℕ), r ^ n = (1 - r)⁻¹"}
+{"decl_name": "Nat.eq_of_le_of_lt_succ", "freq": 3, "type": "∀ {n m : ℕ}, n ≤ m → m < n + 1 → m = n"}
+{"decl_name": "nsmul_eq_mul", "freq": 3, "type": "∀ {α : Type u_1} [inst : NonAssocSemiring α] (n : ℕ) (a : α), n • a = ↑n * a"}
+{"decl_name": "Fin.sum_univ_zero", "freq": 3, "type": "∀ {M : Type u_1} [inst : AddCommMonoid M] (f : Fin 0 → M), ∑ i, f i = 0"}
+{"decl_name": "Complex.ofReal_add", "freq": 3, "type": "∀ (r s : ℝ), ↑(r + s) = ↑r + ↑s"}
+{"decl_name": "Int.add_right_comm", "freq": 3, "type": "∀ (a b c : ℤ), a + b + c = a + c + b"}
+{"decl_name": "Nat.Prime.ne_one", "freq": 3, "type": "∀ {p : ℕ}, Nat.Prime p → p ≠ 1"}
+{"decl_name": "Int.sub_eq_add_neg", "freq": 3, "type": "∀ {a b : ℤ}, a - b = a + -b"}
+{"decl_name": "Complex.I_re", "freq": 3, "type": "Complex.I.re = 0"}
+{"decl_name": "Complex.I_im", "freq": 3, "type": "Complex.I.im = 1"}
+{"decl_name": "Nat.le_of_sub_eq_zero", "freq": 3, "type": "∀ {n m : ℕ}, n - m = 0 → n ≤ m"}
+{"decl_name": "sin_pi_div_three", "freq": 2, "type": "sin (π / 3) = √3 / 2"}
+{"decl_name": "cos_pi_div_three", "freq": 2, "type": "cos (π / 3) = 1 / 2"}
+{"decl_name": "Complex.sin_neg", "freq": 2, "type": "∀ (x : ℂ), Complex.sin (-x) = -Complex.sin x"}
+{"decl_name": "Complex.sin_sq", "freq": 2, "type": "∀ (x : ℂ), Complex.sin x ^ 2 = 1 - Complex.cos x ^ 2"}
+{"decl_name": "Complex.cos_neg", "freq": 2, "type": "∀ (x : ℂ), Complex.cos (-x) = Complex.cos x"}
+{"decl_name": "Complex.cos_sq", "freq": 2, "type": "∀ (x : ℂ), Complex.cos x ^ 2 = 1 / 2 + Complex.cos (2 * x) / 2"}
+{"decl_name": "sum_div_divisors", "freq": 2, "type": "∀ {α : Type u_1} [inst : AddCommMonoid α] (n : ℕ) (f : ℕ → α),\n  ∑ d ∈ n.divisors, f (n / d) = n.divisors.sum f"}
+{"decl_name": "le_csSup", "freq": 2, "type": "∀ {α : Type u_1} [inst : ConditionallyCompleteLattice α] {s : Set α} {a : α},\n  BddAbove s → a ∈ s → a ≤ sSup s"}
+{"decl_name": "csSup_le", "freq": 2, "type": "∀ {α : Type u_1} [inst : ConditionallyCompleteLattice α] {s : Set α} {a : α},\n  s.Nonempty → (∀ b ∈ s, b ≤ a) → sSup s ≤ a"}
+{"decl_name": "Nat.mul_div_cancel'", "freq": 2, "type": "∀ {n m : ℕ}, n ∣ m → n * (m / n) = m"}
+{"decl_name": "heq_eq_eq", "freq": 2, "type": "∀ {α : Sort u_1} (a b : α), (a ≍ b) = (a = b)"}
+{"decl_name": "LinearMap.continuous_iff_isClosed_ker", "freq": 2, "type": "∀ {𝕜 : Type u_1} [hnorm : NontriviallyNormedField 𝕜] {E : Type u_2}\n  [inst : AddCommGroup E] [inst_1 : Module 𝕜 E] [inst_2 : TopologicalSpace E] [IsTopologicalAddGroup E]\n  [ContinuousSMul 𝕜 E] (l : E →ₗ[𝕜] 𝕜), Continuous ⇑l ↔ IsClosed ↑l.ker"}
+{"decl_name": "Nat.choose_zero_succ", "freq": 2, "type": "∀ (k : ℕ), choose 0 k.succ = 0"}
+{"decl_name": "Set.mem_Ici", "freq": 2, "type": "∀ {α : Type u_1} [inst : Preorder α] {b x : α}, x ∈ Set.Ici b ↔ b ≤ x"}
+{"decl_name": "geom_sum_eq", "freq": 2, "type": "∀ {K : Type u_1} [inst : DivisionRing K] {x : K},\n  x ≠ 1 → ∀ (n : ℕ), ∑ i ∈ Finset.range n, x ^ i = (x ^ n - 1) / (x - 1)"}
+{"decl_name": "pow_dvd_pow", "freq": 2, "type": "∀ {α : Type u_1} [inst : Monoid α] {m n : ℕ} (a : α), m ≤ n → a ^ m ∣ a ^ n"}
+{"decl_name": "Nat.factorial_one", "freq": 2, "type": "1! = 1"}
+{"decl_name": "tsum_eq_zero_of_not_summable", "freq": 2, "type": "∀ {α : Type u_1} {β : Type u_2} [inst : AddCommMonoid α] [inst_1 : TopologicalSpace α]\n  {L : SummationFilter β} {f : β → α}, ¬Summable f L → ∑'[L] (b : β), f b = 0"}
+{"decl_name": "choose_eq_zero_of_lt", "freq": 2, "type": "∀ {n k : ℕ}, n < k → n.choose k = 0"}
+{"decl_name": "sub_one_dvd_pow_sub_one", "freq": 2, "type": "∀ {R : Type u_1} [inst : Ring R] (x : R) (n : ℕ), x - 1 ∣ x ^ n - 1"}
+{"decl_name": "Nat.cast_nonneg", "freq": 2, "type": "∀ {α : Type u_1} [inst : Semiring α] [inst_1 : PartialOrder α] [IsOrderedRing α] (n : ℕ), 0 ≤ ↑n"}
+{"decl_name": "totient_even", "freq": 2, "type": "∀ {n : ℕ}, 2 < n → Even (φ n)"}
+{"decl_name": "neg_one_mul", "freq": 2, "type": "∀ {α : Type u_1} [inst : MulOneClass α] [inst_1 : HasDistribNeg α] (a : α), -1 * a = -a"}
+{"decl_name": "Nat.add_sub_cancel_left", "freq": 2, "type": "∀ (n m : ℕ), n + m - n = m"}
+{"decl_name": "Nat.strong_induction_on", "freq": 2, "type": "∀ {p : ℕ → Prop} (n : ℕ), (∀ (n : ℕ), (∀ m < n, p m) → p n) → p n"}
+{"decl_name": "Metric.cauchySeq_iff'", "freq": 2, "type": "∀ {α : Type u_1} {β : Type u_2} [inst : PseudoMetricSpace α] [Nonempty β]\n  [inst_2 : SemilatticeSup β] {u : β → α}, CauchySeq u ↔ ∀ ε > 0, ∃ N, ∀ n ≥ N, Dist.dist (u n) (u N) < ε"}
+{"decl_name": "Finset.prod_singleton", "freq": 2, "type": "∀ {ι : Type u_1} {M : Type u_2} [inst : CommMonoid M] (f : ι → M) (a : ι), ∏ x ∈ {a}, f x = f a"}
+{"decl_name": "Finset.prod_filter", "freq": 2, "type": "∀ {ι : Type u_1} {M : Type u_2} {s : Finset ι} [inst : CommMonoid M] (p : ι → Prop)\n  [inst_1 : DecidablePred p] (f : ι → M), ∏ a ∈ s with p a, f a = ∏ a ∈ s, if p a then f a else 1"}
+{"decl_name": "Complex.cos_pi_div_two", "freq": 2, "type": "Complex.cos (↑π / 2) = 0"}
+{"decl_name": "Complex.sin_pi_div_two", "freq": 2, "type": "Complex.sin (↑π / 2) = 1"}
+{"decl_name": "summable_of_isBigO", "freq": 2, "type": "∀ {ι : Type u_1} {E : Type u_2} [inst : SeminormedAddCommGroup E] [CompleteSpace E] {f : ι → E}\n  {g : ι → ℝ}, Summable g → f =O[Filter.cofinite] g → Summable f"}
+{"decl_name": "Nat.eq_of_mul_eq_mul_left", "freq": 2, "type": "∀ {m k n : ℕ}, 0 < n → n * m = n * k → m = k"}
+{"decl_name": "Nat.prod_factorial_dvd_factorial_sum", "freq": 2, "type": "∀ {α : Type u_1} (s : Finset α) (f : α → ℕ), ∏ i ∈ s, (f i)! ∣ (∑ i ∈ s, f i)!"}
+{"decl_name": "Nat.even_pow", "freq": 2, "type": "∀ {m n : ℕ}, Even (m ^ n) ↔ Even m ∧ n ≠ 0"}
+{"decl_name": "Nat.even_sub", "freq": 2, "type": "∀ {m n : ℕ}, n ≤ m → (Even (m - n) ↔ (Even m ↔ Even n))"}
+{"decl_name": "Real.rpow_mul", "freq": 2, "type": "∀ {x : ℝ}, 0 ≤ x → ∀ (y z : ℝ), x ^ (y * z) = (x ^ y) ^ z"}
+{"decl_name": "Real.cos_zero", "freq": 2, "type": "cos 0 = 1"}
+{"decl_name": "Or.intro_right", "freq": 2, "type": "∀ {b : Prop} (a : Prop), b → a ∨ b"}
+{"decl_name": "lt_of_le_of_lt", "freq": 2, "type": "∀ {α : Type u_1} [inst : Preorder α] {a b c : α}, a ≤ b → b < c → a < c"}
+{"decl_name": "Nat.le_succ", "freq": 2, "type": "∀ (n : ℕ), n ≤ n.succ"}
+{"decl_name": "norm_pow", "freq": 2, "type": "∀ {α : Type u_1} [inst : SeminormedRing α] [NormOneClass α] [NormMulClass α] (a : α) (n : ℕ),\n  ‖a ^ n‖ = ‖a‖ ^ n"}
+{"decl_name": "mul_zpow", "freq": 2, "type": "∀ {α : Type u_1} [inst : DivisionCommMonoid α] (a b : α) (n : ℤ), (a * b) ^ n = a ^ n * b ^ n"}
+{"decl_name": "Nat.mod_self", "freq": 2, "type": "∀ (n : ℕ), n % n = 0"}
+{"decl_name": "lt_trichotomy", "freq": 2, "type": "∀ {α : Type u_1} [inst : LinearOrder α] (a b : α), a < b ∨ a = b ∨ b < a"}
+{"decl_name": "mul_nonneg_of_nonpos_of_nonpos", "freq": 2, "type": "∀ {R : Type u_1} [inst : Semiring R] [inst_1 : Preorder R] {a b : R} [ExistsAddOfLE R]\n  [MulPosMono R] [AddRightMono R] [AddRightReflectLE R], a ≤ 0 → b ≤ 0 → 0 ≤ a * b"}
+{"decl_name": "Set.mem_Ico", "freq": 2, "type": "∀ {α : Type u_1} [inst : Preorder α] {a b x : α}, x ∈ Set.Ico a b ↔ a ≤ x ∧ x < b"}
+{"decl_name": "Nat.le_of_lt_succ", "freq": 2, "type": "∀ {m n : ℕ}, m < n.succ → m ≤ n"}
+{"decl_name": "ContinuousAt.pow", "freq": 2, "type": "∀ {M : Type u_1} {X : Type u_2} [inst : TopologicalSpace X] [inst_1 : TopologicalSpace M]\n  [inst_2 : Monoid M] [ContinuousMul M] {f : X → M} {x : X},\n  ContinuousAt f x → ∀ (n : ℕ), ContinuousAt (fun x => f x ^ n) x"}
+{"decl_name": "Set.ssubset_iff_subset_ne", "freq": 2, "type": "∀ {α : Type u_1} {s t : Set α}, s ⊂ t ↔ s ⊆ t ∧ s ≠ t"}
+{"decl_name": "Int.gcd_eq_right", "freq": 2, "type": "∀ {b a : ℤ}, 0 ≤ b → b ∣ a → ↑(a.gcd b) = b"}
+{"decl_name": "Int.gcd_eq_left", "freq": 2, "type": "∀ {a b : ℤ}, 0 ≤ a → a ∣ b → ↑(a.gcd b) = a"}
+{"decl_name": "Real.cosh_three_mul", "freq": 2, "type": "∀ (x : ℝ), cosh (3 * x) = 4 * cosh x ^ 3 - 3 * cosh x"}
+{"decl_name": "Real.arccos_eq_pi_div_two_sub_arcsin", "freq": 2, "type": "∀ (x : ℝ), arccos x = π / 2 - arcsin x"}
+{"decl_name": "Nat.cast_le", "freq": 2, "type": "∀ {α : Type u_1} [inst : AddMonoidWithOne α] [inst_1 : PartialOrder α] [AddLeftMono α] [ZeroLEOneClass α]\n  [CharZero α] {m n : ℕ}, ↑m ≤ ↑n ↔ m ≤ n"}
+{"decl_name": "Nat.div_dvd_of_dvd", "freq": 2, "type": "∀ {n m : ℕ}, n ∣ m → m / n ∣ m"}
+{"decl_name": "Classical.not_not", "freq": 2, "type": "∀ {a : Prop}, ¬¬a ↔ a"}
+{"decl_name": "Nat.dvd_antisymm", "freq": 2, "type": "∀ {m n : ℕ}, m ∣ n → n ∣ m → m = n"}
+{"decl_name": "Int.modEq_of_dvd", "freq": 2, "type": "∀ {n a b : ℤ}, n ∣ b - a → a ≡ b [ZMOD n]"}
+{"decl_name": "Real.rpow_pos_of_pos", "freq": 2, "type": "∀ {x : ℝ}, 0 < x → ∀ (y : ℝ), 0 < x ^ y"}
+{"decl_name": "Int.natAbs_sq", "freq": 2, "type": "∀ (a : ℤ), ↑a.natAbs ^ 2 = a ^ 2"}
+{"decl_name": "sub_dvd_pow_sub_pow", "freq": 2, "type": "∀ {R : Type u_1} [inst : CommRing R] (x y : R) (n : ℕ), x - y ∣ x ^ n - y ^ n"}
+{"decl_name": "rpow_lt_rpow_of_exponent_neg", "freq": 2, "type": "∀ {x y z : ℝ}, 0 < x → x < y → z < 0 → y ^ z < x ^ z"}
+{"decl_name": "add_lt_add_of_lt_of_lt", "freq": 2, "type": "∀ {α : Type u_1} [inst : Add α] [inst_1 : Preorder α] [AddLeftStrictMono α]\n  [AddRightStrictMono α] {a b c d : α}, a < b → c < d → a + c < b + d"}
+{"decl_name": "cos_nonneg_of_mem_Icc", "freq": 2, "type": "∀ {x : ℝ}, x ∈ Set.Icc (-(π / 2)) (π / 2) → 0 ≤ cos x"}
+{"decl_name": "sin_nonneg_of_mem_Icc", "freq": 2, "type": "∀ {x : ℝ}, x ∈ Set.Icc 0 π → 0 ≤ sin x"}
+{"decl_name": "Nat.lcm_comm", "freq": 2, "type": "∀ (m n : ℕ), m.lcm n = n.lcm m"}
+{"decl_name": "Finset.mem_range_succ_iff", "freq": 2, "type": "∀ {a b : ℕ}, a ∈ Finset.range b.succ ↔ a ≤ b"}
+{"decl_name": "Pi.mul_apply", "freq": 2, "type": "∀ {ι : Type u_1} {M : ι → Type u_2} [inst : (i : ι) → Mul (M i)] (f g : (i : ι) → M i) (i : ι),\n  (f * g) i = f i * g i"}
+{"decl_name": "eq_neg_iff_add_eq_zero", "freq": 2, "type": "∀ {G : Type u_1} [inst : AddGroup G] {a b : G}, a = -b ↔ a + b = 0"}
+{"decl_name": "mul_neg_iff", "freq": 2, "type": "∀ {R : Type u_1} [inst : Ring R] [inst_1 : LinearOrder R] {a b : R} [PosMulStrictMono R]\n  [MulPosStrictMono R] [AddLeftReflectLT R] [AddLeftStrictMono R], a * b < 0 ↔ 0 < a ∧ b < 0 ∨ a < 0 ∧ 0 < b"}
+{"decl_name": "abs_norm_sub_norm_le", "freq": 2, "type": "∀ {E : Type u_1} [inst : SeminormedAddGroup E] (a b : E), |‖a‖ - ‖b‖| ≤ ‖a - b‖"}
+{"decl_name": "mul_pos_of_neg_of_neg", "freq": 2, "type": "∀ {R : Type u_1} [inst : Semiring R] [inst_1 : PartialOrder R] [ExistsAddOfLE R]\n  [MulPosStrictMono R] [AddRightStrictMono R] [AddRightReflectLT R] {a b : R}, a < 0 → b < 0 → 0 < a * b"}
+{"decl_name": "Nat.Prime.eq_one_or_self_of_dvd", "freq": 2, "type": "∀ {p : ℕ}, Nat.Prime p → ∀ (m : ℕ), m ∣ p → m = 1 ∨ m = p"}
+{"decl_name": "Finset.prod_congr", "freq": 2, "type": "∀ {ι : Type u_1} {M : Type u_2} {s₁ s₂ : Finset ι} [inst : CommMonoid M] {f g : ι → M},\n  s₁ = s₂ → (∀ x ∈ s₂, f x = g x) → s₁.prod f = s₂.prod g"}
+{"decl_name": "Finset.sum_comm", "freq": 2, "type": "∀ {α : Type u_1} {β : Type u_2} {γ : Type u_3} [inst : AddCommMonoid β] {s : Finset γ} {t : Finset α}\n  {f : γ → α → β}, ∑ x ∈ s, ∑ y ∈ t, f x y = ∑ y ∈ t, ∑ x ∈ s, f x y"}
+{"decl_name": "Real.logb_nonneg", "freq": 2, "type": "∀ {b x : ℝ}, 1 < b → 1 ≤ x → 0 ≤ logb b x"}
+{"decl_name": "tsum_geometric_two", "freq": 2, "type": "∑' (n : ℕ), (1 / 2) ^ n = 2"}
+{"decl_name": "LipschitzWith.of_dist_le_mul", "freq": 2, "type": "∀ {α : Type u_1} {β : Type u_2} [inst : PseudoMetricSpace α]\n  [inst_1 : PseudoMetricSpace β] {K : NNReal} {f : α → β},\n  (∀ (x y : α), Dist.dist (f x) (f y) ≤ ↑K * Dist.dist x y) → LipschitzWith K f"}
+{"decl_name": "Fin.prod_univ_succ", "freq": 2, "type": "∀ {M : Type u_1} [inst : CommMonoid M] {n : ℕ} (f : Fin (n + 1) → M),\n  ∏ i, f i = f 0 * ∏ i, f i.succ"}
+{"decl_name": "Set.prod_eq_empty_iff", "freq": 2, "type": "∀ {α : Type u_1} {β : Type u_2} {s : Set α} {t : Set β}, s ×ˢ t = ∅ ↔ s = ∅ ∨ t = ∅"}
+{"decl_name": "Set.prod_eq_prod_iff", "freq": 2, "type": "∀ {α : Type u_1} {β : Type u_2} {s s₁ : Set α} {t t₁ : Set β},\n  s ×ˢ t = s₁ ×ˢ t₁ ↔ s = s₁ ∧ t = t₁ ∨ (s = ∅ ∨ t = ∅) ∧ (s₁ = ∅ ∨ t₁ = ∅)"}
+{"decl_name": "Set.powerset_insert", "freq": 2, "type": "∀ {α : Type u_1} (s : Set α) (a : α), 𝒫 insert a s = 𝒫 s ∪ insert a '' 𝒫 s"}
+{"decl_name": "Finset.sum_singleton", "freq": 2, "type": "∀ {ι : Type u_1} {M : Type u_2} [inst : AddCommMonoid M] (f : ι → M) (a : ι),\n  ∑ x ∈ {a}, f x = f a"}
+{"decl_name": "Nat.mul_le_mul_left", "freq": 2, "type": "∀ {n m : ℕ} (k : ℕ), n ≤ m → k * n ≤ k * m"}
+{"decl_name": "Set.mem_range_self", "freq": 2, "type": "∀ {α : Type u_1} {ι : Sort u_2} {f : ι → α} (i : ι), f i ∈ Set.range f"}
+{"decl_name": "Int.modEq_iff_dvd", "freq": 2, "type": "∀ {n a b : ℤ}, a ≡ b [ZMOD n] ↔ n ∣ b - a"}
+{"decl_name": "abs_cos_le_one", "freq": 2, "type": "∀ (x : ℝ), |cos x| ≤ 1"}
+{"decl_name": "Finset.sum_sub_distrib", "freq": 2, "type": "∀ {ι : Type u_1} {G : Type u_2} {s : Finset ι} [inst : SubtractionCommMonoid G] (f g : ι → G),\n  ∑ x ∈ s, (f x - g x) = ∑ x ∈ s, f x - ∑ x ∈ s, g x"}
+{"decl_name": "logb_rpow", "freq": 2, "type": "∀ {b x : ℝ}, 0 < b → b ≠ 1 → logb b (b ^ x) = x"}
+{"decl_name": "Nat.sub_le_sub_right", "freq": 2, "type": "∀ {n m : ℕ}, n ≤ m → ∀ (k : ℕ), n - k ≤ m - k"}
+{"decl_name": "sin_pos_of_pos_of_lt_pi", "freq": 2, "type": "∀ {x : ℝ}, 0 < x → x < π → 0 < sin x"}
+{"decl_name": "Real.cos_pi_div_six", "freq": 2, "type": "cos (π / 6) = √3 / 2"}
+{"decl_name": "Real.sin_pi_div_six", "freq": 2, "type": "sin (π / 6) = 1 / 2"}
+{"decl_name": "dvd_mul_of_dvd_right", "freq": 2, "type": "∀ {α : Type u_1} [inst : CommSemigroup α] {a b : α}, a ∣ b → ∀ (c : α), a ∣ c * b"}
+{"decl_name": "or_left_comm", "freq": 2, "type": "∀ {a b c : Prop}, a ∨ b ∨ c ↔ b ∨ a ∨ c"}
+{"decl_name": "or_assoc", "freq": 2, "type": "∀ {a b c : Prop}, (a ∨ b) ∨ c ↔ a ∨ b ∨ c"}
+{"decl_name": "Polynomial.eval_add", "freq": 2, "type": "∀ {R : Type u_1} [inst : Semiring R] {p q : Polynomial R} {x : R},\n  Polynomial.eval x (p + q) = Polynomial.eval x p + Polynomial.eval x q"}
+{"decl_name": "Polynomial.derivative_add", "freq": 2, "type": "∀ {R : Type u_1} [inst : Semiring R] {f g : Polynomial R},\n  Polynomial.derivative (f + g) = Polynomial.derivative f + Polynomial.derivative g"}
+{"decl_name": "Classical.by_cases", "freq": 2, "type": "∀ {p q : Prop}, (p → q) → (¬p → q) → q"}
+{"decl_name": "tanh_eq_sinh_div_cosh", "freq": 2, "type": "∀ (x : ℝ), tanh x = sinh x / cosh x"}
+{"decl_name": "log_inv", "freq": 2, "type": "∀ (x : ℝ), Real.log x⁻¹ = -Real.log x"}
+{"decl_name": "tan_pi_div_two_sub", "freq": 2, "type": "∀ (x : ℝ), tan (π / 2 - x) = (tan x)⁻¹"}
+{"decl_name": "Nat.cast_add_one", "freq": 2, "type": "∀ {R : Type u_1} [inst : AddMonoidWithOne R] (n : ℕ), ↑(n + 1) = ↑n + 1"}
+{"decl_name": "exp_bound_div_one_sub_of_interval'", "freq": 2, "type": "∀ {x : ℝ}, 0 < x → x < 1 → rexp x < 1 / (1 - x)"}
+{"decl_name": "Nat.add_one", "freq": 2, "type": "∀ (n : ℕ), n + 1 = n.succ"}
+{"decl_name": "mul_le_mul_left", "freq": 2, "type": "∀ {α : Type u_1} [inst : Mul α] [inst_1 : LE α] [i : MulRightMono α] {b c : α},\n  b ≤ c → ∀ (a : α), b * a ≤ c * a"}
+{"decl_name": "Finset.insert_eq", "freq": 2, "type": "∀ {α : Type u_1} [inst : DecidableEq α] (a : α) (s : Finset α), insert a s = {a} ∪ s"}
+{"decl_name": "Finset.union_insert", "freq": 2, "type": "∀ {α : Type u_1} [inst : DecidableEq α] (a : α) (s t : Finset α),\n  s ∪ insert a t = insert a (s ∪ t)"}
+{"decl_name": "Finset.union_empty", "freq": 2, "type": "∀ {α : Type u_1} [inst : DecidableEq α] (s : Finset α), s ∪ ∅ = s"}
+{"decl_name": "Finset.union_assoc", "freq": 2, "type": "∀ {α : Type u_1} [inst : DecidableEq α] (s₁ s₂ s₃ : Finset α), s₁ ∪ s₂ ∪ s₃ = s₁ ∪ (s₂ ∪ s₃)"}
+{"decl_name": "Set.mem_image_of_mem", "freq": 2, "type": "∀ {α : Type u_1} {β : Type u_2} (f : α → β) {x : α} {a : Set α}, x ∈ a → f x ∈ f '' a"}
+{"decl_name": "dvd_refl", "freq": 2, "type": "∀ {α : Type u_1} [inst : Monoid α] (a : α), a ∣ a"}
+{"decl_name": "pow_dvd_pow_of_dvd", "freq": 2, "type": "∀ {α : Type u_1} [inst : CommMonoid α] {a b : α}, a ∣ b → ∀ (n : ℕ), a ^ n ∣ b ^ n"}
+{"decl_name": "Real.sin_le_sin_of_le_of_le_pi_div_two", "freq": 2, "type": "∀ {x y : ℝ}, -(π / 2) ≤ x → y ≤ π / 2 → x ≤ y → sin x ≤ sin y"}
+{"decl_name": "exp_le_exp", "freq": 2, "type": "∀ {x y : ℝ}, rexp x ≤ rexp y ↔ x ≤ y"}
+{"decl_name": "Finite.injective_iff_surjective", "freq": 2, "type": "∀ {α : Type u_1} [Finite α] {f : α → α}, Function.Injective f ↔ Function.Surjective f"}
+{"decl_name": "Nat.pow_dvd_pow_iff", "freq": 2, "type": "∀ {a b n : ℕ}, n ≠ 0 → (a ^ n ∣ b ^ n ↔ a ∣ b)"}
+{"decl_name": "Int.le_floor", "freq": 2, "type": "∀ {α : Type u_1} [inst : Ring α] [inst_1 : LinearOrder α] [inst_2 : FloorRing α] {z : ℤ} {a : α},\n  z ≤ ⌊a⌋ ↔ ↑z ≤ a"}
+{"decl_name": "Real.cos_nonneg_of_mem_Icc", "freq": 2, "type": "∀ {x : ℝ}, x ∈ Set.Icc (-(π / 2)) (π / 2) → 0 ≤ cos x"}
+{"decl_name": "Finset.mem_Ico", "freq": 2, "type": "∀ {α : Type u_1} [inst : Preorder α] [inst_1 : LocallyFiniteOrder α] {a b x : α},\n  x ∈ Finset.Ico a b ↔ a ≤ x ∧ x < b"}
+{"decl_name": "Nat.dvd_gcd", "freq": 2, "type": "∀ {k m n : ℕ}, k ∣ m → k ∣ n → k ∣ m.gcd n"}
+{"decl_name": "abs_sub", "freq": 2, "type": "∀ {G : Type u_1} [inst : AddCommGroup G] [inst_1 : LinearOrder G] [IsOrderedAddMonoid G] (a b : G),\n  |a - b| ≤ |a| + |b|"}
+{"decl_name": "Real.exp_neg", "freq": 2, "type": "∀ (x : ℝ), rexp (-x) = (rexp x)⁻¹"}
+{"decl_name": "cauchySeq_of_dist_le_of_summable", "freq": 2, "type": "∀ {α : Type u_1} [inst : PseudoMetricSpace α] {f : ℕ → α} (d : ℕ → ℝ),\n  (∀ (n : ℕ), Dist.dist (f n) (f n.succ) ≤ d n) → Summable d → CauchySeq f"}
+{"decl_name": "Real.cos_sub_cos", "freq": 2, "type": "∀ (x y : ℝ), cos x - cos y = -2 * sin ((x + y) / 2) * sin ((x - y) / 2)"}
+{"decl_name": "Finset.prod_le_one", "freq": 2, "type": "∀ {ι : Type u_1} {R : Type u_2} [inst : CommMonoidWithZero R] [inst_1 : PartialOrder R]\n  [ZeroLEOneClass R] [PosMulMono R] {f : ι → R} {s : Finset ι},\n  (∀ i ∈ s, 0 ≤ f i) → (∀ i ∈ s, f i ≤ 1) → ∏ i ∈ s, f i ≤ 1"}
+{"decl_name": "Real.sqrt_eq_rpow", "freq": 2, "type": "∀ (x : ℝ), √x = x ^ (1 / 2)"}
+{"decl_name": "ne_eq", "freq": 2, "type": "∀ {α : Sort u_1} (a b : α), (a ≠ b) = ¬a = b"}
+{"decl_name": "Summable.of_nonneg_of_le", "freq": 2, "type": "∀ {β : Type u_1} {f g : β → ℝ},\n  (∀ (b : β), 0 ≤ g b) → (∀ (b : β), g b ≤ f b) → Summable f → Summable g"}
+{"decl_name": "exists_nat_gt", "freq": 2, "type": "∀ {R : Type u_1} [inst : Semiring R] [inst_1 : PartialOrder R] [IsStrictOrderedRing R] [Archimedean R]\n  (x : R), ∃ n, x < ↑n"}
+{"decl_name": "not_le", "freq": 2, "type": "∀ {α : Type u_1} [inst : LinearOrder α] {a b : α}, ¬a ≤ b ↔ b < a"}
+{"decl_name": "Polynomial.funext", "freq": 2, "type": "∀ {R : Type u_1} [inst : CommRing R] [IsDomain R] [Infinite R] {p q : Polynomial R},\n  (∀ (r : R), Polynomial.eval r p = Polynomial.eval r q) → p = q"}
+{"decl_name": "Int.gcd_eq_zero_iff", "freq": 2, "type": "∀ {a b : ℤ}, a.gcd b = 0 ↔ a = 0 ∧ b = 0"}
+{"decl_name": "Int.cast_mul", "freq": 2, "type": "∀ {α : Type u_1} [inst : NonAssocRing α] (m n : ℤ), ↑(m * n) = ↑m * ↑n"}
+{"decl_name": "Int.cast_sub", "freq": 2, "type": "∀ {R : Type u_1} [inst : AddGroupWithOne R] (m n : ℤ), ↑(m - n) = ↑m - ↑n"}
+{"decl_name": "Nat.succ_le_succ_iff", "freq": 2, "type": "∀ {a b : ℕ}, a.succ ≤ b.succ ↔ a ≤ b"}
+{"decl_name": "Finset.prod_range_zero", "freq": 2, "type": "∀ {M : Type u_1} [inst : CommMonoid M] (f : ℕ → M), ∏ k ∈ Finset.range 0, f k = 1"}
+{"decl_name": "mul_inv_cancel_left₀", "freq": 2, "type": "∀ {G₀ : Type u_1} [inst : GroupWithZero G₀] {a : G₀}, a ≠ 0 → ∀ (b : G₀), a * (a⁻¹ * b) = b"}
+{"decl_name": "Nat.div_lt_self", "freq": 2, "type": "∀ {n k : ℕ}, 0 < n → 1 < k → n / k < n"}
+{"decl_name": "or_self", "freq": 2, "type": "∀ (p : Prop), (p ∨ p) = p"}
+{"decl_name": "Complex.div_re", "freq": 2, "type": "∀ (z w : ℂ), (z / w).re = z.re * w.re / Complex.normSq w + z.im * w.im / Complex.normSq w"}
+{"decl_name": "Complex.div_im", "freq": 2, "type": "∀ (z w : ℂ), (z / w).im = z.im * w.re / Complex.normSq w - z.re * w.im / Complex.normSq w"}
+{"decl_name": "if_neg", "freq": 2, "type": "∀ {c : Prop} {h : Decidable c}, ¬c → ∀ {α : Sort u_1} {t e : α}, (if c then t else e) = e"}
+{"decl_name": "if_pos", "freq": 2, "type": "∀ {c : Prop} {h : Decidable c}, c → ∀ {α : Sort u_1} {t e : α}, (if c then t else e) = t"}
+{"decl_name": "Real.rpow_sub", "freq": 2, "type": "∀ {x : ℝ}, 0 < x → ∀ (y z : ℝ), x ^ (y - z) = x ^ y / x ^ z"}
+{"decl_name": "isConnected_Icc", "freq": 2, "type": "∀ {α : Type u_1} [inst : ConditionallyCompleteLinearOrder α] [inst_1 : TopologicalSpace α]\n  [OrderTopology α] [DenselyOrdered α] {a b : α}, a ≤ b → IsConnected (Set.Icc a b)"}
+{"decl_name": "abs_sin_le_one", "freq": 2, "type": "∀ (x : ℝ), |sin x| ≤ 1"}
+{"decl_name": "Fin.succ_zero_eq_one", "freq": 2, "type": "∀ {n : ℕ}, Fin.succ 0 = 1"}
+{"decl_name": "min_le_iff", "freq": 2, "type": "∀ {α : Type u_1} [inst : LinearOrder α] {a b c : α}, min a b ≤ c ↔ a ≤ c ∨ b ≤ c"}
+{"decl_name": "Real.rpow_le_rpow_of_exponent_le", "freq": 2, "type": "∀ {x y z : ℝ}, 1 ≤ x → y ≤ z → x ^ y ≤ x ^ z"}
+{"decl_name": "sin_sq_le_one", "freq": 2, "type": "∀ (x : ℝ), sin x ^ 2 ≤ 1"}
+{"decl_name": "zero_pow", "freq": 2, "type": "∀ {M₀ : Type u_1} [inst : MonoidWithZero M₀] {n : ℕ}, n ≠ 0 → 0 ^ n = 0"}
+{"decl_name": "Real.sin_eq_zero_iff", "freq": 2, "type": "∀ {x : ℝ}, sin x = 0 ↔ ∃ n, ↑n * π = x"}
+{"decl_name": "neg_add_cancel_right", "freq": 2, "type": "∀ {G : Type u_1} [inst : AddGroup G] (a b : G), a + -b + b = a"}
+{"decl_name": "Int.add_zero", "freq": 2, "type": "∀ (a : ℤ), a + 0 = a"}
+{"decl_name": "Int.zero_add", "freq": 2, "type": "∀ (a : ℤ), 0 + a = a"}
+{"decl_name": "Set.mem_univ", "freq": 2, "type": "∀ {α : Type u_1} (x : α), x ∈ Set.univ"}
+{"decl_name": "Finset.sum_eq_zero", "freq": 2, "type": "∀ {ι : Type u_1} {M : Type u_2} {s : Finset ι} [inst : AddCommMonoid M] {f : ι → M},\n  (∀ x ∈ s, f x = 0) → ∑ x ∈ s, f x = 0"}
+{"decl_name": "neg_mul_eq_mul_neg", "freq": 2, "type": "∀ {α : Type u_1} [inst : Mul α] [inst_1 : HasDistribNeg α] (a b : α), -(a * b) = a * -b"}
+{"decl_name": "Real.cos_lt_cos_of_nonneg_of_le_pi_div_two", "freq": 2, "type": "∀ {x y : ℝ}, 0 ≤ x → y ≤ π / 2 → x < y → cos y < cos x"}
+{"decl_name": "fib_add_one", "freq": 2, "type": "∀ {n : ℕ}, n ≠ 0 → fib (n + 1) = fib (n - 1) + fib n"}
+{"decl_name": "Real.sin_nonneg_of_nonneg_of_le_pi", "freq": 2, "type": "∀ {x : ℝ}, 0 ≤ x → x ≤ π → 0 ≤ sin x"}
+{"decl_name": "rpow_pos_of_pos", "freq": 2, "type": "∀ {x : ℝ}, 0 < x → ∀ (y : ℝ), 0 < x ^ y"}
+{"decl_name": "Prod.mk.injEq", "freq": 2, "type": "∀ {α : Type u_1} {β : Type u_2} (fst : α) (snd : β) (fst_1 : α) (snd_1 : β),\n  ((fst, snd) = (fst_1, snd_1)) = (fst = fst_1 ∧ snd = snd_1)"}
+{"decl_name": "mul_ne_zero_iff", "freq": 2, "type": "∀ {M₀ : Type u_1} [inst : MulZeroClass M₀] [NoZeroDivisors M₀] {a b : M₀}, a * b ≠ 0 ↔ a ≠ 0 ∧ b ≠ 0"}
+{"decl_name": "Nat.Prime.ne_zero", "freq": 2, "type": "∀ {n : ℕ}, Nat.Prime n → n ≠ 0"}
+{"decl_name": "Finset.filter_eq", "freq": 2, "type": "∀ {β : Type u_1} [inst : DecidableEq β] (s : Finset β) (b : β),\n  Finset.filter (Eq b) s = if b ∈ s then {b} else ∅"}
+{"decl_name": "Nat.succ_sub_succ_eq_sub", "freq": 2, "type": "∀ (n m : ℕ), n.succ - m.succ = n - m"}
+{"decl_name": "mul_left_inj'", "freq": 2, "type": "∀ {M₀ : Type u_1} [inst : Mul M₀] [inst_1 : Zero M₀] [IsRightCancelMulZero M₀] {a b c : M₀},\n  c ≠ 0 → (a * c = b * c ↔ a = b)"}
+{"decl_name": "Nat.mod_eq_zero_of_dvd", "freq": 2, "type": "∀ {m n : ℕ}, m ∣ n → n % m = 0"}
+{"decl_name": "abs_eq_abs", "freq": 2, "type": "∀ {α : Type u_1} [inst : AddGroup α] [inst_1 : LinearOrder α] {a b : α}, |a| = |b| ↔ a = b ∨ a = -b"}
+{"decl_name": "Matrix.det_mul", "freq": 2, "type": "∀ {n : Type u_2} [inst : DecidableEq n] [inst_1 : Fintype n] {R : Type u_1} [inst_2 : CommRing R]\n  (M N : Matrix n n R), (M * N).det = M.det * N.det"}
+{"decl_name": "Fintype.sum_equiv", "freq": 2, "type": "∀ {ι : Type u_1} {κ : Type u_2} {M : Type u_3} [inst : Fintype ι] [inst_1 : Fintype κ]\n  [inst_2 : AddCommMonoid M] (e : ι ≃ κ) (f : ι → M) (g : κ → M), (∀ (x : ι), f x = g (e x)) → ∑ x, f x = ∑ x, g x"}
+{"decl_name": "exists_prop", "freq": 2, "type": "∀ {b a : Prop}, (∃ (_ : a), b) ↔ a ∧ b"}

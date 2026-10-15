@@ -1,0 +1,8 @@
+{'problem_id': 'triv_add_comm', 'ok': True, 'cited': 0, 'used_text': 0, 'used_kernel': []}
+{'problem_id': 'triv_add_zero', 'ok': True, 'cited': 0, 'used_text': 0, 'used_kernel': []}
+{'problem_id': 'triv_square_expand', 'ok': True, 'cited': 0, 'used_text': 0, 'used_kernel': []}
+{'problem_id': 'triv_even_square', 'ok': True, 'cited': 16, 'used_text': 16, 'used_kernel': []}
+{'problem_id': 'triv_dvd_trans', 'ok': True, 'cited': 16, 'used_text': 0, 'used_kernel': []}
+{'problem_id': 'mathd_numbertheory_127', 'ok': True, 'cited': 16, 'used_text': 16, 'used_kernel': []}
+{'problem_id': 'mathd_algebra_160', 'ok': True, 'cited': 0, 'used_text': 0, 'used_kernel': []}
+{'problem_id': 'mathd_numbertheory_1124', 'ok': True, 'cited': 16, 'used_text': 16, 'used_kernel': []}

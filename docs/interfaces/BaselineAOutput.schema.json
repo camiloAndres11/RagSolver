@@ -1,0 +1,19 @@
+{
+  "description": "Línea base A: un solo LLM escribe la prueba Lean. Sólo el campo que la línea base produce, y\nobligatorio: con un esquema común de campos opcionales DeepSeek dejaba `proof_tactics` vacío y\nescribía la prueba en lenguaje natural (58/60 pruebas vacías, DECISIONS #65).",
+  "properties": {
+    "proof_tactics": {
+      "title": "Proof Tactics",
+      "type": "string"
+    },
+    "notes": {
+      "default": "",
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "proof_tactics"
+  ],
+  "title": "BaselineAOutput",
+  "type": "object"
+}

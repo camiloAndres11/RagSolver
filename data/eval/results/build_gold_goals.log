@@ -1,0 +1,20 @@
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+0/438 pruebas, 0 tácticas con constantes, 1 con algún error
+50/438 pruebas, 237 tácticas con constantes, 35 con algún error
+100/438 pruebas, 366 tácticas con constantes, 52 con algún error
+150/438 pruebas, 424 tácticas con constantes, 65 con algún error
+200/438 pruebas, 474 tácticas con constantes, 94 con algún error
+250/438 pruebas, 713 tácticas con constantes, 113 con algún error
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+300/438 pruebas, 1310 tácticas con constantes, 137 con algún error
+350/438 pruebas, 1381 tácticas con constantes, 148 con algún error
+400/438 pruebas, 1494 tácticas con constantes, 170 con algún error
+{
+  "proofs": 438,
+  "proofs_with_some_error": 183,
+  "goals": 1295,
+  "problems": 230,
+  "distinct_premises": 218
+}

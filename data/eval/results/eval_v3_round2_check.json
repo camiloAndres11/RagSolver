@@ -1,0 +1,40 @@
+{
+ "round": 2,
+ "pairs": 30,
+ "key_spent_round": 0.0477,
+ "runner_cost": [
+  "79",
+  "238965",
+  "101351",
+  "0.0477"
+ ],
+ "key_remaining": 0.0594,
+ "retries_429": 0,
+ "status": {
+  "baseline_prover": {
+   "done": 8,
+   "fail": 7,
+   "error": 0
+  },
+  "full": {
+   "done": 8,
+   "fail": 7,
+   "error": 0
+  }
+ },
+ "llm_calls_max": {
+  "baseline_prover": 0,
+  "full": 14
+ },
+ "llm_calls_mean": {
+  "baseline_prover": 0.0,
+  "full": 5.27
+ },
+ "solved": {
+  "baseline_prover": 8,
+  "full": 8
+ },
+ "cost_per_paid_pair": 0.00318,
+ "projection_remaining_rounds": 0.0,
+ "alerts": []
+}

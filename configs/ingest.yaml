@@ -1,0 +1,74 @@
+# Configuración de ingesta. Sólo la sección `mathlib` se usa en Fase 1;
+# la sección `pdf` se completa en Fase 2 (docs/PLAN_RAG.md §6.2).
+
+mathlib:
+  raw_jsonl: "data/corpus/_raw/lsv2-mathlib-v4.28.0-rc1.jsonl"
+  out_jsonl: "data/corpus/mathlib.jsonl"
+  doc_id: "mathlib-v4.28.0-rc1"
+  docs_url_base: "https://leanprover-community.github.io/mathlib4_docs"
+  # Filtro Fase 1, tarea 3 (docs/PLAN_RAG.md): excluir ruido antes de embeber.
+  exclude_kinds: ["instance"]
+  exclude_module_prefixes: ["Mathlib.Tactic", "Mathlib.Deprecated"]
+  exclude_name_substrings: [".proof_", ".match_", "_aux"]
+  exclude_name_regex: '\.eq_(\d+|def)$'   # antes ".eq_" (subcadena) también borraba lemas reales
+
+pdf:
+  render_dpi: 200
+  # Calibrado con datos reales sobre problemas resueltos olimpiadas.pdf (docs/DECISIONS.md):
+  # filtra por tamaño mínimo del cluster (ambas dimensiones), no por cantidad de trazos.
+  vector_cluster_min_size_pt: 15.0
+  vector_cluster_min_overlap: 0.6
+  figure_crop_padding_pt: 10.0
+  # Regiones con >= N palabras de la capa de texto fuera de todo bloque de MinerU
+  # se transcriben con el VLM (Plan B acotado, docs/PLAN_RAG.md Fase 2).
+  gap_min_words: 4
+
+# Fase 2, tarea 6 — prompts fijos y versionados (docs/PLAN_RAG.md §6.2). Cambiar
+# `prompt_version` invalida la caché de data/parsed/<doc_id>/enrich/*.jsonl.
+enrich:
+  prompt_version: "1"
+  math_areas: [algebra, number_theory, combinatorics, geometry, inequalities, analysis, probability, logic, other]
+  techniques: [induction, pigeonhole, invariant, extremal_principle, parity, modular_arithmetic, vieta_jumping,
+               am_gm, cauchy_schwarz, rearrangement, telescoping, generating_functions, bijection,
+               double_counting, angle_chasing, similar_triangles, power_of_a_point, coordinates,
+               trigonometry, algebraic_manipulation, factorization, bounding, case_analysis, contradiction,
+               construction, recursion, symmetry, counting]
+  transcribe: |
+    Transcribe this fragment of a Spanish mathematics book exactly as it appears, as Markdown with LaTeX.
+    Rules: inline math in $...$; displayed equations in $$...$$ on their own lines; keep the original Spanish text;
+    if a line starts with an item number such as "77." keep it at the start of the line; underbraces, dots and
+    cancellations must be rendered in LaTeX. The crop may cut through a line of text at its top or bottom edge:
+    skip any line that is not completely visible. Output only the transcription, no commentary.
+  figure: |
+    You are annotating a figure from a Spanish olympiad problem book for a retrieval system. The figure has no
+    caption; use the problem (and solution, if given) as context to name the objects correctly.
+    Describe the attached figure in English for a reader who cannot see it. Be concrete: name every visible label,
+    every geometric object, the relations among them (tangency, perpendicularity, inscribed, midpoint, ...) and
+    every value written in the figure (angles, lengths, areas). Do not solve the problem.
+    figure_type: geometric_diagram | grid | plot | table_image | other.
+  formulas: |
+    The list below contains LaTeX extracted by OCR for the formulas on the attached page, in reading order
+    (displayed and inline formulas). Compare each item against the page image. Return the same number of items in
+    the same order. Keep the original LaTeX EXACTLY unless it misrepresents the mathematics in the image
+    (wrong or missing exponent, subscript, digit, symbol or operator; garbled text). Do not reformat, do not
+    change spacing, do not translate. The boundaries of each item are fixed: the plain text before and after a
+    formula is NOT part of it — never extend an item with neighbouring words, units or the next formula, even if
+    they belong together mathematically. If an item contains garbled non-math text, remove the garbage and keep
+    only the formula. Mark changed=true only for items you modified.
+  card: |
+    You are indexing a solved problem from a Spanish olympiad problem book for a retrieval system whose queries
+    are in English. Read the problem, its solution and the figure descriptions (if any) and return, in English:
+    - context_summary: 2-3 sentences situating this problem for retrieval: what is asked, the mathematical area,
+      the key idea of the solution and the main theorems or techniques used (Contextual Retrieval style).
+    - math_area: one or more of {math_areas}.
+    - techniques: from {techniques}; add others in snake_case only if none fits.
+    - theorems_used: standard English names of the theorems/results used (e.g. "inscribed angle theorem").
+    - difficulty: integer 1 (routine) to 5 (hard olympiad).
+    - keywords: 6-12 English keywords for lexical search (objects, concepts, named results).
+  split: |
+    The text below contains the solutions to problems {prev} and {n} of a Spanish problem book, concatenated,
+    because the OCR lost the "{n}." marker at the start of solution {n}. Using the two problem statements as a
+    guide, identify where solution {n} begins and return the first line of solution {n} copied VERBATIM from the
+    text (including any LaTeX, exactly as written). If solution {n} starts with a displayed equation, return the
+    LaTeX line inside the $$ block, never the "$$" delimiter itself. If solution {n} is not present, return an
+    empty string.

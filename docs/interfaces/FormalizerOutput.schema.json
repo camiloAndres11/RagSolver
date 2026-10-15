@@ -1,0 +1,18 @@
+{
+  "properties": {
+    "proof_tactics": {
+      "title": "Proof Tactics",
+      "type": "string"
+    },
+    "notes": {
+      "default": "",
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "proof_tactics"
+  ],
+  "title": "FormalizerOutput",
+  "type": "object"
+}

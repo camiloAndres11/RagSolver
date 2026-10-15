@@ -1,0 +1,66 @@
+# Fuente única de verdad de versiones (RNF-2, docs/PLAN_RAG.md §0/§9).
+# Todo evento JSONL de traza (rag/schema.py:TraceEvent) copia este bloque.
+# ACTUALIZAR este archivo, no hardcodear versiones en el código.
+
+lean:
+  toolchain: "leanprover/lean4:v4.28.0-rc1"
+  mathlib_tag: "v4.28.0-rc1"
+  mathlib_commit: "5352afccd6866369be9de43f5b7ec47203555f44"
+
+embedding:
+  model: "Qwen/Qwen3-Embedding-0.6B"
+  dim: 1024
+  # subir a Qwen/Qwen3-Embedding-4B sólo si Fase 1 muestra ganancia medible en MathlibQR (ver §7 del plan)
+
+reranker:
+  model: "Qwen/Qwen3-Reranker-0.6B"
+
+parser:
+  name: "mineru"
+  version: "4.0.3"
+  tier: "standard"
+
+# Proveedor LLM/VLM (ragsolver.llm.LLM). `provider: gemini` usa GEMINI_API_KEY (.env);
+# `provider: openai_compatible` usa `base_url` + la variable de `api_key_env` — sirve para
+# OpenRouter (https://openrouter.ai/api/v1, OPENROUTER_API_KEY), OpenAI, Ollama o vLLM.
+# La cuota diaria del tier gratis de Gemini es por modelo (20 req/día en 3.5-flash, medido):
+# al agotarse se pasa al siguiente de `fallback_models`; cada resultado registra el modelo real.
+vlm_enrichment:
+  provider: "gemini"
+  model: "gemini-3.5-flash" # visión + JSON estructurado, verificado (docs/DECISIONS.md #13, #21)
+  fallback_models: ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemma-4-31b-it", "gemma-4-26b-a4b-it", "gemini-3-flash-preview"]
+  temperature: 0.1
+  seed: 13
+  # provider: "openai_compatible"
+  # base_url: "https://openrouter.ai/api/v1"
+  # api_key_env: "OPENROUTER_API_KEY"
+  # model: "google/gemini-2.5-flash"
+
+llm: # agentes (Fase 4). Experimento principal: UN solo modelo para las 5 configuraciones (sin confundir modelo y configuración)
+  provider: "openai_compatible"        # OpenRouter (docs/DECISIONS.md #47); tope de gasto fijado en la cuenta
+  base_url: "https://openrouter.ai/api/v1"
+  api_key_env: "OPENROUTER_API_KEY"
+  model: "deepseek/deepseek-v4-flash-0731"   # $0.04/M in, $0.16/M out; JSON schema verificado
+  fallback_models: ["google/gemini-2.5-flash-lite"]
+  temperature: 0.2
+  seed: 13   # RNF-2; determinismo "best effort" del proveedor
+  max_tokens: 4000          # salida sin razonamiento; acota costo y latencia por llamada
+  reasoning_effort: "off"    # DeepSeek V4 Flash: planner 24 s sin razonar vs 76-92 s con low/medium (60×5 pares no cabrían en una noche)
+  timeout_s: 900
+  # OpenRouter: tope de precio por M tokens y, entre los que cumplen, el más barato (`sort: price`; #64 lo
+  # cambió de `sort: throughput` porque a igual tope de precio el más rápido no siempre es el más barato).
+  # `max_price` solo (sin `sort`) ya habría evitado el proveedor a $0.80/M de salida del #62.
+  # 2026-10-14 (#107): con {0.10, 0.20} sólo calificaba DeepInfra (StreamLake subió a $0.132/$0.396), saturado (429).
+  # Con {0.13, 0.30}: 8 proveedores; `sort: price` sigue usando primero DeepInfra ($0.06/$0.18) y pasa a los demás
+  # sólo cuando rechaza. eval-v1 corrió con el tope anterior.
+  provider_routing: {max_price: {prompt: 0.13, completion: 0.30}, sort: price}
+  # Alternativa gratuita usada en el desarrollo (cuota 20 req/día por modelo):
+  # provider: "gemini"; model: "gemini-3.5-flash"; fallback_models: ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemma-4-31b-it", "gemma-4-26b-a4b-it", "gemini-3-flash-preview"]
+
+index:
+  backend: "lancedb"
+  version: "0.1.0" # semver del índice; incrementar si cambia embedding_model o esquema de chunk
+
+corpus_mathlib:
+  source: "FrenzyMath/lsv2-mathlib-v4.28.0-rc1-jsonl"
+  license: "Apache-2.0"

@@ -1,0 +1,148 @@
+{
+  "$defs": {
+    "RetrievalContext": {
+      "properties": {
+        "problem_id": {
+          "title": "Problem Id",
+          "type": "string"
+        },
+        "subgoal_id": {
+          "default": "",
+          "title": "Subgoal Id",
+          "type": "string"
+        },
+        "attempt": {
+          "default": 0,
+          "title": "Attempt",
+          "type": "integer"
+        },
+        "agent": {
+          "default": "",
+          "title": "Agent",
+          "type": "string"
+        },
+        "run_id": {
+          "default": "",
+          "title": "Run Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "problem_id"
+      ],
+      "title": "RetrievalContext",
+      "type": "object"
+    },
+    "RetrievalFilters": {
+      "properties": {
+        "math_area": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Math Area",
+          "type": "array"
+        },
+        "doc_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Doc Ids",
+          "type": "array"
+        },
+        "unit_types": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Unit Types",
+          "type": "array"
+        },
+        "kinds": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Kinds",
+          "type": "array"
+        }
+      },
+      "title": "RetrievalFilters",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "queries": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 4,
+      "minItems": 1,
+      "title": "Queries",
+      "type": "array"
+    },
+    "rerank_against": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Rerank Against"
+    },
+    "mode": {
+      "default": "nl",
+      "enum": [
+        "nl",
+        "formal",
+        "error",
+        "exemplar"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "corpora": {
+      "items": {
+        "enum": [
+          "mathlib",
+          "informal"
+        ],
+        "type": "string"
+      },
+      "title": "Corpora",
+      "type": "array"
+    },
+    "k": {
+      "default": 8,
+      "title": "K",
+      "type": "integer"
+    },
+    "n_candidates": {
+      "default": 50,
+      "title": "N Candidates",
+      "type": "integer"
+    },
+    "filters": {
+      "$ref": "#/$defs/RetrievalFilters"
+    },
+    "rerank": {
+      "default": true,
+      "title": "Rerank",
+      "type": "boolean"
+    },
+    "include_figures": {
+      "default": true,
+      "title": "Include Figures",
+      "type": "boolean"
+    },
+    "context": {
+      "$ref": "#/$defs/RetrievalContext"
+    }
+  },
+  "required": [
+    "queries",
+    "context"
+  ],
+  "title": "RetrievalRequest",
+  "type": "object"
+}

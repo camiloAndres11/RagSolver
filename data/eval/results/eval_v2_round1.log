@@ -1,0 +1,286 @@
+[resume] 4 pares con status=error se reintentan (movidos a errors.jsonl)
+[resume] 1 resultados previos en data/eval/runs/eval-v2/results.jsonl
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  16%|█▋        | 51/310 [00:00<00:00, 490.01it/s]Loading weights:  33%|███▎      | 101/310 [00:00<00:00, 423.83it/s]Loading weights:  46%|████▋     | 144/310 [00:00<00:00, 353.34it/s]Loading weights:  61%|██████    | 188/310 [00:00<00:00, 379.89it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 604.89it/s]
+[index-check] 20/20 decl_name de la tabla 'mathlib_full' existen en Lean
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[full] mathd_algebra_209: done attempts=1 llm_calls=3 used_in_proof=0/3 20.4s
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 2 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 3 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 2 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 3 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 4 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 2 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 3 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 4 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 5 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[llm retry] intento 6 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 2 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 7 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 2 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 3 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 4 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 5 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 8 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 6 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 9 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[full] mathd_algebra_77: done attempts=2 llm_calls=8 used_in_proof=0/19 994.8s
+[full] amc12b_2020_p13: fail attempts=2 llm_calls=11 used_in_proof=0/21 992.2s
+[full] amc12a_2010_p11: fail attempts=1 llm_calls=6 used_in_proof=0/19 234.2s
+[full] mathd_numbertheory_728: done attempts=1 llm_calls=3 used_in_proof=0/19 21.9s
+[full] mathd_numbertheory_403: done attempts=1 llm_calls=3 used_in_proof=0/19 25.2s
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[llm retry] intento 1 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[llm retry] intento 2 falló: HTTPStatusError: Client error '429 Too Many Requests' for url 'https://openrouter.ai/api/v1/chat/completions'
+For more information check: https://developer.mozilla.org
+[resume] 7 resultados previos en data/eval/runs/eval-v2/results.jsonl
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:  29%|██▊       | 89/310 [00:00<00:00, 886.38it/s]Loading weights:  57%|█████▋    | 178/310 [00:00<00:00, 614.46it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 932.45it/s]
+[index-check] 20/20 decl_name de la tabla 'mathlib_full' existen en Lean
+[full] imo_1965_p1: fail attempts=1 llm_calls=4 used_in_proof=0/3 179.3s
+[resume] 8 resultados previos en data/eval/runs/eval-v2/results.jsonl
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights:   8%|▊         | 26/310 [00:00<00:01, 254.78it/s]Loading weights:  17%|█▋        | 52/310 [00:00<00:01, 240.00it/s]Loading weights:  29%|██▊       | 89/310 [00:00<00:00, 289.88it/s]Loading weights:  39%|███▉      | 121/310 [00:00<00:00, 296.24it/s]Loading weights:  53%|█████▎    | 164/310 [00:00<00:00, 337.58it/s]Loading weights:  64%|██████▍   | 198/310 [00:00<00:00, 333.62it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 482.00it/s]
+[index-check] 20/20 decl_name de la tabla 'mathlib_full' existen en Lean
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[full] amc12a_2016_p3: fail attempts=3 llm_calls=14 used_in_proof=0/19 476.1s
+[full] numbertheory_aneqprodakp4_anmsqrtanp1eq2: fail attempts=2 llm_calls=10 used_in_proof=0/19 529.4s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[full] mathd_algebra_104: done attempts=1 llm_calls=3 used_in_proof=0/19 212.6s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[full] imo_1977_p5: fail attempts=2 llm_calls=11 used_in_proof=0/27 1151.3s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[no_rag] mathd_algebra_209: done attempts=1 llm_calls=3 used_in_proof=0/0 216.0s
+[full] mathd_algebra_170: fail attempts=3 llm_calls=13 used_in_proof=0/19 894.3s
+[full] amc12a_2020_p10: fail attempts=3 llm_calls=15 used_in_proof=0/19 1437.2s
+[no_rag] algebra_sqineq_2unitcircatblt1: done attempts=1 llm_calls=3 used_in_proof=0/0 79.5s
+[no_rag] mathd_algebra_77: done attempts=1 llm_calls=4 used_in_proof=0/0 79.0s
+[full] amc12a_2002_p6: fail attempts=3 llm_calls=13 used_in_proof=0/19 708.8s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[no_rag] mathd_numbertheory_728: done attempts=1 llm_calls=4 used_in_proof=0/0 213.8s
+[no_rag] mathd_numbertheory_403: done attempts=1 llm_calls=3 used_in_proof=0/0 15.9s
+[no_rag] amc12a_2010_p11: fail attempts=1 llm_calls=6 used_in_proof=0/0 334.6s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[no_rag] amc12b_2020_p13: fail attempts=3 llm_calls=13 used_in_proof=0/0 749.1s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[no_rag] imo_1965_p1: fail attempts=3 llm_calls=15 used_in_proof=0/0 1139.7s
+[no_rag] amc12a_2016_p3: fail attempts=3 llm_calls=14 used_in_proof=0/0 436.5s
+[no_rag] numbertheory_aneqprodakp4_anmsqrtanp1eq2: fail attempts=3 llm_calls=15 used_in_proof=0/0 1019.6s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[no_rag] mathd_algebra_104: done attempts=3 llm_calls=9 used_in_proof=0/0 202.5s
+[no_rag] amc12a_2020_p10: fail attempts=3 llm_calls=14 used_in_proof=0/0 1138.3s
+[baseline_auto] mathd_algebra_209: done attempts=1 llm_calls=0 used_in_proof=0/0 0.3s
+[baseline_auto] algebra_sqineq_2unitcircatblt1: fail attempts=1 llm_calls=0 used_in_proof=0/0 5.9s
+[baseline_auto] mathd_algebra_77: done attempts=1 llm_calls=0 used_in_proof=0/0 0.4s
+[baseline_auto] amc12b_2020_p13: fail attempts=1 llm_calls=0 used_in_proof=0/0 26.0s
+[baseline_auto] amc12a_2010_p11: fail attempts=1 llm_calls=0 used_in_proof=0/0 25.4s
+[baseline_auto] imo_1965_p1: fail attempts=1 llm_calls=0 used_in_proof=0/0 153.6s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[baseline_auto] mathd_numbertheory_728: done attempts=1 llm_calls=0 used_in_proof=0/0 39.8s
+[no_rag] amc12a_2002_p6: done attempts=1 llm_calls=4 used_in_proof=0/0 269.7s
+[baseline_auto] mathd_numbertheory_403: done attempts=1 llm_calls=0 used_in_proof=0/0 2.7s
+[baseline_auto] amc12a_2020_p10: fail attempts=1 llm_calls=0 used_in_proof=0/0 154.8s
+[baseline_auto] numbertheory_aneqprodakp4_anmsqrtanp1eq2: fail attempts=1 llm_calls=0 used_in_proof=0/0 156.3s
+/home/user/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py:1885: RuntimeWarning: lancedb fork support is experimental: the internal async runtime has been reset in the forked child, but a small chance of deadlock remains if other state was mid-operation at fork time. The 'forkserver' or 'spawn' multiprocessing start method is likely a safer alternative.
+  self.pid = _fork_exec(
+[no_rag] mathd_algebra_170: fail attempts=3 llm_calls=14 used_in_proof=0/0 730.1s
+[baseline_auto] amc12a_2016_p3: fail attempts=1 llm_calls=0 used_in_proof=0/0 53.5s
+[baseline_auto] imo_1977_p5: fail attempts=1 llm_calls=0 used_in_proof=0/0 64.6s
+[baseline_auto] mathd_algebra_104: done attempts=1 llm_calls=0 used_in_proof=0/0 11.5s
+[baseline_auto] mathd_algebra_170: fail attempts=1 llm_calls=0 used_in_proof=0/0 49.0s
+[baseline_auto] amc12a_2002_p6: fail attempts=1 llm_calls=0 used_in_proof=0/0 25.3s
+[no_rag] imo_1977_p5: fail attempts=2 llm_calls=11 used_in_proof=0/0 865.2s
+[cost] 211 llamadas, 522647 tokens de entrada, 231961 de salida, US$0.0877 (OpenRouter usage.cost)
+{
+  "run_id": "eval-v2",
+  "out": "data/eval/runs/eval-v2",
+  "status": "completed",
+  "n_done": 45,
+  "n_pending": 0,
+  "summary": {
+    "full": {
+      "n": 15,
+      "pass@1": 0.4,
+      "pass@1_wilson95": [
+        0.198,
+        0.643
+      ],
+      "llm_calls_mean": 8.0,
+      "tokens_mean": 32928,
+      "wall_s_median": 476.1,
+      "retrieval_calls_mean": 10.73,
+      "llm_calls_mean_ci95_bootstrap": [
+        5.6,
+        10.2
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        17608.2,
+        50513.4
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        296.76,
+        764.99
+      ],
+      "pass_by_attempt": {
+        "1": 0.333,
+        "2": 0.4,
+        "3": 0.4
+      },
+      "lemma_use_precision": 0.004,
+      "re_retrieval_success": 1.0,
+      "error_taxonomy": {
+        "planning": 14,
+        "exhausted": 7,
+        "llm_output_invalid:critic": 1,
+        "llm_output_invalid:formalizer": 1,
+        "misformalization": 2,
+        "missing_lemma": 1,
+        "lean_syntax": 2
+      },
+      "self_assessed_correct": null
+    },
+    "no_rag": {
+      "n": 15,
+      "pass@1": 0.467,
+      "pass@1_wilson95": [
+        0.248,
+        0.699
+      ],
+      "llm_calls_mean": 8.8,
+      "tokens_mean": 26494,
+      "wall_s_median": 334.6,
+      "retrieval_calls_mean": 0.0,
+      "llm_calls_mean_ci95_bootstrap": [
+        6.27,
+        11.2
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        15623.8,
+        38041.93
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        302.2,
+        685.85
+      ],
+      "pass_by_attempt": {
+        "1": 0.4,
+        "2": 0.4,
+        "3": 0.467
+      },
+      "lemma_use_precision": null,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "llm_output_invalid:critic": 1,
+        "misformalization": 3,
+        "planning": 10,
+        "missing_lemma": 6,
+        "exhausted": 7,
+        "lean_syntax": 3
+      },
+      "self_assessed_correct": null
+    },
+    "baseline_auto": {
+      "n": 15,
+      "pass@1": 0.333,
+      "pass@1_wilson95": [
+        0.152,
+        0.583
+      ],
+      "llm_calls_mean": 0.0,
+      "tokens_mean": 0,
+      "wall_s_median": 26.0,
+      "retrieval_calls_mean": 0.0,
+      "llm_calls_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        25.09,
+        79.01
+      ],
+      "pass_by_attempt": {
+        "1": 0.333
+      },
+      "lemma_use_precision": null,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "unknown": 10
+      },
+      "self_assessed_correct": null
+    }
+  },
+  "llm_calls_total": 211,
+  "cost_usd_total": 0.0877,
+  "models_exhausted": []
+}

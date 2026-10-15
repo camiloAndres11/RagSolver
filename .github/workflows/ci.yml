@@ -1,0 +1,11 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv python install 3.12 && uv sync --extra dev
+      # Sin modelos ni índice: los tests que los necesitan se saltan solos (skipif) o se deseleccionan.
+      - run: uv run pytest -q --deselect tests/test_retriever_integration.py

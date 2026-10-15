@@ -1,0 +1,180 @@
+{
+  "$defs": {
+    "CitationScores": {
+      "properties": {
+        "dense": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Dense"
+        },
+        "sparse": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Sparse"
+        },
+        "fused": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fused"
+        },
+        "rerank": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rerank"
+        }
+      },
+      "title": "CitationScores",
+      "type": "object"
+    },
+    "HitRecord": {
+      "properties": {
+        "chunk_id": {
+          "title": "Chunk Id",
+          "type": "string"
+        },
+        "rank": {
+          "title": "Rank",
+          "type": "integer"
+        },
+        "scores": {
+          "$ref": "#/$defs/CitationScores"
+        }
+      },
+      "required": [
+        "chunk_id",
+        "rank"
+      ],
+      "title": "HitRecord",
+      "type": "object"
+    },
+    "VersionsPin": {
+      "properties": {
+        "embedding_model": {
+          "default": "",
+          "title": "Embedding Model",
+          "type": "string"
+        },
+        "reranker_model": {
+          "default": "",
+          "title": "Reranker Model",
+          "type": "string"
+        },
+        "index_version": {
+          "default": "",
+          "title": "Index Version",
+          "type": "string"
+        },
+        "mathlib_tag": {
+          "default": "",
+          "title": "Mathlib Tag",
+          "type": "string"
+        },
+        "mathlib_table": {
+          "default": "",
+          "title": "Mathlib Table",
+          "type": "string"
+        }
+      },
+      "title": "VersionsPin",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "run_id": {
+      "title": "Run Id",
+      "type": "string"
+    },
+    "problem_id": {
+      "title": "Problem Id",
+      "type": "string"
+    },
+    "subgoal_id": {
+      "default": "",
+      "title": "Subgoal Id",
+      "type": "string"
+    },
+    "attempt": {
+      "default": 0,
+      "title": "Attempt",
+      "type": "integer"
+    },
+    "agent": {
+      "default": "retriever",
+      "title": "Agent",
+      "type": "string"
+    },
+    "ts": {
+      "title": "Ts",
+      "type": "string"
+    },
+    "latency_ms": {
+      "default": 0.0,
+      "title": "Latency Ms",
+      "type": "number"
+    },
+    "llm_calls": {
+      "default": 0,
+      "title": "Llm Calls",
+      "type": "integer"
+    },
+    "tokens": {
+      "default": 0,
+      "title": "Tokens",
+      "type": "integer"
+    },
+    "request": {
+      "additionalProperties": true,
+      "title": "Request",
+      "type": "object"
+    },
+    "n_candidates": {
+      "default": 0,
+      "title": "N Candidates",
+      "type": "integer"
+    },
+    "hits": {
+      "items": {
+        "$ref": "#/$defs/HitRecord"
+      },
+      "title": "Hits",
+      "type": "array"
+    },
+    "versions": {
+      "$ref": "#/$defs/VersionsPin"
+    }
+  },
+  "required": [
+    "run_id",
+    "problem_id"
+  ],
+  "title": "TraceEvent",
+  "type": "object"
+}

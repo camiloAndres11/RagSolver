@@ -1,0 +1,216 @@
+{
+ "n_problems_with_full_and_no_rag": 15,
+ "per_config": {
+  "full": {
+   "n": 15,
+   "solved": 6,
+   "errors": 0,
+   "llm_calls_mean": 8.0,
+   "cost_usd_traces": 0.0542,
+   "cost_per_pair": 0.00362,
+   "tokens_in_mean": 23607,
+   "tokens_out_mean": 9321,
+   "kernel_used_retrieved_premises": 1,
+   "problems_with_kernel_used_premise": 1,
+   "fill_calls": 19
+  },
+  "no_rag": {
+   "n": 15,
+   "solved": 7,
+   "errors": 0,
+   "llm_calls_mean": 8.8,
+   "cost_usd_traces": 0.0479,
+   "cost_per_pair": 0.00319,
+   "tokens_in_mean": 16664,
+   "tokens_out_mean": 9830,
+   "kernel_used_retrieved_premises": 0,
+   "problems_with_kernel_used_premise": 0,
+   "fill_calls": 21
+  },
+  "baseline_auto": {
+   "n": 15,
+   "solved": 5,
+   "errors": 0,
+   "llm_calls_mean": 0.0,
+   "cost_usd_traces": 0.0,
+   "cost_per_pair": 0.0,
+   "tokens_in_mean": 0,
+   "tokens_out_mean": 0,
+   "kernel_used_retrieved_premises": 0,
+   "problems_with_kernel_used_premise": 0,
+   "fill_calls": 0
+  }
+ },
+ "goal_attribution": {
+  "full": {
+   "grind +premisas": 23,
+   "open_after_close": 113,
+   "try?": 3,
+   "skeleton_error": 1
+  },
+  "no_rag": {
+   "grind": 14,
+   "open_after_close": 128,
+   "skeleton_error": 2,
+   "try?": 3,
+   "nlinarith": 1
+  },
+  "baseline_auto": {
+   "grind": 3,
+   "open_after_close": 10,
+   "try?": 2
+  }
+ },
+ "per_problem": [
+  {
+   "problem_id": "mathd_algebra_209",
+   "area": "algebra",
+   "difficulty": 1,
+   "full": "done",
+   "no_rag": "done",
+   "baseline_auto": "done",
+   "v1_full": "fail",
+   "v1_no_rag": "fail"
+  },
+  {
+   "problem_id": "algebra_sqineq_2unitcircatblt1",
+   "area": "algebra",
+   "difficulty": 1,
+   "full": "done",
+   "no_rag": "done",
+   "baseline_auto": "fail",
+   "v1_full": "done",
+   "v1_no_rag": "done"
+  },
+  {
+   "problem_id": "mathd_algebra_77",
+   "area": "algebra",
+   "difficulty": 1,
+   "full": "done",
+   "no_rag": "done",
+   "baseline_auto": "done",
+   "v1_full": "fail",
+   "v1_no_rag": "fail"
+  },
+  {
+   "problem_id": "amc12b_2020_p13",
+   "area": "algebra",
+   "difficulty": 2,
+   "full": "fail",
+   "no_rag": "fail",
+   "baseline_auto": "fail",
+   "v1_full": "fail",
+   "v1_no_rag": "fail"
+  },
+  {
+   "problem_id": "amc12a_2010_p11",
+   "area": "algebra",
+   "difficulty": 2,
+   "full": "fail",
+   "no_rag": "fail",
+   "baseline_auto": "fail",
+   "v1_full": "fail",
+   "v1_no_rag": "fail"
+  },
+  {
+   "problem_id": "imo_1965_p1",
+   "area": "algebra",
+   "difficulty": 3,
+   "full": "fail",
+   "no_rag": "fail",
+   "baseline_auto": "fail",
+   "v1_full": "fail",
+   "v1_no_rag": "fail"
+  },
+  {
+   "problem_id": "mathd_numbertheory_728",
+   "area": "number_theory",
+   "difficulty": 1,
+   "full": "done",
+   "no_rag": "done",
+   "baseline_auto": "done",
+   "v1_full": "done",
+   "v1_no_rag": "done"
+  },
+  {
+   "problem_id": "mathd_numbertheory_403",
+   "area": "number_theory",
+   "difficulty": 1,
+   "full": "done",
+   "no_rag": "done",
+   "baseline_auto": "done",
+   "v1_full": "fail",
+   "v1_no_rag": "fail"
+  },
+  {
+   "problem_id": "numbertheory_aneqprodakp4_anmsqrtanp1eq2",
+   "area": "number_theory",
+   "difficulty": 1,
+   "full": "fail",
+   "no_rag": "fail",
+   "baseline_auto": "fail",
+   "v1_full": "fail",
+   "v1_no_rag": "fail"
+  },
+  {
+   "problem_id": "amc12a_2020_p10",
+   "area": "number_theory",
+   "difficulty": 2,
+   "full": "fail",
+   "no_rag": "fail",
+   "baseline_auto": "fail",
+   "v1_full": "fail",
+   "v1_no_rag": "fail"
+  },
+  {
+   "problem_id": "amc12a_2016_p3",
+   "area": "number_theory",
+   "difficulty": 2,
+   "full": "fail",
+   "no_rag": "fail",
+   "baseline_auto": "fail",
+   "v1_full": "done",
+   "v1_no_rag": "done"
+  },
+  {
+   "problem_id": "imo_1977_p5",
+   "area": "number_theory",
+   "difficulty": 3,
+   "full": "fail",
+   "no_rag": "fail",
+   "baseline_auto": "fail",
+   "v1_full": "fail",
+   "v1_no_rag": "fail"
+  },
+  {
+   "problem_id": "mathd_algebra_170",
+   "area": "combinatorics",
+   "difficulty": 1,
+   "full": "fail",
+   "no_rag": "fail",
+   "baseline_auto": "fail",
+   "v1_full": "fail",
+   "v1_no_rag": "fail"
+  },
+  {
+   "problem_id": "mathd_algebra_104",
+   "area": "combinatorics",
+   "difficulty": 1,
+   "full": "done",
+   "no_rag": "done",
+   "baseline_auto": "done",
+   "v1_full": "fail",
+   "v1_no_rag": "done"
+  },
+  {
+   "problem_id": "amc12a_2002_p6",
+   "area": "combinatorics",
+   "difficulty": 2,
+   "full": "fail",
+   "no_rag": "done",
+   "baseline_auto": "fail",
+   "v1_full": "fail",
+   "v1_no_rag": "fail"
+  }
+ ]
+}

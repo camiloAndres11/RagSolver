@@ -1,0 +1,290 @@
+
+=== INFORMAL GOLD 14:11 mem_avail=6628MB ===
+f01: hit=True rank=1 top=[8, 28, 17, 25, 22] fig_cov=1.0
+f02: hit=True rank=1 top=[16, 55, 75, 93, 1] fig_cov=1.0
+f03: hit=True rank=1 top=[17, 25, 28, 75, 1] fig_cov=1.0
+f04: hit=True rank=1 top=[22, 1, 99, 57, 3] fig_cov=1.0
+f05: hit=True rank=1 top=[24, 49, 8, 25, 36] fig_cov=1.0
+f06: hit=True rank=1 top=[28, 8, 25, 72, 36] fig_cov=0.6666666666666666
+f07: hit=True rank=1 top=[37, 71, 26, 97, 29] fig_cov=1.0
+f08: hit=True rank=1 top=[61, 42, 53, 75, 74] fig_cov=1.0
+f09: hit=True rank=1 top=[68, 63, 25, 17, 1] fig_cov=1.0
+f10: hit=True rank=1 top=[80, 79, 10, 90, 82] fig_cov=1.0
+f11: hit=True rank=1 top=[82, 80, 10, 90, 79] fig_cov=1.0
+f12: hit=True rank=1 top=[84, 5, 72, 25, 24] fig_cov=1.0
+f13: hit=True rank=1 top=[87, 65, 72, 25, 68] fig_cov=0.3333333333333333
+f14: hit=True rank=1 top=[99, 90, 3, 57, 49] fig_cov=1.0
+f15: hit=True rank=1 top=[90, 95, 10, 49, 80] fig_cov=0.6666666666666666
+t01: hit=True rank=1 top=[86, 58, 50, 18, 45] fig_cov=None
+t02: hit=True rank=1 top=[11, 18, 50, 20, 58] fig_cov=None
+t03: hit=True rank=1 top=[19, 32, 89, 20, 11] fig_cov=None
+t04: hit=True rank=1 top=[21, 58, 50, 11, 18] fig_cov=None
+t05: hit=True rank=1 top=[66, 32, 19, 86, 20] fig_cov=None
+t06: hit=True rank=1 top=[50, 41, 58, 18, 11] fig_cov=None
+t07: hit=True rank=1 top=[78, 52, 89, 19, 30] fig_cov=None
+t08: hit=True rank=1 top=[76, 74, 75, 95, 57] fig_cov=None
+t09: hit=True rank=1 top=[74, 76, 75, 18, 92] fig_cov=None
+t10: hit=True rank=1 top=[2, 44, 21, 96, 52] fig_cov=None
+t11: hit=True rank=1 top=[9, 89, 12, 78, 13] fig_cov=None
+t12: hit=True rank=1 top=[58, 11, 18, 50, 21] fig_cov=None
+t13: hit=True rank=1 top=[52, 78, 77, 89, 47] fig_cov=None
+t14: hit=True rank=1 top=[44, 52, 64, 45, 6] fig_cov=None
+t15: hit=True rank=1 top=[89, 19, 33, 32, 30] fig_cov=None
+{
+  "n_queries": 30,
+  "recall@5": 1.0,
+  "recall@5_wilson95": [
+    0.886,
+    1.0
+  ],
+  "figure_dependent": {
+    "n": 15,
+    "recall@5": 1.0,
+    "figure_coverage_mean": 0.911
+  },
+  "mrr": 1.0
+}
+
+=== CONTAMINATION 14:51 mem_avail=6810MB ===
+{
+  "threshold": 0.9,
+  "n_cards": 100,
+  "n_minif2f": 488,
+  "n_pairs_over_threshold": 0,
+  "pairs_over_threshold": [],
+  "max_similarity": 0.8181180953979492
+}
+top10: [(23, 'imo_1959_p1', 0.8181180953979492), (58, 'induction_divisibility_3div2tooddnp1', 0.8117700815200806), (76, 'algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2', 0.7985193729400635), (70, 'amc12a_2020_p4', 0.7692816853523254), (9, 'induction_sum_odd', 0.7569718360900879), (74, 'algebra_abpbcpcageq3_sumaonsqrtapbgeq3onsqrt2', 0.7562429308891296), (15, 'aime_1984_p1', 0.739531934261322), (62, 'mathd_numbertheory_109', 0.7309191226959229), (47, 'amc12a_2003_p23', 0.7208618521690369), (60, 'mathd_numbertheory_483', 0.7189329862594604)]
+
+=== QR sample100 rerank 14:54 mem_avail=6809MB ===
+{
+  "n_queries": 100,
+  "n_gold_covered_in_table": 86,
+  "coverage_ratio": 0.86,
+  "denso": {
+    "recall@10": 0.11,
+    "ndcg@10": 0.09761859507142916,
+    "mrr": 0.0947549019607843
+  },
+  "bm25": {
+    "recall@10": 0.09,
+    "ndcg@10": 0.07004919501485479,
+    "mrr": 0.06589321789321789
+  },
+  "hibrido": {
+    "recall@10": 0.1,
+    "ndcg@10": 0.08392789260714373,
+    "mrr": 0.08092231019215249
+  },
+  "hibrido_rerank": {
+    "recall@10": 0.12,
+    "ndcg@10": 0.0959519284047625,
+    "mrr": 0.08929834221693611
+  }
+}
+
+=== FASE 4 smoke (5 triviales, full) 15:25 mem_avail=6787MB ===
+  self.pid = _fork_exec(
+[full] triv_add_zero: done attempts=1 llm_calls=3 used_in_proof=1/11 199.7s
+[full] triv_add_comm: done attempts=1 llm_calls=3 used_in_proof=0/25 83.5s
+[full] triv_square_expand: done attempts=1 llm_calls=3 used_in_proof=1/19 38.5s
+[full] triv_even_square: done attempts=1 llm_calls=3 used_in_proof=0/19 120.2s
+[full] triv_dvd_trans: done attempts=1 llm_calls=3 used_in_proof=0/17 79.3s
+{
+  "run_id": "f4-trivial-full",
+  "out": "data/eval/runs/f4-trivial-full",
+  "summary": {
+    "full": {
+      "n": 5,
+      "pass@1": 1.0,
+      "pass@1_wilson95": [
+        0.566,
+        1.0
+      ],
+      "llm_calls_mean": 3.0,
+      "tokens_mean": 7679,
+      "wall_s_median": 83.5,
+      "lemma_use_precision": 0.022,
+      "re_retrieval_success": null,
+      "error_taxonomy": {},
+      "self_assessed_correct": null
+    }
+  },
+  "llm_calls_total": 15,
+  "models_exhausted": [
+    "gemini-3.5-flash"
+  ]
+}
+
+=== FASE 4/5 ablaciones (13 problemas x 5 configs) 15:34 mem_avail=6844MB ===
+  self.pid = _fork_exec(
+[full] triv_add_zero: done attempts=1 llm_calls=3 used_in_proof=1/11 169.6s
+[full] triv_add_comm: done attempts=1 llm_calls=3 used_in_proof=2/18 8.6s
+[full] triv_square_expand: done attempts=1 llm_calls=3 used_in_proof=0/19 5.4s
+[full] triv_even_square: done attempts=1 llm_calls=3 used_in_proof=0/13 4.9s
+[full] triv_dvd_trans: done attempts=2 llm_calls=6 used_in_proof=0/18 8.6s
+[full] mathd_numbertheory_127: done attempts=1 llm_calls=3 used_in_proof=0/24 19.6s
+[full] mathd_algebra_160: fail attempts=3 llm_calls=10 used_in_proof=0/28 15.4s
+[full] mathd_numbertheory_1124: fail attempts=3 llm_calls=11 used_in_proof=0/48 55.3s
+[full] induction_1pxpownlt1pnx: fail attempts=3 llm_calls=10 used_in_proof=0/19 78.1s
+[full] mathd_algebra_440: done attempts=1 llm_calls=3 used_in_proof=0/17 4.7s
+[full] mathd_numbertheory_495: fail attempts=3 llm_calls=10 used_in_proof=0/25 27.6s
+[full] mathd_numbertheory_342: done attempts=1 llm_calls=3 used_in_proof=0/14 4.6s
+[full] mathd_numbertheory_222: done attempts=2 llm_calls=6 used_in_proof=0/21 8.6s
+[no_rag] triv_add_zero: done attempts=1 llm_calls=3 used_in_proof=0/0 2.7s
+[no_rag] triv_add_comm: done attempts=1 llm_calls=3 used_in_proof=0/0 65.6s
+[no_rag] triv_square_expand: done attempts=1 llm_calls=3 used_in_proof=0/0 4.0s
+[no_rag] triv_even_square: done attempts=1 llm_calls=3 used_in_proof=0/0 3.9s
+[no_rag] triv_dvd_trans: done attempts=1 llm_calls=3 used_in_proof=0/0 3.8s
+[no_rag] mathd_numbertheory_127: done attempts=1 llm_calls=3 used_in_proof=0/0 5.6s
+[no_rag] mathd_algebra_160: done attempts=3 llm_calls=9 used_in_proof=0/0 23.4s
+[no_rag] mathd_numbertheory_1124: fail attempts=3 llm_calls=10 used_in_proof=0/0 15.5s
+[no_rag] induction_1pxpownlt1pnx: fail attempts=3 llm_calls=10 used_in_proof=0/0 56.3s
+[no_rag] mathd_algebra_440: done attempts=1 llm_calls=3 used_in_proof=0/0 3.2s
+[no_rag] mathd_numbertheory_495: fail attempts=3 llm_calls=10 used_in_proof=0/0 46.9s
+[no_rag] mathd_numbertheory_342: done attempts=1 llm_calls=3 used_in_proof=0/0 3.0s
+[no_rag] mathd_numbertheory_222: done attempts=2 llm_calls=6 used_in_proof=0/0 7.1s
+[no_critic] triv_add_zero: done attempts=1 llm_calls=3 used_in_proof=0/11 3.1s
+[no_critic] triv_add_comm: fail attempts=1 llm_calls=3 used_in_proof=0/17 70.3s
+[no_critic] triv_square_expand: done attempts=1 llm_calls=3 used_in_proof=0/22 5.7s
+[no_critic] triv_even_square: done attempts=1 llm_calls=3 used_in_proof=0/12 4.8s
+[no_critic] triv_dvd_trans: done attempts=1 llm_calls=3 used_in_proof=1/22 5.7s
+[no_critic] mathd_numbertheory_127: done attempts=1 llm_calls=3 used_in_proof=0/23 6.4s
+[no_critic] mathd_algebra_160: fail attempts=1 llm_calls=3 used_in_proof=0/29 6.9s
+[no_critic] mathd_numbertheory_1124: fail attempts=1 llm_calls=3 used_in_proof=0/30 8.3s
+[no_critic] induction_1pxpownlt1pnx: fail attempts=1 llm_calls=3 used_in_proof=0/19 6.1s
+[no_critic] mathd_algebra_440: fail attempts=1 llm_calls=3 used_in_proof=0/17 5.1s
+[no_critic] mathd_numbertheory_495: fail attempts=1 llm_calls=3 used_in_proof=0/25 10.1s
+[no_critic] mathd_numbertheory_342: done attempts=1 llm_calls=3 used_in_proof=0/19 4.5s
+[no_critic] mathd_numbertheory_222: fail attempts=1 llm_calls=3 used_in_proof=0/26 30.5s
+[baseline_a] triv_add_zero: done attempts=1 llm_calls=1 used_in_proof=0/0 0.9s
+[baseline_a] triv_add_comm: done attempts=1 llm_calls=1 used_in_proof=0/0 0.8s
+[baseline_a] triv_square_expand: done attempts=1 llm_calls=1 used_in_proof=0/0 1.0s
+[baseline_a] triv_even_square: done attempts=1 llm_calls=1 used_in_proof=0/0 1.1s
+[baseline_a] triv_dvd_trans: done attempts=1 llm_calls=1 used_in_proof=0/0 1.1s
+[baseline_a] mathd_numbertheory_127: done attempts=1 llm_calls=1 used_in_proof=0/0 0.9s
+[baseline_a] mathd_algebra_160: fail attempts=1 llm_calls=1 used_in_proof=0/0 1.2s
+[baseline_a] mathd_numbertheory_1124: fail attempts=1 llm_calls=1 used_in_proof=0/0 1.6s
+[baseline_a] induction_1pxpownlt1pnx: fail attempts=1 llm_calls=1 used_in_proof=0/0 2.3s
+[baseline_a] mathd_algebra_440: done attempts=1 llm_calls=1 used_in_proof=0/0 0.8s
+[baseline_a] mathd_numbertheory_495: fail attempts=1 llm_calls=1 used_in_proof=0/0 2.9s
+[baseline_a] mathd_numbertheory_342: done attempts=1 llm_calls=1 used_in_proof=0/0 0.9s
+[baseline_a] mathd_numbertheory_222: fail attempts=1 llm_calls=1 used_in_proof=0/0 1.4s
+[baseline_b] triv_add_zero: fail attempts=1 llm_calls=1 used_in_proof=0/0 1.3s
+[baseline_b] triv_add_comm: fail attempts=1 llm_calls=1 used_in_proof=0/0 1.5s
+[baseline_b] triv_square_expand: fail attempts=1 llm_calls=1 used_in_proof=0/0 1.1s
+[baseline_b] triv_even_square: fail attempts=1 llm_calls=1 used_in_proof=0/0 29.9s
+[baseline_b] triv_dvd_trans: fail attempts=1 llm_calls=1 used_in_proof=0/0 5.3s
+[baseline_b] mathd_numbertheory_127: fail attempts=1 llm_calls=1 used_in_proof=0/0 1.5s
+[baseline_b] mathd_algebra_160: fail attempts=1 llm_calls=1 used_in_proof=0/0 1.6s
+[baseline_b] mathd_numbertheory_1124: fail attempts=1 llm_calls=1 used_in_proof=0/0 1.5s
+[baseline_b] induction_1pxpownlt1pnx: fail attempts=1 llm_calls=1 used_in_proof=0/0 1.7s
+[baseline_b] mathd_algebra_440: fail attempts=1 llm_calls=1 used_in_proof=0/0 1.0s
+[baseline_b] mathd_numbertheory_495: fail attempts=1 llm_calls=1 used_in_proof=0/0 2.4s
+[baseline_b] mathd_numbertheory_342: fail attempts=1 llm_calls=1 used_in_proof=0/0 1.0s
+[baseline_b] mathd_numbertheory_222: fail attempts=1 llm_calls=1 used_in_proof=0/0 1.6s
+{
+  "run_id": "f5-ablations",
+  "out": "data/eval/runs/f5-ablations",
+  "summary": {
+    "full": {
+      "n": 13,
+      "pass@1": 0.692,
+      "pass@1_wilson95": [
+        0.424,
+        0.873
+      ],
+      "llm_calls_mean": 5.69,
+      "tokens_mean": 13740,
+      "wall_s_median": 8.6,
+      "lemma_use_precision": 0.011,
+      "re_retrieval_success": 0.0,
+      "error_taxonomy": {
+        "lean_syntax": 8,
+        "exhausted": 4,
+        "planning": 1,
+        "misformalization": 1,
+        "missing_lemma": 4
+      },
+      "self_assessed_correct": null
+    },
+    "no_rag": {
+      "n": 13,
+      "pass@1": 0.769,
+      "pass@1_wilson95": [
+        0.497,
+        0.918
+      ],
+      "llm_calls_mean": 5.31,
+      "tokens_mean": 4709,
+      "wall_s_median": 5.6,
+      "lemma_use_precision": null,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "missing_lemma": 4,
+        "lean_syntax": 8,
+        "exhausted": 3
+      },
+      "self_assessed_correct": null
+    },
+    "no_critic": {
+      "n": 13,
+      "pass@1": 0.462,
+      "pass@1_wilson95": [
+        0.232,
+        0.709
+      ],
+      "llm_calls_mean": 3.0,
+      "tokens_mean": 7231,
+      "wall_s_median": 6.1,
+      "lemma_use_precision": 0.004,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "unknown": 7,
+        "exhausted": 7
+      },
+      "self_assessed_correct": null
+    },
+    "baseline_a": {
+      "n": 13,
+      "pass@1": 0.615,
+      "pass@1_wilson95": [
+        0.355,
+        0.823
+      ],
+      "llm_calls_mean": 1.0,
+      "tokens_mean": 410,
+      "wall_s_median": 1.1,
+      "lemma_use_precision": null,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "unknown": 5
+      },
+      "self_assessed_correct": null
+    },
+    "baseline_b": {
+      "n": 13,
+      "pass@1": 0.0,
+      "pass@1_wilson95": [
+        0.0,
+        0.228
+      ],
+      "llm_calls_mean": 1.0,
+      "tokens_mean": 412,
+      "wall_s_median": 1.5,
+      "lemma_use_precision": null,
+      "re_retrieval_success": null,
+      "error_taxonomy": {},
+      "self_assessed_correct": 13
+    }
+  },
+  "llm_calls_total": 208,
+  "models_exhausted": [
+    "gemini-3.5-flash"
+  ]
+}
+
+=== REPORT 15:49 mem_avail=6853MB ===
+docs/eval_report.md
+
+NIGHT DONE 15:49

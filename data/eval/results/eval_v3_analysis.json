@@ -1,0 +1,442 @@
+{
+ "n": 30,
+ "rates": {
+  "v3 full": {
+   "k": 21,
+   "n": 30,
+   "wilson95": [
+    0.521,
+    0.833
+   ]
+  },
+  "v3 baseline_prover": {
+   "k": 21,
+   "n": 30,
+   "wilson95": [
+    0.521,
+    0.833
+   ]
+  },
+  "v2 full": {
+   "k": 8,
+   "n": 30,
+   "wilson95": [
+    0.142,
+    0.444
+   ]
+  },
+  "v2 no_rag": {
+   "k": 9,
+   "n": 30,
+   "wilson95": [
+    0.167,
+    0.479
+   ]
+  },
+  "v2 baseline_auto": {
+   "k": 7,
+   "n": 30,
+   "wilson95": [
+    0.118,
+    0.409
+   ]
+  }
+ },
+ "by_difficulty": {
+  "v3 full": {
+   "1": "13/16",
+   "2": "6/10",
+   "3": "2/4"
+  },
+  "v3 baseline_prover": {
+   "1": "13/16",
+   "2": "6/10",
+   "3": "2/4"
+  },
+  "v2 full": {
+   "1": "8/16",
+   "2": "0/10",
+   "3": "0/4"
+  },
+  "v2 no_rag": {
+   "1": "8/16",
+   "2": "1/10",
+   "3": "0/4"
+  },
+  "v2 baseline_auto": {
+   "1": "7/16",
+   "2": "0/10",
+   "3": "0/4"
+  }
+ },
+ "mcnemar": {
+  "v3 full vs v2 full": {
+   "solo_A": 13,
+   "solo_B": 0,
+   "p": 0.0002
+  },
+  "v3 full vs v2 no_rag": {
+   "solo_A": 12,
+   "solo_B": 0,
+   "p": 0.0005
+  },
+  "v3 baseline_prover vs v2 baseline_auto": {
+   "solo_A": 14,
+   "solo_B": 0,
+   "p": 0.0001
+  },
+  "v3 full vs v3 baseline_prover": {
+   "solo_A": 0,
+   "solo_B": 0,
+   "p": 1.0
+  }
+ },
+ "solved_by": {
+  "prover_root": 21
+ },
+ "prover": {
+  "stages": {
+   "baseline_prover|baseline_prover|unsolved": 9,
+   "baseline_prover|baseline_prover|sample": 21,
+   "full|root|unsolved": 9,
+   "full|root|sample": 21
+  },
+  "corrections_with_rag": 2,
+  "rag_name_suggestions_cited": 8,
+  "rag_name_suggestions_used_by_kernel": 0,
+  "samples_full_mean": 7.5,
+  "llm_calls_full_mean": 3.37
+ },
+ "per_problem": [
+  {
+   "problem_id": "mathd_algebra_209",
+   "difficulty": 1,
+   "area": "algebra",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": true,
+   "v2 no_rag": true,
+   "v2 baseline_auto": true,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "mathd_algebra_342",
+   "difficulty": 1,
+   "area": "algebra",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "algebra_sqineq_2unitcircatblt1",
+   "difficulty": 1,
+   "area": "algebra",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": true,
+   "v2 no_rag": true,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "mathd_algebra_67",
+   "difficulty": 1,
+   "area": "algebra",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": true,
+   "v2 no_rag": true,
+   "v2 baseline_auto": true,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "mathd_algebra_77",
+   "difficulty": 1,
+   "area": "algebra",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": true,
+   "v2 no_rag": true,
+   "v2 baseline_auto": true,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "mathd_algebra_437",
+   "difficulty": 1,
+   "area": "algebra",
+   "v3 full": false,
+   "v3 baseline_prover": false,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": ""
+  },
+  {
+   "problem_id": "amc12b_2020_p13",
+   "difficulty": 2,
+   "area": "algebra",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "amc12b_2003_p17",
+   "difficulty": 2,
+   "area": "algebra",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "amc12a_2010_p11",
+   "difficulty": 2,
+   "area": "algebra",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "aime_1997_p11",
+   "difficulty": 2,
+   "area": "algebra",
+   "v3 full": false,
+   "v3 baseline_prover": false,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": ""
+  },
+  {
+   "problem_id": "imo_1965_p1",
+   "difficulty": 3,
+   "area": "algebra",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "imo_1978_p5",
+   "difficulty": 3,
+   "area": "algebra",
+   "v3 full": false,
+   "v3 baseline_prover": false,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": ""
+  },
+  {
+   "problem_id": "mathd_numbertheory_728",
+   "difficulty": 1,
+   "area": "number_theory",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": true,
+   "v2 no_rag": true,
+   "v2 baseline_auto": true,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "numbertheory_notequiv2i2jasqbsqdiv8",
+   "difficulty": 1,
+   "area": "number_theory",
+   "v3 full": false,
+   "v3 baseline_prover": false,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": ""
+  },
+  {
+   "problem_id": "mathd_numbertheory_403",
+   "difficulty": 1,
+   "area": "number_theory",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": true,
+   "v2 no_rag": true,
+   "v2 baseline_auto": true,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "mathd_numbertheory_155",
+   "difficulty": 1,
+   "area": "number_theory",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": true,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "numbertheory_aneqprodakp4_anmsqrtanp1eq2",
+   "difficulty": 1,
+   "area": "number_theory",
+   "v3 full": false,
+   "v3 baseline_prover": false,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": ""
+  },
+  {
+   "problem_id": "numbertheory_sqmod3in01d",
+   "difficulty": 1,
+   "area": "number_theory",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "amc12a_2020_p10",
+   "difficulty": 2,
+   "area": "number_theory",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "amc12a_2002_p21",
+   "difficulty": 2,
+   "area": "number_theory",
+   "v3 full": false,
+   "v3 baseline_prover": false,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": ""
+  },
+  {
+   "problem_id": "amc12a_2016_p3",
+   "difficulty": 2,
+   "area": "number_theory",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "amc12b_2002_p3",
+   "difficulty": 2,
+   "area": "number_theory",
+   "v3 full": false,
+   "v3 baseline_prover": false,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": ""
+  },
+  {
+   "problem_id": "imo_1977_p5",
+   "difficulty": 3,
+   "area": "number_theory",
+   "v3 full": false,
+   "v3 baseline_prover": false,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": ""
+  },
+  {
+   "problem_id": "imo_1964_p1_1",
+   "difficulty": 3,
+   "area": "number_theory",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "mathd_algebra_170",
+   "difficulty": 1,
+   "area": "combinatorics",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "mathd_algebra_24",
+   "difficulty": 1,
+   "area": "combinatorics",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": true,
+   "v2 no_rag": true,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "mathd_algebra_104",
+   "difficulty": 1,
+   "area": "combinatorics",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": true,
+   "v2 no_rag": true,
+   "v2 baseline_auto": true,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "mathd_algebra_185",
+   "difficulty": 1,
+   "area": "combinatorics",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "amc12a_2002_p6",
+   "difficulty": 2,
+   "area": "combinatorics",
+   "v3 full": true,
+   "v3 baseline_prover": true,
+   "v2 full": false,
+   "v2 no_rag": true,
+   "v2 baseline_auto": false,
+   "v3_solved_by": "prover_root"
+  },
+  {
+   "problem_id": "amc12_2001_p5",
+   "difficulty": 2,
+   "area": "combinatorics",
+   "v3 full": false,
+   "v3 baseline_prover": false,
+   "v2 full": false,
+   "v2 no_rag": false,
+   "v2 baseline_auto": false,
+   "v3_solved_by": ""
+  }
+ ]
+}
