@@ -64,12 +64,8 @@ Proveedor y cadena de modelos en `configs/versions.yaml` (`llm`, `vlm_enrichment
 Es la etapa 0 del sistema (`docs/PLAN_REDISENO_PROVER.md`): resolvió 21/30 en eval-v3 sin una llamada a la API. El modelo Q6_K pesa 6.7 GB; con 8 slots de 12 288 tokens cabe en los 16 GB de la RX 9060 XT.
 
 1. **Modelo** (Apache-2.0): GGUF `mradermacher/Goedel-Prover-V2-8B-GGUF`, cuantización **Q6_K** (6.7 GB), en `tools/models/Goedel-Prover-V2-8B.Q6_K.gguf` (no versionado). La Q8_0 también funciona (36 tok/s por muestra en vez de 45, 4 slots).
-2. **Servidor**, desde WSL en la raíz del repo; escucha **sólo** en la red virtual WSL↔Windows, no en la LAN (SEC-3):
-   ```bash
-   ./tools/llama-vulkan/llama-server.exe -m tools/models/Goedel-Prover-V2-8B.Q6_K.gguf -ngl 99 --host 172.31.112.1 --port 8082 -c 98304 --parallel 8 -fa on -ctk q8_0 -ctv q8_0 --jinja
-   ```
-   La IP es la del gateway de WSL (`ip route show default`); si difiere, pásala en `--host` y define `RAGSOLVER_PROVER_URL`.
-3. **Apagar al terminar** (libera la GPU): `pgrep -f "llama-server[.]exe" | xargs kill`.
+2. **Servidor**, desde WSL en la raíz del repo: `bash scripts/prover_server.sh start` (idempotente; espera a que el modelo cargue). Escucha **sólo** en la red virtual WSL↔Windows (el gateway de WSL, `ip route show default`), no en la LAN (SEC-3). Usa 6 slots de 16 384 tokens (`-c 98304 --parallel 6`): el prompt de DRAFT (plan + prueba informal + lemas) no cabe en slots de 12 288 junto a los 11 500 tokens de salida. eval-v3 corrió con 8 slots de 12 288; la GPU satura en ~70 tok/s agregados en ambos casos.
+3. **Apagar al terminar** (libera la GPU): `bash scripts/prover_server.sh stop`.
 4. Parámetros del demostrador en `configs/agents.yaml: prover` (`k_root`, `k_goal`, `max_goals`, `max_tokens`, `correction_rounds`, `rag_names`). Las muestras se guardan en `data/eval/prover_cache.jsonl`: repetir una corrida no vuelve a gastar GPU.
 
 El servidor de embeddings (§6, puerto 8081) y el del demostrador (8082) son procesos distintos; con 16 GB de VRAM caben juntos, pero la GPU satura en ~70 tok/s agregados.

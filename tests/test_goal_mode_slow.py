@@ -49,3 +49,13 @@ def test_goal_mode_end_to_end_with_real_lean(checker, tmp_path):
     assert rep.verdict.ok and set(rep.verdict.axioms) <= {"propext", "Classical.choice", "Quot.sound"}
     assert "sorry" not in rep.lean_code and "?" not in rep.lean_code.split(":= by", 1)[1]
     assert rep.llm_calls <= 4  # plan + generate + skeleton (+ fill si la batería no cerró algún goal)
+
+
+def test_multiline_step_runs_under_the_heartbeat_limit(checker):
+    # DECISIONS #128: un bloque de varias líneas va dentro de `·` con `set_option maxHeartbeats N in`
+    goals, errors = checker.goals(PROBLEM.formal_statement, SKELETON, PROBLEM.header)
+    assert not errors and len(goals) == 2
+    closed, msg, _ = checker.step(goals[1]["proof_state"], "have e := sub_sq a b\nnlinarith [e]", heartbeats=400000, gen=goals[1]["gen"])
+    assert closed, msg
+    closed, msg, _ = checker.step(goals[0]["proof_state"], "positivity", heartbeats=400000, gen=goals[0]["gen"])
+    assert closed, msg

@@ -1,8 +1,24 @@
 # RagSolver
 
-Sistema multiagente de razonamiento verificable para problemas matemáticos de
-nivel olimpiada: planificador → recuperador (RAG) → generador → autoformalizador
-→ verificador (Lean 4 + Mathlib) → crítico. Proyecto del curso de IA, UPTC.
+Sistema de razonamiento verificable para problemas matemáticos de nivel olimpiada: un
+**demostrador especializado local** (Goedel-Prover-V2-8B en la GPU, 0 API) más agentes por API
+(planificador → recuperador RAG → generador → autoformalizador → crítico), con **toda prueba
+verificada por el kernel de Lean 4 + Mathlib**. Proyecto del curso de IA, UPTC.
+
+**Resultado actual** (eval-v3, 30 problemas de miniF2F-v2 pareados): **21/30** frente a 8/30 del
+sistema anterior (McNemar p = 0.0002), incluidos dos problemas de IMO. Cómo funciona:
+[`docs/diagramas.md`](docs/diagramas.md) · qué cambió y por qué: [`docs/Mejorasuwu.md`](docs/Mejorasuwu.md).
+
+## Usarlo en 3 comandos
+
+```bash
+uv sync --extra dev --extra ingest --extra demo     # dependencias (ver docs/install.md para Lean + Mathlib)
+bash scripts/demo_up.sh                             # demostrador en la GPU + demo en http://127.0.0.1:7860
+bash scripts/prover_server.sh stop                  # al terminar, libera la GPU
+```
+
+El demostrador necesita la GPU (llama.cpp/Vulkan, `docs/install.md` §7); sin ella el sistema corre sólo
+con los agentes por API.
 
 - Plan de acción completo (arquitectura, fases, esquema de metadatos, stack): [`docs/PLAN_RAG.md`](docs/PLAN_RAG.md)
 - Decisiones y su justificación: [`docs/DECISIONS.md`](docs/DECISIONS.md)
@@ -78,12 +94,25 @@ bash scripts/run_chain.sh                                                   # ex
 python scripts/fill_final_report.py --run-id eval-v1                        # tablas de §6.3 del informe final
 ```
 
+## Demostrador local y DRAFT (octubre 2026)
+
+```bash
+bash scripts/prover_server.sh start                             # Goedel-Prover-V2-8B en la GPU (puerto 8082, sólo red WSL↔Windows)
+RAGSOLVER_MATHLIB_TABLE=mathlib_full python -m ragsolver.orchestrator.run --problems data/eval/problems/eval_v1_round1.jsonl --configs baseline_prover,full --run-id <nombre> --workers 2
+```
+
+Configuraciones nuevas: `baseline_prover` (sólo el demostrador), `baseline_prover32`, `dsp` (el modelo de la
+API escribe plan y prueba informal y el demostrador los recibe en su prompt, con lemas del RAG). El respaldo
+por agentes de API está apagado por defecto (`configs/agents.yaml: prover.api_fallback`).
+
 ## Demo y publicación (Fase 6)
 
 ```bash
-python demo/app.py                                              # Gradio: pestañas "Buscar" y "Resolver"
+bash scripts/demo_up.sh                                         # Gradio: pestañas "Buscar" y "Resolver" (con el demostrador)
 HF_TOKEN=... python scripts/publish_hf.py --repo <usuario>/ragsolver-index --dry-run   # dataset: índice Mathlib + evaluación (sin el PDF)
 ```
+
+Publicado en Hugging Face: [código](https://huggingface.co/CamiloS1111/ragsolver) y [índices + evaluación](https://huggingface.co/datasets/CamiloS1111/ragsolver-index) (`docs/user_guide.md`).
 
 ## Documentación
 
@@ -95,3 +124,8 @@ HF_TOKEN=... python scripts/publish_hf.py --repo <usuario>/ragsolver-index --dry
 
 Ver `docs/PLAN_RAG.md §5.2` para el layout completo del repositorio y el
 razonamiento detrás de cada carpeta.
+
+## Licencia y cita
+
+Código bajo [Apache-2.0](LICENSE) © 2026 Camilo Andres Niño Amaya y Jose L. Salamanca (UPTC Sogamoso). Para citarlo: [`CITATION.cff`](CITATION.cff).
+Datos y modelos de terceros conservan su licencia: Mathlib y el corpus de LeanSearch v2 (Apache-2.0), miniF2F-v2 (Apache-2.0), Goedel-Prover-V2 (Apache-2.0), Lean Workbook proofs (MIT), Qwen3-Embedding (Apache-2.0). El PDF de olimpiadas y todo lo derivado de él (`pdf_set.jsonl`, texto del corpus informal) no se redistribuye.

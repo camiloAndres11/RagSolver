@@ -17,6 +17,7 @@ import hashlib
 import json
 import os
 import re
+import textwrap
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -84,6 +85,22 @@ def unknown_names(errors: list[dict]) -> list[str]:
     return list(dict.fromkeys(n for e in errors for n in _UNKNOWN_RE.findall(e.get("message", ""))))
 
 
+class ProverUnavailable(RuntimeError):
+    """El servidor del demostrador dejó de responder: el runner corta la corrida (como con la cuota diaria)."""
+
+
+def local_prover(pcfg: dict) -> LocalProver | None:
+    """El demostrador si `prover.enabled` y el servidor responde; si no, None (el sistema sigue sin él)."""
+    if not pcfg.get("enabled"):
+        return None
+    p = LocalProver(max_tokens=pcfg.get("max_tokens", 12000), temperature=pcfg.get("temperature", 0.8))
+    if p.alive():
+        print(f"[prover] demostrador local en {p.url}", flush=True)
+        return p
+    print(f"[prover] AVISO: {p.url} no responde; se corre sin demostrador local", flush=True)
+    return None
+
+
 class LocalProver:
     def __init__(self, url: str | None = None, max_tokens: int = 12000, temperature: float = 0.8, timeout_s: float = 1800, cache_path: str | None = "data/eval/prover_cache.jsonl"):
         self.url = url or prover_url()
@@ -129,7 +146,12 @@ class LocalProver:
 
     def sample(self, messages: list[dict], k: int, seed0: int = 13) -> list[str]:
         with ThreadPoolExecutor(max_workers=k) as pool:
-            return list(pool.map(lambda i: self._safe_chat(messages, seed0 + i), range(k)))
+            outs = list(pool.map(lambda i: self._safe_chat(messages, seed0 + i), range(k)))
+        # una muestra que falla se tolera; todas fallando con el servidor caído no son "muestras sin prueba":
+        # la corrida se detiene y se reanuda (eval-v4: el servidor murió y 22 problemas quedaron como fallos falsos)
+        if outs and all(o.startswith("(prover error") for o in outs) and not self.alive():
+            raise ProverUnavailable(f"{self.url} no responde")
+        return outs
 
     def _safe_chat(self, messages: list[dict], seed: int) -> str:
         try:
@@ -161,14 +183,33 @@ def name_suggestions(names: list[str], checker, retriever=None, header: str = ""
     return "\n".join(lines), suggested
 
 
-def prove(prover: LocalProver, checker, formal_statement: str, header: str, theorem_name: str, k: int = 4, correction_rounds: int = 1, retriever=None, max_heartbeats: int = 400000, batch: int = 4) -> tuple[str | None, dict]:
+def draft_hint(strategy: str, steps: list[str], sketch: str, lemmas: dict[str, str], max_sketch: int = 4000) -> str:
+    """Draft-Sketch-Prove: el plan y la prueba informal del modelo de la API, más los lemas que recuperó el
+    RAG (que existen en el Mathlib fijado), como guía dentro del prompt del demostrador."""
+    parts = ["Here is an informal proof written by another model. It may contain mistakes: use it as guidance, not as ground truth.", f"Strategy: {strategy}"]
+    parts += [f"{i}. {s}" for i, s in enumerate(steps, 1)]
+    parts.append(f"Informal proof:\n{sketch[:max_sketch]}")
+    if lemmas:
+        parts.append("Mathlib lemmas that may be useful (they exist in the installed Mathlib version):\n" + "\n".join(f"  {n} : {t[:200]}" for n, t in lemmas.items()))
+    return "\n\n".join(parts)
+
+
+def examples_hint(hits: list[dict], max_proof: int = 1500) -> str:
+    """RAG de pruebas (`rag/proofs.py`): pruebas verificadas de problemas parecidos como ejemplos en el prompt."""
+    blocks = [f"```lean4\n{h['statement']} := by\n{textwrap.indent(h['proof'][:max_proof], '  ')}\n```" for h in hits]
+    return "Verified Lean 4 proofs of similar problems (older Mathlib: some names may have changed). Reuse their techniques and hints where they fit:\n\n" + "\n\n".join(blocks)
+
+
+def prove(prover: LocalProver, checker, formal_statement: str, header: str, theorem_name: str, k: int = 4, correction_rounds: int = 1, retriever=None, max_heartbeats: int = 400000, batch: int = 4, hint: str = "") -> tuple[str | None, dict]:
     """k muestras en lotes de `batch` en paralelo, con salida temprana: la primera que pasa `check` gana
     (los problemas fáciles no pagan las k). Si ninguna, una ronda de autocorrección sobre las (hasta) 2
-    muestras con tácticas extraíbles: errores de Lean + sugerencias de nombres (RAG, si `retriever`)."""
+    muestras con tácticas extraíbles: errores de Lean + sugerencias de nombres (RAG, si `retriever`).
+    `hint` (Draft-Sketch-Prove, `draft_hint`) se agrega al prompt; el prompt cambia, así que sus muestras
+    no comparten caché con las de la etapa 0."""
     t0 = time.time()
-    user = PROMPT.format(lean_input(formal_statement, header))
+    user = PROMPT.format(lean_input(formal_statement, header)) + (f"\n\n{hint}" if hint else "")
     log = {"samples": 0, "extracted": 0, "rounds": 0, "corrections_with_rag": 0, "suggested": {}}
-    pending = []
+    pending, failed = [], []  # failed: todo candidato extraíble que Lean rechazó, para REPAIR (graph.py)
     for start in range(0, k, batch):
         outs = prover.sample([{"role": "user", "content": user}], min(batch, k - start), seed0=13 + start)
         log["samples"] += len(outs)  # generadas (trabajo de GPU), no sólo las revisadas antes del éxito
@@ -182,6 +223,7 @@ def prove(prover: LocalProver, checker, formal_statement: str, header: str, theo
                 log["seconds"] = round(time.time() - t0, 1)
                 return tac, {**log, "solved_in": "sample"}
             pending.append((out, tac, v))
+            failed.append((tac, v))
     for rnd in range(correction_rounds):
         if not pending:
             break
@@ -204,8 +246,12 @@ def prove(prover: LocalProver, checker, formal_statement: str, header: str, theo
                 log["seconds"] = round(time.time() - t0, 1)
                 return tac2, {**log, "solved_in": f"correction{rnd + 1}"}
             nxt.append((outs2[0], tac2, v2))
+            failed.append((tac2, v2))
         pending = nxt
     log["seconds"] = round(time.time() - t0, 1)
+    # casi-pruebas para REPAIR, menos errores primero: Lean sigue elaborando tras un `have` que falla, así que
+    # ≤ 2 errores ≈ ≤ 2 pasos malos; con más, reparar paso a paso cuesta horas de GPU (smoke 2026-10-21)
+    log["candidates"] = [t for t, v in sorted(failed, key=lambda x: len(x[1].errors)) if len(v.errors) <= 2]
     return None, log
 
 

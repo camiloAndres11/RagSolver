@@ -57,6 +57,23 @@ llm: # agentes (Fase 4). Experimento principal: UN solo modelo para las 5 config
   # Alternativa gratuita usada en el desarrollo (cuota 20 req/día por modelo):
   # provider: "gemini"; model: "gemini-3.5-flash"; fallback_models: ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemma-4-31b-it", "gemma-4-26b-a4b-it", "gemini-3-flash-preview"]
 
+# Borrador de DRAFT (Draft-Sketch-Prove, configs/agents.yaml `prover.dsp`): el mismo modelo CON razonamiento.
+# Sin razonar, un planner tarda 24 s y con razonamiento 76-92 s (#50); aquí la latencia no importa (cada
+# muestra del demostrador son minutos de GPU) y el razonamiento es justo lo que este modelo aporta.
+# `max_tokens` incluye el razonamiento; 16 000 a ≤ US$0.30/M ≈ US$0.005 por llamada en el peor caso.
+llm_draft:
+  provider: "openai_compatible"
+  base_url: "https://openrouter.ai/api/v1"
+  api_key_env: "OPENROUTER_API_KEY"
+  model: "deepseek/deepseek-v4-flash-0731"
+  fallback_models: []
+  temperature: 0.2
+  seed: 13
+  max_tokens: 16000
+  reasoning_effort: "high"
+  timeout_s: 1800   # SKETCH pide hasta `sketch_max_tokens` (agents.yaml) de salida
+  provider_routing: {max_price: {prompt: 0.13, completion: 0.30}, sort: price}
+
 index:
   backend: "lancedb"
   version: "0.1.0" # semver del índice; incrementar si cambia embedding_model o esquema de chunk

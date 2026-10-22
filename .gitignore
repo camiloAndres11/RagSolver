@@ -33,3 +33,6 @@ data/eval/runs/
 lean_project/scratch/
 lean_project.lock
 .claude/*.graphify-bak
+
+# Problemas formalizados a partir del PDF de ejemplo (licencia desconocida, SEC-2): local, no se versiona
+data/eval/problems/pdf_set.jsonl

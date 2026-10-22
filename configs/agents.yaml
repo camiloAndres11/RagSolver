@@ -49,11 +49,22 @@ prover:
   temperature: 0.8
   correction_rounds: 1
   rag_names: true
+  # Respaldo por API: si el demostrador no resuelve, ¿corre el bucle de agentes (PLAN → … → CRITIQUE)?
+  # Apagado: en eval-v3 costó US$0.06 en los 9 problemas no resueltos y no resolvió ninguno. Sin
+  # demostrador (servidor caído o `enabled: false`) los agentes corren siempre.
+  api_fallback: false
+  # DRAFT (Draft-Sketch-Prove): si la etapa 0 falla, el modelo de la API (`llm_draft`, con razonamiento)
+  # escribe plan + prueba informal y el demostrador recibe eso y `k_lemmas` lemas del RAG EN SU PROMPT
+  # (`k_draft` muestras). El prompt crece ~1-2k tokens: el servidor necesita slots de 16 384 (`--parallel 6`).
+  dsp: false
+  k_draft: 8         # 8 + 8 = 16 muestras; se compara con las primeras 16 de baseline_prover32 (mismas semillas, misma caché)
+  k_lemmas: 10
 
 llm_supports_vision: false   # imágenes de figuras en el prompt del Generador (sólo descripciones si false)
 # Self-consistency del Generador (propuesta §6.3): n bocetos y se elige el "medoide" (el más parecido
 # a los demás por solapamiento de tokens); cuesta n llamadas por intento. 1 = apagado (presupuesto RNF-3).
 generator_samples: 1
+sketch_max_tokens: 40000   # SKETCH (texto + razonamiento): con los 16 000 de `llm_draft`, 32 de 38 llamadas de eval-v4 se cortaron razonando, sin bloque Lean (#128)
 
 # Configuraciones de ablación (propuesta §8.2). Cada una sobreescribe claves de arriba.
 configs:
@@ -63,6 +74,21 @@ configs:
   rag_nl: {goal_mode: false}         # el flujo de eval-v1: recuperación NL por subobjetivo y prueba entera
   baseline_auto: {mode: baseline_auto}   # 0 LLM: sólo la batería CLOSE (sin premisas) sobre el goal raíz
   baseline_prover: {mode: baseline_prover}   # 0 API: sólo el demostrador local (k_root + autocorrección con errores de Lean, sin RAG)
+  baseline_prover32: {mode: baseline_prover, prover: {k_root: 32}}   # control de DRAFT: mismo presupuesto de muestras (8 + 24) sin plan ni lemas
+  dsp: {prover: {dsp: true}}         # etapa 0 + DRAFT (plan y prueba informal de la API + lemas del RAG en el prompt del demostrador)
+  # Para data/eval/problems/pdf_set.jsonl (sale del PDF del corpus informal): sin ejemplares informales, que
+  # traerían la solución del propio problema. Control: baseline_prover16 (mismas 8 + 8 muestras).
+  baseline_prover16: {mode: baseline_prover, prover: {k_root: 16}}
+  dsp8: {prover: {dsp: true}, corpora: ["mathlib"]}
+  # REPAIR (0 API): la prueba fallida del demostrador con menos errores se parte en sus `have`; sus propios bloques,
+  # la batería y el demostrador sobre el lema corto (4 pasos × 4 muestras) cierran los pasos que fallan
+  repair: {prover: {repair: 2, max_goals: 4, k_goal: 4}}
+  # SKETCH: además, el modelo con razonamiento (`llm_draft`) escribe el esqueleto Lean en pasos `have … := by sorry`
+  # (texto, no JSON) y CLOSE + demostrador cierran cada paso; 2 rondas (la 2.ª ve los pasos que quedaron abiertos)
+  sketch: {prover: {repair: 2, sketch: 2, max_goals: 4, k_goal: 4}}
+  # RAG de pruebas (rag/proofs.py): las pruebas verificadas de los 3 problemas más parecidos de Lean Workbook
+  # (embeddings), primero tal cual y luego como ejemplos en el prompt del demostrador (8 + 8; control: baseline_prover16)
+  rag_proofs: {prover: {examples: 3, k_examples: 8, max_sim: 0.95}}
   baseline_a: {mode: baseline_a}   # LLM único: prueba Lean directa, sin agentes
   baseline_b: {mode: baseline_b}   # LLM único: CoT en lenguaje natural, sin verificación
 
@@ -94,7 +120,8 @@ prompts:
     Write a complete proof sketch in natural language for the problem, following the plan. Use the
     retrieved Mathlib lemmas when they apply and say which ones you use by their ids (M1, M2, ...).
     Use the worked examples only for the idea (ids I1, I2, ...). Be explicit about every algebraic step
-    so that a formalizer can turn each step into Lean tactics. If previous feedback is given, fix exactly
+    so that a formalizer can turn each step into Lean tactics. The `sketch` field must contain that whole
+    proof written out, not a remark about which lemmas you use. If previous feedback is given, fix exactly
     what it says.
 
     ## Problem
@@ -157,6 +184,21 @@ prompts:
 
     ## Lean error from the previous attempt
     {lean_error}
+  sketcher: |
+    Write a Lean 4 proof skeleton (Mathlib, tag v4.28.0-rc1) for the theorem below. First work out the
+    mathematical proof. Then split it into small intermediate claims, each one a top-level
+    `have name : statement := by sorry` that is easy to prove on its own: one computation, one inequality,
+    one case, one induction. State general facts with ∀ (e.g. a closed form proved by induction) and derive
+    the specific statement from them. After the `have` steps, close the goal with tactics that use them
+    (`linarith`, `nlinarith [...]`, `omega`, `simp [...]`, `norm_num [...]`, `exact ...`). Keep every `have` at
+    the top level of the proof (not inside `cases` or `induction` branches). Output exactly one ```lean4 code
+    block with the complete theorem (same name and statement), without imports.
+    Informal statement:
+    {informal}
+    Lean statement:
+    {formal}
+    Feedback on your previous skeleton:
+    {feedback}
   fill: |
     Prove each open Lean 4 goal below. Each goal lists its hypotheses and, after `⊢`, its target. For each
     goal output the tactic block that proves it completely: it replaces a `sorry` exactly at that goal. Use

@@ -151,6 +151,15 @@ class Agents:
         out.proof_tactics = strip_code_fences(out.proof_tactics)
         return out, resp
 
+    def sketch(self, problem: Problem, feedback: str, run_id: str, attempt: int) -> tuple[str, LLMResponse]:
+        """Esqueleto de la prueba en Lean (pasos `have … := by sorry`), en TEXTO: con salida JSON y razonamiento el
+        modelo gastaba todo su presupuesto y devolvía vacío (DECISIONS #124). La extracción la hace el grafo."""
+        t0 = time.time()
+        prompt = self.cfg["prompts"]["sketcher"].format(informal=problem.informal_statement, formal=f"{problem.header}\n\n{problem.formal_statement}".strip(), feedback=feedback or "(none)")
+        resp = self.llm.generate(prompt, system=self.cfg["prompts"]["system"], max_tokens=self.cfg.get("sketch_max_tokens"))
+        append_event(TraceEvent(run_id=run_id, problem_id=problem.problem_id, attempt=attempt, agent="sketcher", latency_ms=(time.time() - t0) * 1000, llm_calls=resp.calls, tokens=resp.tokens_in + resp.tokens_out, request={"model": resp.model, "prompt_chars": len(prompt), "prompt_version": str(self.cfg["prompt_version"]), "tokens_in": resp.tokens_in, "tokens_out": resp.tokens_out, "cost_usd": round(resp.cost_usd, 6), "attempts": resp.attempts, "decision": {"sketch": resp.text[-2000:]}}, versions=self._versions_pin()), base_dir=self.trace_dir)
+        return resp.text, resp
+
     def fill(self, problem: Problem, goals_txt: str, run_id: str, attempt: int) -> tuple[FillOutput, object]:
         prompt = self.cfg["prompts"]["fill"].format(formal=problem.formal_statement, goals=goals_txt)
         out, resp = self._call("fill", prompt, FillOutput, run_id, problem.problem_id, attempt)

@@ -1,0 +1,19 @@
+=== 0/3 Lean real: límite de heartbeats en bloques 2026-10-22 03:15 ===
+F                                                                        [100%]
+=================================== FAILURES ===================================
+______________ test_multiline_step_runs_under_the_heartbeat_limit ______________
+
+checker = <ragsolver.lean.verify.LeanChecker object at 0x780d2cb74830>
+
+    def test_multiline_step_runs_under_the_heartbeat_limit(checker):
+        # DECISIONS #128: un bloque de varias líneas va dentro de `·` con `set_option maxHeartbeats N in`
+        goals, errors = checker.goals(PROBLEM.formal_statement, SKELETON, PROBLEM.header)
+>       assert not errors and len(goals) == 3
+E       AssertionError: assert (not [] and 2 == 3)
+E        +  where 2 = len([{'goal': 'a b : ℝ\nha : 0 < a\nhb : 0 < b\n⊢ 0 ≤ (a - b) ^ 2', 'proof_state': 1, 'gen': 1}, {'goal': 'a b : ℝ\nha : 0 < a\nhb : 0 < b\nh1 : 0 ≤ (a - b) ^ 2\n⊢ (a - b) ^ 2 = a ^ 2 - 2 * a * b + b ^ 2', 'proof_state': 2, 'gen': 1}])
+
+tests/test_goal_mode_slow.py:57: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_goal_mode_slow.py::test_multiline_step_runs_under_the_heartbeat_limit
+1 failed, 2 deselected in 94.47s (0:01:34)
+ABORTO: el envoltorio de heartbeats no funciona en Lean

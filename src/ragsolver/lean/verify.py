@@ -311,6 +311,17 @@ def verify(formal_statement: str, proof_tactics: str, name: str, imports: list[s
     return Verdict(ok=ok, errors=errors, uses_sorry=uses_sorry, axioms=axioms, seconds=round(secs, 1), lean_file=str(path), raw=out[-4000:])
 
 
+def limit_heartbeats(tactic: str, heartbeats: int) -> str:
+    """`set_option maxHeartbeats N in` sobre una táctica. Un bloque de varias líneas (el de un paso que escribió
+    el modelo o el demostrador) va dentro de `·`, que enfoca el goal y debe cerrarlo como el bloque en su sitio:
+    sin eso el límite no lo cubría y un bloque lento agotaba el timeout de reloj, reiniciaba el REPL y dejaba
+    "stale" los pasos de todos los hilos (eval-v4, DECISIONS #128)."""
+    body = tactic.strip()
+    if "\n" not in body:
+        return f"set_option maxHeartbeats {int(heartbeats)} in {body}"
+    return f"set_option maxHeartbeats {int(heartbeats)} in\n· " + body.replace("\n", "\n  ")
+
+
 class LeanChecker:
     """REPL persistente: el entorno con los imports se crea una vez y se reutiliza."""
 
@@ -322,6 +333,11 @@ class LeanChecker:
         self._env = None
         self._gen = 0  # sube en cada arranque del REPL: un `proof_state` sólo vale en la generación que lo creó
         self._lock = threading.Lock()  # un solo REPL; ~0.3 s por comprobación, no vale la pena más
+
+    @property
+    def gen(self) -> int:
+        """Generación del REPL vivo (-1 si cayó): un `proof_state` de otra generación ya no vale."""
+        return self._gen if self._server is not None else -1
 
     def _start(self) -> None:
         from lean_interact import Command, LeanREPLConfig, LeanServer
@@ -403,11 +419,11 @@ class LeanChecker:
         forbidden = find_forbidden_tactic(tactic)
         if forbidden:
             return False, f"forbidden token in proof: {forbidden}", []
-        if heartbeats and "\n" not in tactic.strip():
+        if heartbeats:
             # el límite lo pone el sistema DESPUÉS del validador (que prohíbe `set_option` al LLM): Lean
             # corta por heartbeats antes que el timeout de reloj, que reinicia el REPL (~5 min) e invalida
             # los `proof_state` de los demás hilos
-            tactic = f"set_option maxHeartbeats {int(heartbeats)} in {tactic.strip()}"
+            tactic = limit_heartbeats(tactic, heartbeats)
         with self._lock:
             if gen is not None and (gen != self._gen or self._server is None):
                 # el REPL se reinició (timeout de otra táctica): ese número de estado ya no existe o, peor,

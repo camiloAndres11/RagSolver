@@ -1,9 +1,9 @@
-# Mejoras de RagSolver — qué cambiamos y cómo (14-15 de octubre de 2026)
+# Mejoras de RagSolver — qué cambiamos y cómo (14-22 de octubre de 2026)
 
 Resumen de todo lo que se hizo para que el sistema resolviera más problemas. El detalle está en:
 - `DECISIONS.md`, entradas #89 a #115 (cada decisión con su evidencia);
 - los planes `PLAN_MEJORA_RAG.md` y `PLAN_REDISENO_PROVER.md`;
-- los reportes `eval_report_v2.md` y `eval_report_v3.md`.
+- los reportes `eval_report_v2.md`, `eval_report_v3.md` y `eval_report_v4.md` (§9).
 
 ---
 
@@ -137,9 +137,34 @@ El sistema original buscaba lemas de Mathlib **con frases en lenguaje natural** 
 
 ---
 
-## 9. Qué sigue (propuesto, no hecho)
+## 9. Lo que se probó después (eval-v4, 18-22 de octubre; `eval_report_v4.md`, DECISIONS #116-#129)
 
-1. Darle al demostrador 32 intentos en vez de 8 en los 9 problemas que no resolvió. Es gratis (sólo GPU) y probablemente lo que más suba el resultado.
-2. Que el RAG y los agentes influyan de verdad: pasarle al demostrador el plan del Planificador y los lemas recuperados **dentro de su propio prompt** (estilo Draft-Sketch-Prove), y medirlo contra `baseline_prover`.
-3. Probar con problemas fuera de miniF2F, para descartar contaminación.
-4. Apagar el respaldo por API, que en eval-v3 costó y no resolvió nada.
+Las cuatro propuestas que estaban aquí se hicieron:
+1. **El respaldo por API está apagado.**
+2. **Fuera de miniF2F:** el demostrador solo resuelve **21 de 32** problemas del PDF (66 %; 70 % en miniF2F). No había contaminación.
+3. **32 intentos en vez de 8:** 0 de 6 en los difíciles. Más intentos no ayudan.
+4. **El plan y los lemas dentro del prompt del demostrador (DSP):** 0 de 7 en los difíciles; 1 más en el PDF (`pdf_p33`, falta su control).
+
+Además:
+- **2 de los 9 difíciles son falsos** tal como están en miniF2F; se demostró en Lean que su negación es cierta.
+- **Dos ideas nuevas resolvieron `amc12b_2002_p3`**, el primer problema que el sistema resuelve y el demostrador solo no:
+  - **SKETCH:** el modelo con razonamiento escribe el esqueleto de la prueba en Lean y el demostrador cierra cada paso;
+  - **RAG de pruebas:** se recuperan pruebas verificadas de problemas parecidos (Lean Workbook) y se le dan como ejemplo, gratis.
+- **SKETCH funcionó a medias por dos fallos del sistema,** ya corregidos (#128):
+  - el modelo se quedaba sin tokens antes de escribir el Lean;
+  - un paso lento reiniciaba Lean y dejaba sin probar los pasos de los otros hilos.
+
+  `eval-v4b` lo repite con los arreglos.
+- **Hugging Face:**
+  - código, docs, notebook, LICENSE y CITATION en <https://huggingface.co/CamiloS1111/ragsolver>;
+  - índices, corridas y caché en <https://huggingface.co/datasets/CamiloS1111/ragsolver-index>.
+
+  La demo de Gradio corre en local, porque el Space ahora cobra (PRO).
+
+Gasto de API de eval-v4: **US$0.145**.
+
+## 10. Qué sigue (propuesto, no hecho)
+
+1. Una sola configuración que encadene etapa 0 → RAG de pruebas → SKETCH.
+2. Partir en subpasos los pasos del esqueleto que quedan abiertos (descomposición recursiva).
+3. Bajar a 0.85 el umbral que excluye "el mismo problema" en el RAG de pruebas: en el PDF hubo vecinos de 0.90.

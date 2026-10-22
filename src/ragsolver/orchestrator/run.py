@@ -19,6 +19,7 @@ from ragsolver.lean.verify import LeanChecker, build_file, verify
 from ragsolver.llm import LLM, DailyQuotaExhausted
 from ragsolver.logging.jsonl_writer import trace_path
 from ragsolver.orchestrator.graph import Orchestrator, close_goal
+from ragsolver.prover import ProverUnavailable, local_prover
 from ragsolver.rag.embed import embed_queries
 from ragsolver.rag.retrieve import Retriever
 
@@ -67,8 +68,19 @@ def effective_config(base: dict, name: str) -> dict:
         "close": dict(base.get("close") or {}),
         "prover": dict(base.get("prover") or {}),
     }
-    cfg.update(over)
+    for k, v in over.items():  # un dict (p.ej. `prover: {k_root: 32}`) se fusiona con el de base, no lo reemplaza
+        cfg[k] = {**cfg[k], **v} if isinstance(v, dict) and isinstance(cfg.get(k), dict) else v
     return cfg
+
+
+def drafter_agents(base: dict, trace_dir: str) -> Agents | None:
+    """Agentes con el LLM de `llm_draft` (mismo modelo, CON razonamiento) para el borrador de DRAFT; None si
+    la sección no existe en `configs/versions.yaml` (DRAFT usa entonces los agentes normales)."""
+    import yaml
+
+    if "llm_draft" not in (yaml.safe_load(open("configs/versions.yaml", encoding="utf-8")) or {}):
+        return None
+    return Agents(LLM(section="llm_draft"), base, trace_dir=trace_dir)
 
 
 def run_auto(problem: Problem, cfg: dict, checker: LeanChecker | None, agents: Agents | None = None, run_id: str = "") -> SolutionReport:
@@ -116,7 +128,7 @@ def run_prover_only(problem: Problem, cfg: dict, checker: LeanChecker | None, pr
         if rep.verdict.ok:
             rep.status, rep.error_types, rep.solved_by = "done", [], "prover_root"
     if agents is not None:
-        agents.trace("prover", run_id, problem.problem_id, 1, (time.time() - t0) * 1000, {"stage": "baseline_prover", "solved": bool(tac), **{k: v for k, v in log.items() if k != "suggested"}})
+        agents.trace("prover", run_id, problem.problem_id, 1, (time.time() - t0) * 1000, {"stage": "baseline_prover", "solved": bool(tac), **{k: v for k, v in log.items() if k not in ("suggested", "candidates")}})
     rep.wall_seconds = round(time.time() - t0, 1)
     return rep
 
@@ -173,17 +185,12 @@ def run_suite(problems: list[Problem], config_names: list[str], out_dir: str | P
     retriever = Retriever(db_path=db_path)
     retriever.trace_dir = str(out / "traces")
     checker = LeanChecker(imports=base["lean"]["imports"], timeout_s=base["lean"]["timeout_s"]) if base["lean"].get("backend", "repl") == "repl" else None
-    prover = None
-    if (base.get("prover") or {}).get("enabled"):
-        from ragsolver.prover import LocalProver
-
-        p = LocalProver(max_tokens=base["prover"].get("max_tokens", 12000), temperature=base["prover"].get("temperature", 0.8))
-        if p.alive():
-            prover = p
-            print(f"[prover] demostrador local en {p.url}", flush=True)
-        else:
-            print(f"[prover] AVISO: {p.url} no responde; se corre sin demostrador local", flush=True)
-    orchestrator = Orchestrator(agents, retriever, checker, prover)
+    prover = local_prover(base.get("prover") or {})
+    needs = [n for n in config_names if (c := effective_config(base, n))["mode"] == "baseline_prover" or any(c["prover"].get(x) for x in ("dsp", "repair", "examples"))]
+    if needs and prover is None:  # sin demostrador estas configuraciones degradarían en silencio (fallos falsos o el bucle por API)
+        raise SystemExit(f"[prover] {needs} necesitan el demostrador local y no responde: `bash scripts/prover_server.sh start`")
+    drafter = drafter_agents(base, str(out / "traces"))
+    orchestrator = Orchestrator(agents, retriever, checker, prover, drafter)
     if checker is not None:  # arranca el REPL (`import Mathlib`, minutos) fuera del reloj de los problemas
         checker.check("theorem _warmup : True := by sorry", "trivial")
     if getattr(retriever, "versions", None):  # carga el embedder antes de los hilos (los fakes de los tests no lo tienen)
@@ -231,13 +238,20 @@ def run_suite(problems: list[Problem], config_names: list[str], out_dir: str | P
             print(f"[stop] cuota diaria agotada en todos los modelos ({e}); reanudar mañana con --run-id {run_id}", flush=True)
             for fu in futures:
                 fu.cancel()
+        except ProverUnavailable as e:
+            status = "prover_down"
+            print(f"[stop] el demostrador local dejó de responder ({e}); `bash scripts/prover_server.sh start` y reanudar con --run-id {run_id}", flush=True)
+            for fu in futures:
+                fu.cancel()
     if checker is not None:
         checker.close()
-    print(f"[cost] {llm.calls} llamadas, {llm.tokens_in} tokens de entrada, {llm.tokens_out} de salida, US${getattr(llm, 'cost_usd', 0.0):.4f} (OpenRouter usage.cost)", flush=True)
+    llms = [llm] + ([drafter.llm] if drafter is not None else [])
+    calls, cost = sum(x.calls for x in llms), sum(getattr(x, "cost_usd", 0.0) for x in llms)
+    print(f"[cost] {calls} llamadas, {sum(x.tokens_in for x in llms)} tokens de entrada, {sum(x.tokens_out for x in llms)} de salida, US${cost:.4f} (OpenRouter usage.cost)", flush=True)
     summary = summarize(results)
     (out / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8")
     pending = [(n, p.problem_id) for n in config_names for p in problems if (n, p.problem_id) not in {(r.config, r.problem_id) for r in results}]
-    return {"run_id": run_id, "out": str(out), "status": status, "n_done": len(results), "n_pending": len(pending), "summary": summary, "llm_calls_total": llm.calls, "cost_usd_total": round(getattr(llm, "cost_usd", 0.0), 4), "models_exhausted": llm.exhausted}
+    return {"run_id": run_id, "out": str(out), "status": status, "n_done": len(results), "n_pending": len(pending), "summary": summary, "llm_calls_total": calls, "cost_usd_total": round(cost, 4), "models_exhausted": llm.exhausted}
 
 
 def summarize(results: list[SolutionReport]) -> dict:

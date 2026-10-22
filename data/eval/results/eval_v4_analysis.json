@@ -1,0 +1,278 @@
+{
+ "hard7": {
+  "baseline_prover16": {
+   "k": 0,
+   "n": 7,
+   "wilson95": [
+    0.0,
+    0.354
+   ],
+   "solved": [],
+   "solved_by": {},
+   "vs_control": {
+    "solo_config": 0,
+    "solo_control": 0,
+    "p_mcnemar": 1.0
+   },
+   "cost_usd": 0,
+   "llm_calls": 0,
+   "wall_h": 0.74
+  },
+  "baseline_prover32": {
+   "k": 0,
+   "n": 4,
+   "wilson95": [
+    0.0,
+    0.49
+   ],
+   "solved": [],
+   "solved_by": {},
+   "vs_control": {
+    "solo_config": 0,
+    "solo_control": 0,
+    "p_mcnemar": 1.0
+   },
+   "cost_usd": 0,
+   "llm_calls": 0,
+   "wall_h": 4.37
+  },
+  "dsp": {
+   "k": 0,
+   "n": 7,
+   "wilson95": [
+    0.0,
+    0.354
+   ],
+   "solved": [],
+   "solved_by": {},
+   "vs_control": {
+    "solo_config": 0,
+    "solo_control": 0,
+    "p_mcnemar": 1.0
+   },
+   "cost_usd": 0.0165,
+   "llm_calls": 15,
+   "wall_h": 3.23
+  },
+  "repair": {
+   "k": 0,
+   "n": 2,
+   "wilson95": [
+    0.0,
+    0.658
+   ],
+   "solved": [],
+   "solved_by": {},
+   "vs_control": {
+    "solo_config": 0,
+    "solo_control": 0,
+    "p_mcnemar": 1.0
+   },
+   "cost_usd": 0,
+   "llm_calls": 0,
+   "wall_h": 0.84
+  },
+  "sketch (v4)": {
+   "k": 1,
+   "n": 7,
+   "wilson95": [
+    0.026,
+    0.513
+   ],
+   "solved": [
+    "amc12b_2002_p3"
+   ],
+   "solved_by": {
+    "prover_sketch": 1
+   },
+   "vs_control": {
+    "solo_config": 1,
+    "solo_control": 0,
+    "p_mcnemar": 1.0
+   },
+   "cost_usd": 0.0379,
+   "llm_calls": 14,
+   "wall_h": 4.81
+  },
+  "rag_proofs": {
+   "k": 1,
+   "n": 7,
+   "wilson95": [
+    0.026,
+    0.513
+   ],
+   "solved": [
+    "amc12b_2002_p3"
+   ],
+   "solved_by": {
+    "prover_examples": 1
+   },
+   "vs_control": {
+    "solo_config": 1,
+    "solo_control": 0,
+    "p_mcnemar": 1.0
+   },
+   "cost_usd": 0,
+   "llm_calls": 0,
+   "wall_h": 3.13
+  }
+ },
+ "pdf_set": {
+  "baseline_prover": {
+   "k": 21,
+   "n": 32,
+   "wilson95": [
+    0.483,
+    0.796
+   ],
+   "solved": [
+    "pdf_p100",
+    "pdf_p15",
+    "pdf_p18",
+    "pdf_p19",
+    "pdf_p2",
+    "pdf_p21",
+    "pdf_p23",
+    "pdf_p30",
+    "pdf_p32",
+    "pdf_p34",
+    "pdf_p47",
+    "pdf_p50",
+    "pdf_p58",
+    "pdf_p60",
+    "pdf_p66",
+    "pdf_p74",
+    "pdf_p76",
+    "pdf_p78",
+    "pdf_p86",
+    "pdf_p94",
+    "pdf_p96"
+   ],
+   "solved_by": {
+    "prover_root": 21
+   },
+   "vs_control": {
+    "solo_config": 0,
+    "solo_control": 0,
+    "p_mcnemar": 1.0
+   },
+   "cost_usd": 0,
+   "llm_calls": 0,
+   "wall_h": 7.58
+  },
+  "dsp8": {
+   "k": 10,
+   "n": 14,
+   "wilson95": [
+    0.454,
+    0.883
+   ],
+   "solved": [
+    "pdf_p15",
+    "pdf_p18",
+    "pdf_p19",
+    "pdf_p2",
+    "pdf_p21",
+    "pdf_p23",
+    "pdf_p30",
+    "pdf_p32",
+    "pdf_p33",
+    "pdf_p34"
+   ],
+   "solved_by": {
+    "prover_root": 9,
+    "prover_draft": 1
+   },
+   "vs_control": {
+    "solo_config": 1,
+    "solo_control": 0,
+    "p_mcnemar": 1.0
+   },
+   "cost_usd": 0.0202,
+   "llm_calls": 10,
+   "wall_h": 0.8
+  },
+  "rag_proofs": {
+   "k": 20,
+   "n": 32,
+   "wilson95": [
+    0.453,
+    0.771
+   ],
+   "solved": [
+    "pdf_p100",
+    "pdf_p15",
+    "pdf_p18",
+    "pdf_p19",
+    "pdf_p2",
+    "pdf_p21",
+    "pdf_p23",
+    "pdf_p30",
+    "pdf_p32",
+    "pdf_p34",
+    "pdf_p47",
+    "pdf_p50",
+    "pdf_p60",
+    "pdf_p66",
+    "pdf_p74",
+    "pdf_p76",
+    "pdf_p78",
+    "pdf_p86",
+    "pdf_p94",
+    "pdf_p96"
+   ],
+   "solved_by": {
+    "prover_root": 20
+   },
+   "vs_control": {
+    "solo_config": 0,
+    "solo_control": 1,
+    "p_mcnemar": 1.0
+   },
+   "cost_usd": 0,
+   "llm_calls": 0,
+   "wall_h": 4.78
+  },
+  "sketch (v4)": {
+   "k": 20,
+   "n": 32,
+   "wilson95": [
+    0.453,
+    0.771
+   ],
+   "solved": [
+    "pdf_p100",
+    "pdf_p15",
+    "pdf_p18",
+    "pdf_p19",
+    "pdf_p2",
+    "pdf_p21",
+    "pdf_p23",
+    "pdf_p30",
+    "pdf_p32",
+    "pdf_p34",
+    "pdf_p47",
+    "pdf_p50",
+    "pdf_p60",
+    "pdf_p66",
+    "pdf_p74",
+    "pdf_p76",
+    "pdf_p78",
+    "pdf_p86",
+    "pdf_p94",
+    "pdf_p96"
+   ],
+   "solved_by": {
+    "prover_root": 20
+   },
+   "vs_control": {
+    "solo_config": 0,
+    "solo_control": 1,
+    "p_mcnemar": 1.0
+   },
+   "cost_usd": 0.0657,
+   "llm_calls": 24,
+   "wall_h": 4.58
+  }
+ }
+}

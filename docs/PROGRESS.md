@@ -115,7 +115,7 @@ Resultados clave (tabla de muestra de Mathlib con 3 903 filas; 13 problemas dev 
 
 - Documentación: `docs/architecture.md` (arquitectura implementada, flujo por problema, citación), `docs/install.md`, `docs/interfaces.md` (+ JSON Schema de los 8 contratos de agentes en `docs/interfaces/`), `docs/reproduce.md` (comandos y tiempos medidos).
 - Demo Gradio `demo/app.py`: pestaña "Buscar" (hits con citas, firma Lean, `docs_url`, recortes y descripciones de figura) y "Resolver" (pipeline completo o líneas base, con presupuesto). Gradio ya estaba instalado (vía MinerU); no se lanzó en esta sesión por memoria.
-- Publicación en HF Hub: `scripts/publish_hf.py` (dataset card, índice Mathlib, corpus normalizado, evaluación; **excluye** el PDF, sus recortes y su texto por `redistributable=false`). **Pendiente del usuario**: `HF_TOKEN` y nombre del repo (`--dry-run` verificado).
+- Publicación en HF Hub: `scripts/publish_hf.py` (dataset card, índice Mathlib, corpus normalizado, evaluación; **excluye** el PDF, sus recortes y su texto por `redistributable=false`). ✅ Publicado el 2026-10-22 (DECISIONS #129).
 - Notebook `notebooks/01_results.ipynb`: tablas de todas las evaluaciones + McNemar exacto entre configuraciones.
 
 ### Cumplimiento de la propuesta (mapeo 2026-09-20, tarde)
@@ -127,10 +127,10 @@ Resultados clave (tabla de muestra de Mathlib con 3 903 filas; 13 problemas dev 
 | RNF-2 — semilla fijada | ✅ `seed: 13` en `versions.yaml`, pasado a Gemini/OpenAI; verificado con llamada real |
 | §8.3 — llamadas de recuperación, pass por intento | ✅ `retrieval_calls`, `pass_by_attempt` en `summary.json` |
 | §8.4 — bootstrap para costo/latencia | ✅ `*_ci95_bootstrap` en `summary.json` |
-| §10.2 — CITATION.cff, CI | ✅ `CITATION.cff`, `.github/workflows/ci.yml`. **LICENSE: decisión del usuario** (sugerido Apache-2.0) |
+| §10.2 — CITATION.cff, CI, LICENSE | ✅ `CITATION.cff` (autores: Camilo Andres Niño Amaya, Jose L. Salamanca), `.github/workflows/ci.yml`, `LICENSE` Apache-2.0 (2026-10-21) |
 | §10.3 — guía de usuario, diagrama de secuencia | ✅ `docs/user_guide.md`, `docs/architecture.md` §3 |
 | §10.1 — informe final en inglés (IMRaD) | ✅ borrador `docs/final_report.md` con resultados actuales y 24 referencias; §6.3 se completa con `eval_v1` |
-| Obj. 7 — HF Hub + Space | script listo; requiere `HF_TOKEN` |
+| Obj. 7 — HF Hub + Space | ✅ publicado (2026-10-22): código en huggingface.co/CamiloS1111/ragsolver (repositorio de modelo: el Space de Gradio pide PRO, DECISIONS #129), datos en huggingface.co/datasets/CamiloS1111/ragsolver-index; demo en local |
 | RF-1 — subobjetivos verificables independientemente | parcial: se verifican dentro de una sola prueba (`have`), no como lemas aislados |
 | §6.3 — self-consistency del Generador | ✅ `generator_samples` (apagado por defecto; cuenta en el presupuesto) |
 | Corrida principal reanudable | ✅ `scripts/run_eval_v1.sh` (salta lo hecho; corta limpio si se agota la cuota) |
@@ -145,9 +145,9 @@ La tarjeta real es una **RX 9060 XT (gfx1200)**, no la 9070 XT asumida. `rocminf
 
 ### Bloqueado / decisiones pendientes del usuario (2026-09-23)
 
-1. **LICENSE** del repositorio (sugerido Apache-2.0, compatible con Mathlib, miniF2F-v2 y Qwen3).
-2. **Commit en git**: nada commiteado todavía (todo está sin seguimiento en la rama `rag`).
-3. **Publicación en Hugging Face** (entregable 2 de la propuesta): `HF_TOKEN` con permiso de escritura y nombres de repo; los scripts `publish_hf.py` (dataset: índice muestra + completo con ANN, evaluación, corridas) y `publish_space.py` (demo de búsqueda) ya funcionan en `--dry-run`.
+1. ~~**LICENSE**~~ ✅ Apache-2.0 (2026-10-21).
+2. ~~**Commit en git**~~ ✅ rama `rag`.
+3. ✅ (2026-10-22, DECISIONS #129) **Publicación en Hugging Face** (entregable 2 de la propuesta): `HF_TOKEN` con permiso de escritura y nombres de repo; los scripts `publish_hf.py` (dataset: índice muestra + completo con ANN, evaluación, corridas) y `publish_space.py` (demo de búsqueda) ya funcionan en `--dry-run`.
 4. **`eval-v1-full`** (repetición de `full`/`no_critic` con el índice completo): ≈ US$0.30; la key tiene US$0.42 libres de su tope de US$2.00. Se lanza con `setsid nohup bash scripts/run_chain.sh > data/eval/results/chain.log 2>&1 < /dev/null &` (salta `eval_v1`, que ya está completo).
 5. Opcionales: gold manual de OCR (10 páginas) para la métrica de exactitud de fórmulas; experimento adicional con un modelo local en la GPU (US$0, ~5 h; ver conversación del 22-09); PDF del informe final si el curso lo pide en ese formato.
 

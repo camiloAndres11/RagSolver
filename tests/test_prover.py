@@ -135,7 +135,214 @@ def test_disk_cache_reuses_identical_samples(tmp_path, monkeypatch):
     assert p2.sample(msgs, 3)[2] and calls["n"] == 3  # sólo la semilla nueva va al servidor
 
 
+class DraftLLM:
+    """Planificador + Generador para DRAFT; cualquier otro agente es un error (no hay respaldo por API)."""
+
+    exhausted, models, tokens_in, tokens_out = [], ["fake"], 0, 0
+
+    def __init__(self):
+        self.prompts = []
+
+    def generate(self, prompt, schema=None, images=(), system=None, max_tokens=None):
+        self.prompts.append(prompt)
+        if "Decompose the problem" in prompt:
+            out = {"strategy": "STRATEGY-AM-GM", "subgoals": [{"subgoal_id": "s1", "statement_nl": "STEP-ONE x is positive"}]}
+        elif "proof sketch in natural language" in prompt:
+            out = {"sketch": "SKETCH-TEXT add one to both sides", "used_citations": []}
+        else:
+            raise AssertionError(f"llamada a la API fuera de DRAFT: {prompt[:80]}")
+        return LLMResponse(json.dumps(out), "fake", 10, 5)
+
+
+class GoalChecker(FakeChecker):
+    def goals(self, stmt, skeleton, header="", hb=400000):
+        return [{"goal": "x : ℝ\nh : 0 < x\n⊢ x ≤ x + 1", "proof_state": 0}], []
+
+
+def test_api_fallback_off_ends_after_stage0_without_api_calls(tmp_path):
+    cfg = effective_config(load_agents_config(), "full")
+    assert cfg["prover"]["api_fallback"] is False and not cfg["prover"]["dsp"]
+    orch = G.Orchestrator(Agents(NoLLM(), load_agents_config(), trace_dir=str(tmp_path)), FakeRetriever(), FakeChecker(), FakeProver(["x"] * 12))
+    rep = orch.solve(PROBLEM, cfg, "run:p1")
+    assert rep.status == "fail" and rep.llm_calls == 0 and any("api_fallback" in e for e in rep.error_types)
+
+
+def test_draft_puts_plan_sketch_and_rag_lemmas_in_the_prover_prompt(tmp_path, monkeypatch):
+    monkeypatch.setattr(G.P, "prior_channel", lambda goal, k=32: ["le_add_of_nonneg_right"])
+    monkeypatch.setattr(G.P, "load_prior", lambda: ({"decl_name": "le_add_of_nonneg_right", "type": "0 ≤ b → a ≤ a + b"},))
+    base = load_agents_config()
+    cfg = effective_config(base, "dsp")
+    llm = DraftLLM()
+    # etapa 0: 8 muestras + 2 correcciones fallan; DRAFT: la primera muestra con el borrador verifica
+    pr = FakeProver([_answer("nlinarith")] * 10 + [_answer("linarith")])
+    orch = G.Orchestrator(Agents(llm, base, trace_dir=str(tmp_path)), FakeRetriever(), GoalChecker(), pr)
+    rep = orch.solve(PROBLEM, cfg, "run:p1")
+    assert rep.status == "done" and rep.solved_by == "prover_draft" and rep.llm_calls == 2
+    draft_prompt = pr.requests[-1][0][-1]["content"]
+    assert "STRATEGY-AM-GM" in draft_prompt and "STEP-ONE" in draft_prompt and "SKETCH-TEXT" in draft_prompt
+    assert "le_add_of_nonneg_right : 0 ≤ b → a ≤ a + b" in draft_prompt
+    assert "le_add_of_nonneg_right" in {c.locator.get("decl_name") for c in rep.citations}  # el lema mostrado queda citado
+    assert "SKETCH-TEXT" not in pr.requests[0][0][-1]["content"]  # la etapa 0 no lleva borrador
+
+
+class RepairChecker(FakeChecker):
+    """Las pruebas del demostrador tienen un paso malo (`BAD`): el resto elabora y cierra."""
+
+    def __init__(self):
+        super().__init__()
+        self.steps = []
+
+    def check(self, stmt, tactics, header="", hb=400000):
+        ok = "BAD" not in tactics and "sorry" not in tactics
+        return Verdict(ok=ok, errors=[] if ok else [{"line": 3, "col": 2, "message": "nlinarith failed"}])
+
+    def goals(self, stmt, skeleton, header="", hb=400000):
+        return [{"goal": "x : ℝ\nh : 0 < x\n⊢ 0 ≤ 1", "proof_state": 0}, {"goal": "x : ℝ\nh : 0 < x\nh1 : 0 ≤ 1\n⊢ x ≤ x + 1", "proof_state": 1}], []
+
+    def step(self, proof_state, tactic, timeout=60, heartbeats=None, gen=None):
+        self.steps.append(tactic)
+        return "BAD" not in tactic, "" if "BAD" not in tactic else "nlinarith failed", []
+
+
+def test_repair_closes_the_bad_step_of_a_failed_prover_proof_with_zero_api(tmp_path, monkeypatch):
+    monkeypatch.setattr(G.P, "prior_channel", lambda goal, k=32: ["le_add_of_nonneg_right"])
+    monkeypatch.setattr(G.P, "load_prior", lambda: ({"decl_name": "le_add_of_nonneg_right", "type": "0 ≤ b → a ≤ a + b"},))
+    base = load_agents_config()
+    cfg = effective_config(base, "repair")
+    assert cfg["prover"]["repair"] and not cfg["prover"]["api_fallback"]
+    ck = RepairChecker()
+    near_miss = _answer("have h1 : (0 : ℝ) ≤ 1 := by\n  BAD\nlinarith")
+    orch = G.Orchestrator(Agents(NoLLM(), base, trace_dir=str(tmp_path)), FakeRetriever(), ck, FakeProver([near_miss] * 10))
+    rep = orch.solve(PROBLEM, cfg, "run:p1")
+    assert rep.status == "done" and rep.solved_by == "prover_repair" and rep.llm_calls == 0
+    assert "BAD" not in rep.lean_code and "linarith" in rep.lean_code  # el paso del demostrador que sí servía se conserva
+    assert ck.steps[0] == "BAD"  # primero su propio bloque; la batería cierra el paso que fallaba
+
+
+class SketchLLM:
+    """El esqueleto en Lean: un paso `have` con sorry y el cierre; la primera ronda no trae bloque de código."""
+
+    exhausted, models, tokens_in, tokens_out = [], ["fake"], 0, 0
+
+    def __init__(self):
+        self.prompts = []
+
+    def generate(self, prompt, schema=None, images=(), system=None, max_tokens=None):
+        assert schema is None and "Lean 4 proof skeleton" in prompt  # texto, no JSON (DECISIONS #124)
+        self.prompts.append(prompt)
+        text = "I could not decide." if len(self.prompts) == 1 else _answer("have h1 : (0 : ℝ) ≤ 1 := by sorry\nlinarith")
+        return LLMResponse(text, "fake", 10, 5)
+
+
+def test_sketch_skeleton_steps_are_closed_by_automation_and_the_prover(tmp_path, monkeypatch):
+    monkeypatch.setattr(G.P, "prior_channel", lambda goal, k=32: ["le_add_of_nonneg_right"])
+    monkeypatch.setattr(G.P, "load_prior", lambda: ({"decl_name": "le_add_of_nonneg_right", "type": "0 ≤ b → a ≤ a + b"},))
+    base = load_agents_config()
+    cfg = effective_config(base, "sketch")
+    llm = SketchLLM()
+    orch = G.Orchestrator(Agents(NoLLM(), base, trace_dir=str(tmp_path)), FakeRetriever(), RepairChecker(), FakeProver(["x"] * 12), Agents(llm, base, trace_dir=str(tmp_path)))
+    rep = orch.solve(PROBLEM, cfg, "run:p1")
+    assert rep.status == "done" and rep.solved_by == "prover_sketch" and rep.llm_calls == 2
+    assert "theorem p1" in llm.prompts[1] and "had no ```lean4 block" in llm.prompts[1]  # la ronda 2 recibe el motivo
+    assert "sorry" not in rep.lean_code.split(":= by", 1)[1] and "linarith" in rep.lean_code
+
+
+def test_proof_corpus_parsing_strips_comments_and_keeps_statement():
+    from ragsolver.rag.proofs import norm_statement, parse
+
+    raw = "import Mathlib\nopen Real\n\n/- prove that $x \\le x + 1$ -/\ntheorem lean_workbook_1 (x : ℝ) : x ≤ x + 1 := by\n  /- informal\n  explanation -/\n  -- a comment\n  nlinarith [sq_nonneg x]\n"
+    p = parse(raw)
+    assert p == {"informal": "prove that $x \\le x + 1$", "statement": "theorem lean_workbook_1 (x : ℝ) : x ≤ x + 1", "proof": "nlinarith [sq_nonneg x]"}
+    assert norm_statement(p["statement"]) == norm_statement("theorem other  (x : ℝ) :  x ≤ x + 1 := by sorry")
+    assert parse("no theorem here") is None
+
+
+def test_rag_proofs_tries_retrieved_proofs_then_puts_them_in_the_prover_prompt(tmp_path, monkeypatch):
+    base = load_agents_config()
+    cfg = effective_config(base, "rag_proofs")
+    hit = {"problem_id": "lean_workbook_7", "statement": "theorem lean_workbook_7 (y : ℝ) : y ≤ y + 2", "proof": "nlinarith [sq_nonneg y]", "sim": 0.81}
+    monkeypatch.setattr(G, "similar_proofs", lambda text, k=3, max_sim=0.95: [hit])
+    ck = FakeChecker()
+    pr = FakeProver(["x"] * 8 + [_answer("linarith")] + ["x"] * 7)
+    rep = G.Orchestrator(Agents(NoLLM(), base, trace_dir=str(tmp_path)), FakeRetriever(), ck, pr).solve(PROBLEM, cfg, "run:p1")
+    assert rep.status == "done" and rep.solved_by == "prover_examples" and rep.llm_calls == 0
+    assert "nlinarith [sq_nonneg y]" in ck.checked  # primero la prueba recuperada tal cual (no cierra: otro enunciado)
+    prompt = pr.requests[-1][0][-1]["content"]
+    assert "theorem lean_workbook_7 (y : ℝ) : y ≤ y + 2 := by\n  nlinarith [sq_nonneg y]" in prompt
+    assert "lean_workbook_7" not in pr.requests[0][0][-1]["content"]  # la etapa 0 no lleva ejemplos (comparte caché)
+    # la prueba recuperada que cierra el enunciado tal cual resuelve sin GPU
+    monkeypatch.setattr(G, "similar_proofs", lambda text, k=3, max_sim=0.95: [{**hit, "proof": "linarith"}])
+    pr2 = FakeProver(["x"] * 8)
+    rep2 = G.Orchestrator(Agents(NoLLM(), base, trace_dir=str(tmp_path)), FakeRetriever(), FakeChecker(), pr2).solve(PROBLEM, cfg, "run:p1")
+    assert rep2.solved_by == "prover_examples" and len(pr2.requests) == 2  # sólo los 2 lotes de la etapa 0
+
+
+class StaleChecker(RepairChecker):
+    """El primer `step` reinicia el REPL (timeout de otro hilo): los proof_state de antes dejan de valer."""
+
+    def __init__(self):
+        super().__init__()
+        self.gen, self.n_goals = 1, 0
+
+    def goals(self, stmt, skeleton, header="", hb=400000):
+        self.n_goals += 1
+        gs, errs = super().goals(stmt, skeleton, header, hb)
+        return [{**g, "gen": self.gen} for g in gs], errs
+
+    def step(self, proof_state, tactic, timeout=60, heartbeats=None, gen=None):
+        self.gen = 2
+        if gen != self.gen:
+            return False, "stale proof state (lean repl restarted)", []
+        return super().step(proof_state, tactic, timeout, heartbeats, gen)
+
+
+def test_close_reelaborates_the_skeleton_when_the_repl_restarts_instead_of_leaving_steps_unproved(tmp_path, monkeypatch):
+    # eval-v4: tras un reinicio del REPL, todos los pasos siguientes quedaban "stale" sin probarse
+    monkeypatch.setattr(G.P, "prior_channel", lambda goal, k=32: ["le_add_of_nonneg_right"])
+    monkeypatch.setattr(G.P, "load_prior", lambda: ({"decl_name": "le_add_of_nonneg_right", "type": "0 ≤ b → a ≤ a + b"},))
+    base = load_agents_config()
+    ck = StaleChecker()
+    near_miss = _answer("have h1 : (0 : ℝ) ≤ 1 := by\n  BAD\nlinarith")
+    rep = G.Orchestrator(Agents(NoLLM(), base, trace_dir=str(tmp_path)), FakeRetriever(), ck, FakeProver([near_miss] * 10)).solve(PROBLEM, effective_config(base, "repair"), "run:p1")
+    assert rep.status == "done" and rep.solved_by == "prover_repair" and ck.n_goals == 2  # esqueleto elaborado otra vez
+
+
+def test_heartbeat_limit_covers_multiline_blocks():
+    from ragsolver.lean.verify import limit_heartbeats
+
+    assert limit_heartbeats(" linarith ", 5) == "set_option maxHeartbeats 5 in linarith"
+    assert limit_heartbeats("rename_i x\nnlinarith [sq_nonneg x]\n  <;> simp", 5) == "set_option maxHeartbeats 5 in\n· rename_i x\n  nlinarith [sq_nonneg x]\n    <;> simp"
+
+
+def test_nested_config_overrides_merge_with_base():
+    base = load_agents_config()
+    p32 = effective_config(base, "baseline_prover32")["prover"]
+    assert p32["k_root"] == 32 and p32["max_tokens"] == base["prover"]["max_tokens"] and p32["enabled"]
+    assert effective_config(base, "dsp")["prover"]["dsp"] is True and effective_config(base, "dsp")["prover"]["k_draft"] == base["prover"]["k_draft"]
+
+
 def test_batches_stop_early_once_solved():
     pr = FakeProver([_answer("linarith")] + ["x"] * 3 + ["y"] * 4)
     tac, log = prove(pr, FakeChecker(), PROBLEM.formal_statement, PROBLEM.header, "p1", k=8, correction_rounds=0, batch=4)
     assert tac == "linarith" and len(pr.requests) == 1 and log["samples"] == 4
+
+
+def test_dead_server_stops_the_run_instead_of_recording_false_failures(tmp_path, monkeypatch):
+    import httpx
+    import pytest
+
+    from ragsolver.prover import LocalProver, ProverUnavailable
+
+    p = LocalProver(url="http://x", cache_path=None)
+    monkeypatch.setattr(p.client, "post", lambda url, json: (_ for _ in ()).throw(httpx.ConnectError("refused")))
+    monkeypatch.setattr(p, "alive", lambda: False)
+    with pytest.raises(ProverUnavailable):
+        p.sample([{"role": "user", "content": "q"}], 2)
+
+    class DeadProver:
+        def sample(self, messages, k, seed0=13):
+            raise ProverUnavailable("caído")
+
+    orch = G.Orchestrator(Agents(NoLLM(), load_agents_config(), trace_dir=str(tmp_path)), FakeRetriever(), FakeChecker(), DeadProver())
+    with pytest.raises(ProverUnavailable):  # ni `fail` ni el bucle por API: el runner corta y se reanuda
+        orch.solve(PROBLEM, effective_config(load_agents_config(), "full"), "run:p1")
