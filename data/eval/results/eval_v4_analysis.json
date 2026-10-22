@@ -115,6 +115,28 @@
    "cost_usd": 0,
    "llm_calls": 0,
    "wall_h": 3.13
+  },
+  "sketch (v4b)": {
+   "k": 1,
+   "n": 7,
+   "wilson95": [
+    0.026,
+    0.513
+   ],
+   "solved": [
+    "amc12b_2002_p3"
+   ],
+   "solved_by": {
+    "prover_repair": 1
+   },
+   "vs_control": {
+    "solo_config": 1,
+    "solo_control": 0,
+    "p_mcnemar": 1.0
+   },
+   "cost_usd": 0.0568,
+   "llm_calls": 12,
+   "wall_h": 5.5
   }
  },
  "pdf_set": {
@@ -160,14 +182,57 @@
    "llm_calls": 0,
    "wall_h": 7.58
   },
-  "dsp8": {
-   "k": 10,
-   "n": 14,
+  "baseline_prover16": {
+   "k": 21,
+   "n": 32,
    "wilson95": [
-    0.454,
-    0.883
+    0.483,
+    0.796
    ],
    "solved": [
+    "pdf_p100",
+    "pdf_p15",
+    "pdf_p18",
+    "pdf_p19",
+    "pdf_p2",
+    "pdf_p21",
+    "pdf_p23",
+    "pdf_p30",
+    "pdf_p32",
+    "pdf_p34",
+    "pdf_p47",
+    "pdf_p50",
+    "pdf_p58",
+    "pdf_p60",
+    "pdf_p66",
+    "pdf_p74",
+    "pdf_p76",
+    "pdf_p78",
+    "pdf_p86",
+    "pdf_p94",
+    "pdf_p96"
+   ],
+   "solved_by": {
+    "prover_root": 21
+   },
+   "vs_control": {
+    "solo_config": 0,
+    "solo_control": 0,
+    "p_mcnemar": 1.0
+   },
+   "cost_usd": 0,
+   "llm_calls": 0,
+   "wall_h": 3.3
+  },
+  "dsp8": {
+   "k": 21,
+   "n": 32,
+   "wilson95": [
+    0.483,
+    0.796
+   ],
+   "solved": [
+    "pdf_p100",
     "pdf_p15",
     "pdf_p18",
     "pdf_p19",
@@ -177,20 +242,30 @@
     "pdf_p30",
     "pdf_p32",
     "pdf_p33",
-    "pdf_p34"
+    "pdf_p34",
+    "pdf_p47",
+    "pdf_p50",
+    "pdf_p60",
+    "pdf_p66",
+    "pdf_p74",
+    "pdf_p76",
+    "pdf_p78",
+    "pdf_p86",
+    "pdf_p94",
+    "pdf_p96"
    ],
    "solved_by": {
-    "prover_root": 9,
+    "prover_root": 20,
     "prover_draft": 1
    },
    "vs_control": {
     "solo_config": 1,
-    "solo_control": 0,
+    "solo_control": 1,
     "p_mcnemar": 1.0
    },
-   "cost_usd": 0.0202,
-   "llm_calls": 10,
-   "wall_h": 0.8
+   "cost_usd": 0.0314,
+   "llm_calls": 24,
+   "wall_h": 2.75
   },
   "rag_proofs": {
    "k": 20,
@@ -273,6 +348,51 @@
    "cost_usd": 0.0657,
    "llm_calls": 24,
    "wall_h": 4.58
+  },
+  "sketch (v4b)": {
+   "k": 22,
+   "n": 32,
+   "wilson95": [
+    0.514,
+    0.82
+   ],
+   "solved": [
+    "pdf_p100",
+    "pdf_p15",
+    "pdf_p18",
+    "pdf_p19",
+    "pdf_p2",
+    "pdf_p21",
+    "pdf_p23",
+    "pdf_p30",
+    "pdf_p32",
+    "pdf_p33",
+    "pdf_p34",
+    "pdf_p41",
+    "pdf_p47",
+    "pdf_p50",
+    "pdf_p60",
+    "pdf_p66",
+    "pdf_p74",
+    "pdf_p76",
+    "pdf_p78",
+    "pdf_p86",
+    "pdf_p94",
+    "pdf_p96"
+   ],
+   "solved_by": {
+    "prover_root": 20,
+    "prover_sketch": 1,
+    "prover_repair": 1
+   },
+   "vs_control": {
+    "solo_config": 2,
+    "solo_control": 1,
+    "p_mcnemar": 1.0
+   },
+   "cost_usd": 0.1069,
+   "llm_calls": 22,
+   "wall_h": 4.34
   }
  }
 }

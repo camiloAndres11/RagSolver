@@ -1,0 +1,378 @@
+=== 0/3 Lean real: límite de heartbeats en bloques 2026-10-22 03:20 ===
+.                                                                        [100%]
+1 passed, 2 deselected in 17.11s
+=== 1/3 7 difíciles × sketch 2026-10-22 03:20 ===
+[prover] listo en http://172.31.112.1:8082
+[prover] demostrador local en http://172.31.112.1:8082
+[index-check] 20/20 decl_name de la tabla 'mathlib_full' existen en Lean
+[sketch] imo_1978_p5: fail attempts=1 llm_calls=2 used_in_proof=0/20 1804.9s
+[sketch] numbertheory_aneqprodakp4_anmsqrtanp1eq2: fail attempts=1 llm_calls=2 used_in_proof=0/16 4044.3s
+[sketch] amc12b_2002_p3: done attempts=1 llm_calls=0 used_in_proof=1/16 73.5s
+[sketch] amc12a_2002_p21: fail attempts=1 llm_calls=2 used_in_proof=0/16 2440.2s
+[sketch] aime_1997_p11: fail attempts=1 llm_calls=2 used_in_proof=0/19 5340.5s
+[sketch] amc12_2001_p5: fail attempts=1 llm_calls=2 used_in_proof=0/22 2256.6s
+[sketch] imo_1977_p5: fail attempts=1 llm_calls=2 used_in_proof=0/16 3844.6s
+[cost] 12 llamadas, 9672 tokens de entrada, 359426 de salida, US$0.0568 (OpenRouter usage.cost)
+{
+  "run_id": "eval-v4b-unsolved",
+  "out": "data/eval/runs/eval-v4b-unsolved",
+  "status": "completed",
+  "n_done": 7,
+  "n_pending": 0,
+  "summary": {
+    "sketch": {
+      "n": 7,
+      "pass@1": 0.143,
+      "pass@1_wilson95": [
+        0.026,
+        0.513
+      ],
+      "llm_calls_mean": 1.71,
+      "tokens_mean": 52728,
+      "wall_s_median": 2440.2,
+      "retrieval_calls_mean": 14.71,
+      "llm_calls_mean_ci95_bootstrap": [
+        1.14,
+        2.0
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        33068.43,
+        70246.43
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        1731.29,
+        4032.56
+      ],
+      "pass_by_attempt": {
+        "1": 0.143
+      },
+      "lemma_use_precision": 0.008,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "prover: sin prueba (respaldo por API apagado: prover.api_fallback)": 6
+      },
+      "self_assessed_correct": null
+    }
+  },
+  "llm_calls_total": 12,
+  "cost_usd_total": 0.0568,
+  "models_exhausted": []
+}
+=== 2/3 pdf_set × dsp8,baseline_prover16 2026-10-22 05:37 ===
+[prover] ya responde en http://172.31.112.1:8082
+[resume] 110 resultados previos en data/eval/runs/eval-v4-pdf/results.jsonl
+[prover] demostrador local en http://172.31.112.1:8082
+[index-check] 20/20 decl_name de la tabla 'mathlib_full' existen en Lean
+[dsp8] pdf_p35: fail attempts=1 llm_calls=2 used_in_proof=0/10 662.8s
+[dsp8] pdf_p47: done attempts=1 llm_calls=0 used_in_proof=0/0 13.6s
+[dsp8] pdf_p50: done attempts=1 llm_calls=0 used_in_proof=0/0 3.1s
+[dsp8] pdf_p44: fail attempts=1 llm_calls=2 used_in_proof=0/14 1409.9s
+[dsp8] pdf_p41: fail attempts=1 llm_calls=2 used_in_proof=0/10 1556.3s
+[dsp8] pdf_p60: done attempts=1 llm_calls=0 used_in_proof=0/0 0.5s
+[dsp8] pdf_p66: done attempts=1 llm_calls=0 used_in_proof=0/0 72.3s
+[dsp8] pdf_p74: done attempts=1 llm_calls=0 used_in_proof=0/0 18.6s
+[dsp8] pdf_p76: done attempts=1 llm_calls=0 used_in_proof=0/0 1.1s
+[dsp8] pdf_p78: done attempts=1 llm_calls=0 used_in_proof=0/0 0.5s
+[dsp8] pdf_p52: fail attempts=1 llm_calls=2 used_in_proof=0/14 1069.3s
+[dsp8] pdf_p86: done attempts=1 llm_calls=0 used_in_proof=0/0 0.4s
+[dsp8] pdf_p58: fail attempts=1 llm_calls=2 used_in_proof=0/14 356.8s
+[dsp8] pdf_p94: done attempts=1 llm_calls=0 used_in_proof=0/0 0.6s
+[dsp8] pdf_p96: done attempts=1 llm_calls=0 used_in_proof=0/0 2.3s
+[dsp8] pdf_p100: done attempts=1 llm_calls=0 used_in_proof=0/0 1.6s
+[baseline_prover16] pdf_p2: done attempts=1 llm_calls=0 used_in_proof=0/0 0.1s
+[baseline_prover16] pdf_p6: fail attempts=1 llm_calls=0 used_in_proof=0/0 771.0s
+[dsp8] pdf_p83: fail attempts=1 llm_calls=2 used_in_proof=0/10 946.0s
+[dsp8] pdf_p89: fail attempts=1 llm_calls=2 used_in_proof=0/10 907.8s
+[baseline_prover16] pdf_p15: done attempts=1 llm_calls=0 used_in_proof=0/0 6.2s
+[baseline_prover16] pdf_p18: done attempts=1 llm_calls=0 used_in_proof=0/0 1.2s
+[baseline_prover16] pdf_p19: done attempts=1 llm_calls=0 used_in_proof=0/0 1.2s
+[baseline_prover16] pdf_p12: fail attempts=1 llm_calls=0 used_in_proof=0/0 452.3s
+[baseline_prover16] pdf_p21: done attempts=1 llm_calls=0 used_in_proof=0/0 1.9s
+[baseline_prover16] pdf_p23: done attempts=1 llm_calls=0 used_in_proof=0/0 2.3s
+[baseline_prover16] pdf_p30: done attempts=1 llm_calls=0 used_in_proof=0/0 4.1s
+[baseline_prover16] pdf_p32: done attempts=1 llm_calls=0 used_in_proof=0/0 0.2s
+[baseline_prover16] pdf_p13: fail attempts=1 llm_calls=0 used_in_proof=0/0 613.6s
+[baseline_prover16] pdf_p34: done attempts=1 llm_calls=0 used_in_proof=0/0 7.8s
+[baseline_prover16] pdf_p20: fail attempts=1 llm_calls=0 used_in_proof=0/0 600.0s
+[baseline_prover16] pdf_p35: fail attempts=1 llm_calls=0 used_in_proof=0/0 644.2s
+[baseline_prover16] pdf_p33: fail attempts=1 llm_calls=0 used_in_proof=0/0 1370.3s
+[baseline_prover16] pdf_p47: done attempts=1 llm_calls=0 used_in_proof=0/0 5.4s
+[baseline_prover16] pdf_p50: done attempts=1 llm_calls=0 used_in_proof=0/0 1.6s
+[baseline_prover16] pdf_p41: fail attempts=1 llm_calls=0 used_in_proof=0/0 1690.6s
+[baseline_prover16] pdf_p44: fail attempts=1 llm_calls=0 used_in_proof=0/0 1701.0s
+[baseline_prover16] pdf_p60: done attempts=1 llm_calls=0 used_in_proof=0/0 0.2s
+[baseline_prover16] pdf_p66: done attempts=1 llm_calls=0 used_in_proof=0/0 19.1s
+[baseline_prover16] pdf_p74: done attempts=1 llm_calls=0 used_in_proof=0/0 0.2s
+[baseline_prover16] pdf_p76: done attempts=1 llm_calls=0 used_in_proof=0/0 0.1s
+[baseline_prover16] pdf_p78: done attempts=1 llm_calls=0 used_in_proof=0/0 0.1s
+[baseline_prover16] pdf_p58: done attempts=1 llm_calls=0 used_in_proof=0/0 670.2s
+[baseline_prover16] pdf_p86: done attempts=1 llm_calls=0 used_in_proof=0/0 0.2s
+[baseline_prover16] pdf_p52: fail attempts=1 llm_calls=0 used_in_proof=0/0 1454.1s
+[baseline_prover16] pdf_p94: done attempts=1 llm_calls=0 used_in_proof=0/0 0.3s
+[baseline_prover16] pdf_p96: done attempts=1 llm_calls=0 used_in_proof=0/0 0.8s
+[baseline_prover16] pdf_p100: done attempts=1 llm_calls=0 used_in_proof=0/0 1.1s
+[baseline_prover16] pdf_p83: fail attempts=1 llm_calls=0 used_in_proof=0/0 906.6s
+[baseline_prover16] pdf_p89: fail attempts=1 llm_calls=0 used_in_proof=0/0 934.5s
+[cost] 14 llamadas, 8999 tokens de entrada, 118161 de salida, US$0.0232 (OpenRouter usage.cost)
+{
+  "run_id": "eval-v4-pdf",
+  "out": "data/eval/runs/eval-v4-pdf",
+  "status": "completed",
+  "n_done": 160,
+  "n_pending": 0,
+  "summary": {
+    "baseline_prover": {
+      "n": 32,
+      "pass@1": 0.656,
+      "pass@1_wilson95": [
+        0.483,
+        0.796
+      ],
+      "llm_calls_mean": 0.0,
+      "tokens_mean": 0,
+      "wall_s_median": 646.2,
+      "retrieval_calls_mean": 0.0,
+      "llm_calls_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        612.14,
+        1132.8
+      ],
+      "pass_by_attempt": {
+        "1": 0.656
+      },
+      "lemma_use_precision": null,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "unknown": 11
+      },
+      "self_assessed_correct": null
+    },
+    "rag_proofs": {
+      "n": 32,
+      "pass@1": 0.625,
+      "pass@1_wilson95": [
+        0.453,
+        0.771
+      ],
+      "llm_calls_mean": 0.0,
+      "tokens_mean": 0,
+      "wall_s_median": 19.3,
+      "retrieval_calls_mean": 0.38,
+      "llm_calls_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        289.8,
+        780.75
+      ],
+      "pass_by_attempt": {
+        "1": 0.625
+      },
+      "lemma_use_precision": 0.0,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "prover: sin prueba (respaldo por API apagado: prover.api_fallback)": 12
+      },
+      "self_assessed_correct": null
+    },
+    "sketch": {
+      "n": 32,
+      "pass@1": 0.625,
+      "pass@1_wilson95": [
+        0.453,
+        0.771
+      ],
+      "llm_calls_mean": 0.75,
+      "tokens_mean": 12172,
+      "wall_s_median": 18.6,
+      "retrieval_calls_mean": 1.41,
+      "llm_calls_mean_ci95_bootstrap": [
+        0.44,
+        1.06
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        7089.22,
+        17524.41
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        234.47,
+        849.77
+      ],
+      "pass_by_attempt": {
+        "1": 0.625
+      },
+      "lemma_use_precision": 0.0,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "prover: sin prueba (respaldo por API apagado: prover.api_fallback)": 12
+      },
+      "self_assessed_correct": null
+    },
+    "dsp8": {
+      "n": 32,
+      "pass@1": 0.656,
+      "pass@1_wilson95": [
+        0.483,
+        0.796
+      ],
+      "llm_calls_mean": 0.75,
+      "tokens_mean": 6077,
+      "wall_s_median": 12.2,
+      "retrieval_calls_mean": 0.0,
+      "llm_calls_mean_ci95_bootstrap": [
+        0.44,
+        1.06
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        3342.62,
+        8953.94
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        158.22,
+        469.95
+      ],
+      "pass_by_attempt": {
+        "1": 0.656
+      },
+      "lemma_use_precision": 0.0,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "llm_output_invalid:generator": 1,
+        "prover: sin prueba tras DRAFT (respaldo por API apagado: prover.api_fallback)": 10
+      },
+      "self_assessed_correct": null
+    },
+    "baseline_prover16": {
+      "n": 32,
+      "pass@1": 0.656,
+      "pass@1_wilson95": [
+        0.483,
+        0.796
+      ],
+      "llm_calls_mean": 0.0,
+      "tokens_mean": 0,
+      "wall_s_median": 5.4,
+      "retrieval_calls_mean": 0.0,
+      "llm_calls_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        0.0,
+        0.0
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        198.63,
+        563.02
+      ],
+      "pass_by_attempt": {
+        "1": 0.656
+      },
+      "lemma_use_precision": null,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "unknown": 11
+      },
+      "self_assessed_correct": null
+    }
+  },
+  "llm_calls_total": 14,
+  "cost_usd_total": 0.0232,
+  "models_exhausted": []
+}
+=== 3/3 pdf_set × sketch 2026-10-22 07:30 ===
+[prover] ya responde en http://172.31.112.1:8082
+[prover] demostrador local en http://172.31.112.1:8082
+[index-check] 20/20 decl_name de la tabla 'mathlib_full' existen en Lean
+[sketch] pdf_p2: done attempts=1 llm_calls=0 used_in_proof=0/0 1.2s
+[sketch] pdf_p6: fail attempts=1 llm_calls=2 used_in_proof=0/16 697.4s
+[sketch] pdf_p15: done attempts=1 llm_calls=0 used_in_proof=0/0 6.1s
+[sketch] pdf_p18: done attempts=1 llm_calls=0 used_in_proof=0/0 1.2s
+[sketch] pdf_p19: done attempts=1 llm_calls=0 used_in_proof=0/0 0.8s
+[sketch] pdf_p12: fail attempts=1 llm_calls=2 used_in_proof=0/16 828.4s
+[sketch] pdf_p21: done attempts=1 llm_calls=0 used_in_proof=0/0 1.7s
+[sketch] pdf_p23: done attempts=1 llm_calls=0 used_in_proof=0/0 2.2s
+[sketch] pdf_p30: done attempts=1 llm_calls=0 used_in_proof=0/0 3.8s
+[sketch] pdf_p32: done attempts=1 llm_calls=0 used_in_proof=0/0 0.2s
+[sketch] pdf_p13: fail attempts=1 llm_calls=2 used_in_proof=0/16 906.7s
+[sketch] pdf_p34: done attempts=1 llm_calls=0 used_in_proof=0/0 42.8s
+[sketch] pdf_p33: done attempts=1 llm_calls=0 used_in_proof=1/16 134.7s
+[sketch] pdf_p20: fail attempts=1 llm_calls=2 used_in_proof=0/24 1406.6s
+[sketch] pdf_p41: done attempts=1 llm_calls=2 used_in_proof=0/16 2413.5s
+[sketch] pdf_p47: done attempts=1 llm_calls=0 used_in_proof=0/0 14.3s
+[sketch] pdf_p50: done attempts=1 llm_calls=0 used_in_proof=0/0 3.5s
+[sketch] pdf_p44: fail attempts=1 llm_calls=2 used_in_proof=0/22 2131.5s
+[sketch] pdf_p35: fail attempts=1 llm_calls=2 used_in_proof=0/16 3327.2s
+[sketch] pdf_p60: done attempts=1 llm_calls=0 used_in_proof=0/0 1.9s
+[sketch] pdf_p66: done attempts=1 llm_calls=0 used_in_proof=0/0 131.8s
+[sketch] pdf_p74: done attempts=1 llm_calls=0 used_in_proof=0/0 23.5s
+[sketch] pdf_p76: done attempts=1 llm_calls=0 used_in_proof=0/0 1.2s
+[sketch] pdf_p78: done attempts=1 llm_calls=0 used_in_proof=0/0 1.0s
+[sketch] pdf_p52: fail attempts=1 llm_calls=2 used_in_proof=0/20 1229.6s
+[sketch] pdf_p86: done attempts=1 llm_calls=0 used_in_proof=0/0 21.4s
+[sketch] pdf_p89: fail attempts=1 llm_calls=2 used_in_proof=0/16 458.3s
+[sketch] pdf_p94: done attempts=1 llm_calls=0 used_in_proof=0/0 0.9s
+[sketch] pdf_p96: done attempts=1 llm_calls=0 used_in_proof=0/0 2.7s
+[sketch] pdf_p100: done attempts=1 llm_calls=0 used_in_proof=0/0 2.7s
+[sketch] pdf_p58: fail attempts=1 llm_calls=2 used_in_proof=0/20 969.6s
+[sketch] pdf_p83: fail attempts=1 llm_calls=2 used_in_proof=0/16 838.6s
+[cost] 22 llamadas, 13999 tokens de entrada, 726549 de salida, US$0.1069 (OpenRouter usage.cost)
+{
+  "run_id": "eval-v4b-pdf",
+  "out": "data/eval/runs/eval-v4b-pdf",
+  "status": "completed",
+  "n_done": 32,
+  "n_pending": 0,
+  "summary": {
+    "sketch": {
+      "n": 32,
+      "pass@1": 0.688,
+      "pass@1_wilson95": [
+        0.514,
+        0.82
+      ],
+      "llm_calls_mean": 0.69,
+      "tokens_mean": 23142,
+      "wall_s_median": 21.4,
+      "retrieval_calls_mean": 2.22,
+      "llm_calls_mean_ci95_bootstrap": [
+        0.38,
+        1.0
+      ],
+      "tokens_mean_ci95_bootstrap": [
+        12880.94,
+        34647.12
+      ],
+      "wall_s_mean_ci95_bootstrap": [
+        229.22,
+        783.84
+      ],
+      "pass_by_attempt": {
+        "1": 0.688
+      },
+      "lemma_use_precision": 0.005,
+      "re_retrieval_success": null,
+      "error_taxonomy": {
+        "prover: sin prueba (respaldo por API apagado: prover.api_fallback)": 10
+      },
+      "self_assessed_correct": null
+    }
+  },
+  "llm_calls_total": 22,
+  "cost_usd_total": 0.1069,
+  "models_exhausted": []
+}
+=== FIN 2026-10-22 09:02 ===
+[prover] detenido

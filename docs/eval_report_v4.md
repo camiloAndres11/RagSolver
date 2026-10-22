@@ -9,7 +9,7 @@
 > - `data/eval/runs/eval-v4-{pdf,unsolved}/` y `eval-v4b-{pdf,unsolved}/`;
 > - `data/eval/results/eval_v4_analysis.json`, que se regenera con `eval_v4_analysis.py`.
 >
-> **Estado:** eval-v4b (SKETCH con sus dos arreglos, #128) está corriendo. Las filas marcadas *pendiente* se completan al terminar.
+> **Estado:** completo. eval-v4b, que repite SKETCH con sus dos arreglos (#128) y añade el control de `dsp8`, terminó el 2026-10-22 a las 09:02.
 
 ---
 
@@ -33,7 +33,7 @@ Dos de los 9 problemas son **falsos** tal como están en miniF2F-v2s: `mathd_alg
 | `repair` (casi-pruebas → pasos `have`) | 0/2* | US$0 | — |
 | `sketch` v4 (esqueleto Lean del modelo con razonamiento) | **1/7** | US$0.038 | `amc12b_2002_p3` |
 | `rag_proofs` (pruebas verificadas de problemas parecidos) | **1/7** | **US$0** | `amc12b_2002_p3` |
-| `sketch` v4b (con los arreglos de #128) | *pendiente* | | |
+| `sketch` v4b (con los arreglos de #128) | **1/7** | US$0.057 | `amc12b_2002_p3` (por REPAIR) |
 
 \* Corridas cortadas antes de cubrir los 7: 32 muestras tardaban ~65 min por problema sin resolver ninguno (#123), y REPAIR solo actúa si hay casi-pruebas.
 
@@ -43,6 +43,8 @@ Dos de los 9 problemas son **falsos** tal como están en miniF2F-v2s: `mathd_alg
 
 Las dos pruebas pasan el verificador completo: enunciado intacto, kernel y axiomas estándar.
 
+En eval-v4b `amc12b_2002_p3` cayó una tercera vez, ahora por REPAIR, la etapa gratis, en 74 s y antes de llamar al modelo. Esta vez sí había una casi-prueba que reparar: los arreglos de #128 dejaron elaborar sus pasos. Los otros 6 difíciles siguen sin resolverse con todas las variantes.
+
 Con n = 7, 1 de 7 frente a 0 de 7 no es significativo (McNemar p = 1.0). Es una señal, no un resultado.
 
 ## 3. `pdf_set`: los 11 fallos del demostrador
@@ -50,15 +52,22 @@ Con n = 7, 1 de 7 frente a 0 de 7 no es significativo (McNemar p = 1.0). Es una 
 | Config (pdf_set) | Resueltos | Frente al control | API |
 |---|---|---|---|
 | `baseline_prover` (control) | 21/32 | — | US$0 |
-| `dsp8` | 10/14 (parcial) | +1 (`pdf_p33`, `prover_draft`) | US$0.020 |
+| `baseline_prover16` (16 muestras) | 21/32 | los mismos 21 | US$0 |
+| `dsp8` | 21/32 | +1 (`pdf_p33`, `prover_draft`) −1 (`pdf_p58`) | US$0.031 |
 | `rag_proofs` | 20/32 | −1 (`pdf_p58`) | US$0 |
 | `sketch` v4 | 20/32 | −1 (`pdf_p58`) | US$0.066 |
-| `baseline_prover16` (control de `dsp8`) | *pendiente* | | |
-| `sketch` v4b | *pendiente* | | |
+| **`sketch` v4b** | **22/32** (IC95 0.51-0.82) | **+2** (`pdf_p33` por REPAIR, `pdf_p41` por SKETCH) −1 (`pdf_p58`) | US$0.107 |
 
 **El −1 de `pdf_p58` no viene de la etapa nueva.** `baseline_prover` lo resuelve en la ronda de corrección. Las configs con RAG añaden a esa ronda sugerencias de nombres de lemas, así que el prompt cambia y las muestras también, y esas no lo resolvieron. Es ruido de muestreo de la ronda de corrección, no un efecto de EXAMPLES ni de SKETCH. Aun así, es la segunda vez que las sugerencias de nombres no ayudan: en eval-v3 el kernel no usó ninguna.
 
-Falta el control `baseline_prover16` para decir si `pdf_p33` se debe al borrador o a 8 muestras más.
+**`pdf_p33` es mérito del borrador, no de más muestras.** El control con 16 muestras no lo resuelve.
+
+**`sketch` v4b es la primera configuración que supera al demostrador solo en `pdf_set`: 22 frente a 21.**
+- `pdf_p41` lo resolvió SKETCH, en 40 min: el modelo escribió el esqueleto y el demostrador cerró los pasos. No lo resuelve ninguna otra configuración, ni `sketch` antes de los arreglos.
+- `pdf_p33` lo resolvió REPAIR, en 2 min.
+- Las dos pruebas pasan el verificador completo con axiomas estándar. Sus citas son solo de Mathlib: nada del corpus informal, que es el mismo PDF.
+
+Con 2 a favor y 1 en contra, McNemar da p = 1.0: la diferencia no es significativa.
 
 ## 4. Por qué SKETCH rindió poco en eval-v4 (y qué se arregló)
 
@@ -72,11 +81,17 @@ Los esqueletos eran buenos. Por ejemplo, el invariante aₙ₊₁ = (aₙ − 2)
 
    Antes de eval-v4b se comprueba con Lean real (`tests/test_goal_mode_slow.py`).
 
-eval-v4b repite SKETCH con los dos arreglos sobre los mismos problemas.
+**Resultado de eval-v4b:**
+- Las llamadas cortadas bajaron de 32/38 a 12/34.
+- No hubo ningún paso "stale".
+- SKETCH pasó de 0 a 2 problemas del PDF fuera del alcance del demostrador solo (uno por SKETCH, otro por su REPAIR).
+- En los difíciles se quedó en 1/7.
+
+Que un 35 % de las llamadas siga llegando al tope de 40 000 tokens indica que el modelo razona de más en los problemas largos.
 
 ## 5. Costo y tiempo
 
-- **API:** US$0.145 en todas las corridas de eval-v4, contando DRAFT, SKETCH y los fallos.
+- **API:** US$0.33 en total entre eval-v4 y eval-v4b, contando DRAFT, SKETCH y los fallos.
 - **GPU:**
   - unos 14 min por problema del PDF con `baseline_prover`;
   - en los difíciles, 30-40 min por problema para cada config, porque agotan todas las muestras.
@@ -95,6 +110,12 @@ El demostrador especializado decide el resultado y generaliza (21/32 fuera de mi
 - un esqueleto de pasos del modelo que razona (SKETCH);
 - pruebas verificadas de problemas parecidos (RAG de pruebas, gratis).
 
-Más muestras, el plan informal en el prompt (DRAFT) y reparar casi-pruebas no sumaron.
+Más muestras no sumaron (32 en los difíciles; 16 en el PDF, con los mismos 21). El plan informal en el prompt (DRAFT) sumó un problema del PDF, el mismo que REPAIR saca gratis después de los arreglos.
+
+Juntando lo que aportó cada etapa sobre el demostrador solo:
+- `pdf_set`: 21 → 23 de 32;
+- los difíciles: 0 → 1 de 7.
+
+Una configuración que encadene etapa 0 → `rag_proofs` → `sketch` es lo que falta medir como un solo sistema.
 
 Es el papel del RAG que el proyecto buscaba: recuperar **cómo se demostró algo parecido**, no nombres de lemas que el demostrador ya conoce.

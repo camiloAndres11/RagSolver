@@ -143,7 +143,7 @@ Las cuatro propuestas que estaban aquí se hicieron:
 1. **El respaldo por API está apagado.**
 2. **Fuera de miniF2F:** el demostrador solo resuelve **21 de 32** problemas del PDF (66 %; 70 % en miniF2F). No había contaminación.
 3. **32 intentos en vez de 8:** 0 de 6 en los difíciles. Más intentos no ayudan.
-4. **El plan y los lemas dentro del prompt del demostrador (DSP):** 0 de 7 en los difíciles; 1 más en el PDF (`pdf_p33`, falta su control).
+4. **El plan y los lemas dentro del prompt del demostrador (DSP):** 0 de 7 en los difíciles. En el PDF resuelve `pdf_p33`, que el demostrador no saca ni con 16 intentos, aunque en el total empata (21/32).
 
 Además:
 - **2 de los 9 difíciles son falsos** tal como están en miniF2F; se demostró en Lean que su negación es cierta.
@@ -154,14 +154,14 @@ Además:
   - el modelo se quedaba sin tokens antes de escribir el Lean;
   - un paso lento reiniciaba Lean y dejaba sin probar los pasos de los otros hilos.
 
-  `eval-v4b` lo repite con los arreglos.
+  Con los arreglos (eval-v4b), SKETCH resuelve **22 de 32** del PDF: es la primera vez que el sistema supera al demostrador solo fuera de miniF2F. Gana `pdf_p41` (lo hizo el esqueleto) y `pdf_p33` (reparado gratis) y pierde `pdf_p58`; no es significativo.
 - **Hugging Face:**
   - código, docs, notebook, LICENSE y CITATION en <https://huggingface.co/CamiloS1111/ragsolver>;
   - índices, corridas y caché en <https://huggingface.co/datasets/CamiloS1111/ragsolver-index>.
 
   La demo de Gradio corre en local, porque el Space ahora cobra (PRO).
 
-Gasto de API de eval-v4: **US$0.145**.
+Gasto de API de eval-v4 y eval-v4b: **US$0.33**.
 
 ## 10. Qué sigue (propuesto, no hecho)
 
